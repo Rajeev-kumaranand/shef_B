@@ -1,0 +1,127 @@
+/**
+ * animations.css
+ * Hardware-accelerated luxury motion curves and keyframe triggers for shef&B.
+ * Keeps movements clean, organic, and sophisticated.
+ */
+
+/* 1. Keyframes Definition */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(30px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translate3d(-30px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scaleReveal {
+  from {
+    opacity: 0;
+    transform: scale3d(0.97, 0.97, 1);
+  }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* Cinematic Vertical Slide Reveal for Premium Images (Zara style) */
+@keyframes imageRevealClip {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0% 0 0 0);
+  }
+}
+
+/* 2. Reusable Animation Classes */
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeUp var(--animations-durations-slow) var(--animations-easings-luxury) forwards;
+}
+
+.animate-fade-down {
+  opacity: 0;
+  animation: fadeDown var(--animations-durations-slow) var(--animations-easings-luxury) forwards;
+}
+
+.animate-fade-left {
+  opacity: 0;
+  animation: fadeLeft var(--animations-durations-slow) var(--animations-easings-luxury) forwards;
+}
+
+.animate-fade-right {
+  opacity: 0;
+  animation: fadeRight var(--animations-durations-slow) var(--animations-easings-luxury) forwards;
+}
+
+.animate-scale-reveal {
+  opacity: 0;
+  animation: scaleReveal var(--animations-durations-ultra-slow) var(--animations-easings-luxury) forwards;
+}
+
+.animate-image-reveal {
+  animation: imageRevealClip var(--animations-durations-ultra-slow) var(--animations-easings-editorial) forwards;
+}
+
+/* 3. Stagger Reveal Helpers */
+/* Future-ready children stagger rules using simple CSS variables for delays */
+.animate-stagger-parent > * {
+  opacity: 0;
+}
+
+.animate-stagger-parent > *:nth-child(1) {
+  animation: fadeUp var(--animations-durations-slow) var(--animations-easings-luxury) 100ms forwards;
+}
+
+.animate-stagger-parent > *:nth-child(2) {
+  animation: fadeUp var(--animations-durations-slow) var(--animations-easings-luxury) 200ms forwards;
+}
+
+.animate-stagger-parent > *:nth-child(3) {
+  animation: fadeUp var(--animations-durations-slow) var(--animations-easings-luxury) 300ms forwards;
+}
+
+.animate-stagger-parent > *:nth-child(4) {
+  animation: fadeUp var(--animations-durations-slow) var(--animations-easings-luxury) 400ms forwards;
+}
+
+.animate-stagger-parent > *:nth-child(5) {
+  animation: fadeUp var(--animations-durations-slow) var(--animations-easings-luxury) 500ms forwards;
+}

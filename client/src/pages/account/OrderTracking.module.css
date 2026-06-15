@@ -1,0 +1,231 @@
+.page {
+  padding-top: var(--header-height);
+  min-height: 100vh;
+  background-color: var(--surface-primary);
+}
+
+.header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.backBtn {
+  display: inline-block;
+  color: var(--text-secondary);
+  font-family: var(--font-secondary);
+  text-decoration: none;
+  margin-bottom: var(--spacing-sm);
+}
+
+.backBtn:hover {
+  color: var(--brand-black);
+}
+
+.trackingContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.card {
+  background: white;
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.card h3 {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--spacing-sm);
+}
+
+.card p {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+/* Timeline */
+.timelineWrapper {
+  background: white;
+  padding: var(--spacing-xxl) var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+}
+
+.timeline {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  min-width: 600px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--surface-secondary);
+  z-index: 1;
+}
+
+.timelineProgress {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  height: 2px;
+  background: var(--brand-black);
+  z-index: 2;
+  transition: width 0.5s ease;
+}
+
+.timelineStep {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 80px;
+}
+
+.stepIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.timelineStep.completed .stepIcon {
+  background: var(--brand-black);
+  border-color: var(--brand-black);
+  color: white;
+}
+
+.stepIcon.current {
+  box-shadow: 0 0 0 4px var(--surface-secondary);
+}
+
+.stepLabel {
+  font-family: var(--font-secondary);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.timelineStep.completed .stepLabel {
+  color: var(--brand-black);
+  font-weight: 600;
+}
+
+/* Cancelled State */
+.cancelledState {
+  background: #fee2e2;
+  padding: var(--spacing-xl);
+  text-align: center;
+  border: 1px solid #fca5a5;
+}
+
+.cancelledIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ef4444;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin: 0 auto var(--spacing-md);
+}
+
+.cancelledState h3 {
+  color: #991b1b;
+}
+
+.cancelledState p {
+  color: #b91c1c;
+}
+
+/* Grids */
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+  .detailsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trackingInfoBox {
+  background: #f8fafc;
+  padding: var(--spacing-md);
+  border: 1px solid #e2e8f0;
+}
+
+.textMuted {
+  color: var(--text-secondary);
+}
+
+/* Items */
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+}
+
+.itemRow {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px dashed var(--border-color);
+  font-family: var(--font-secondary);
+}
+
+.itemQty {
+  color: var(--text-secondary);
+  margin-right: var(--spacing-sm);
+}
+
+.totals {
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-md);
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-secondary);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.grandTotal {
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--border-color);
+}

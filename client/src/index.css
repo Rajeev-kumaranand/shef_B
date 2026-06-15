@@ -1,0 +1,6 @@
+/**
+ * index.css
+ * Gateway styling hub for the shef&B platform.
+ * Imports global variables, typographical systems, responsive layout containers, and smooth animation hooks.
+ */
+@import './styles/globals.css';

@@ -1,0 +1,140 @@
+.notePage {
+  width: 100%;
+}
+
+.sectionTitle {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h2);
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-tight);
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
+}
+
+.letterContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xxl);
+}
+
+.salutation {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+.paragraph {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.paragraph::first-letter {
+  font-family: var(--font-primary);
+  font-size: 2.5em;
+  color: var(--text-primary);
+  float: left;
+  line-height: 0.8;
+  padding-right: var(--spacing-xs);
+  margin-top: 0.1em;
+}
+
+.imageBlock {
+  width: 100%;
+  margin: var(--spacing-xxl) 0;
+}
+
+.editorialFlow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.quoteBlock {
+  margin: var(--spacing-xxl) 0;
+  padding: 0 var(--spacing-xl);
+  border-left: 2px solid var(--brand-black);
+}
+
+.pullQuote {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h3);
+  color: var(--text-primary);
+  line-height: var(--line-height-relaxed);
+  font-style: italic;
+  margin: 0;
+}
+
+.signatureSection {
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-xxxl);
+  margin-top: var(--spacing-xl);
+}
+
+.signatureFlex {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--spacing-xxl);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .signatureFlex {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.signatureText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .signatureText {
+    text-align: left;
+  }
+}
+
+.sigName {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-normal);
+  margin: 0;
+}
+
+.sigRole {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.sigBio {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+  max-width: 400px;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .sigBio {
+    margin: 0 auto;
+  }
+}
+
+.sigImage {
+  width: 100%;
+  max-width: 250px;
+}

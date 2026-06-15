@@ -1,0 +1,133 @@
+.page {
+  padding-top: var(--header-height);
+  min-height: 100vh;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xxl) 0;
+  text-align: center;
+}
+
+.emptyTitle {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-sm);
+}
+
+.emptyText {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.shopBtn {
+  display: inline-block;
+  padding: var(--spacing-md) var(--spacing-xl);
+  background: var(--brand-black);
+  color: var(--brand-white);
+  text-decoration: none;
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  transition: background 0.3s ease;
+}
+
+.shopBtn:hover {
+  background: var(--brand-brown);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-lg);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.imageLink {
+  display: block;
+}
+
+.imageWrapper {
+  aspect-ratio: 4/5;
+  background: var(--surface-secondary);
+  margin-bottom: var(--spacing-md);
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.imageLink:hover .image {
+  transform: scale(1.05);
+}
+
+.info {
+  margin-bottom: var(--spacing-md);
+}
+
+.name {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  margin-bottom: var(--spacing-xs);
+}
+
+.price {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: auto;
+}
+
+.addToCartBtn {
+  flex: 1;
+  padding: var(--spacing-sm);
+  background: var(--brand-black);
+  color: var(--brand-white);
+  border: none;
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  cursor: pointer;
+}
+
+.removeBtn {
+  flex: 1;
+  padding: var(--spacing-sm);
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+  cursor: pointer;
+}

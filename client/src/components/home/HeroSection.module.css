@@ -1,0 +1,107 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--brand-black);
+}
+
+.slideshowContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.65) 100%);
+  z-index: 2;
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 0 var(--spacing-lg);
+  max-width: 900px;
+  color: var(--brand-white);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--tracking-wide);
+  line-height: var(--line-height-none);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-md);
+  color: var(--brand-white);
+}
+
+.tagline {
+  font-family: var(--font-primary);
+  font-size: clamp(0.875rem, 2vw, 1.25rem);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: var(--line-height-relaxed);
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.scrollText {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.scrollLineContainer {
+  width: 1px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.scrollLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: var(--brand-white);
+}

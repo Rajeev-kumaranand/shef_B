@@ -1,0 +1,161 @@
+/**
+ * utilities.css
+ * Luxury Whitespace Spacing, Containers, Responsive Grids, and Editorial Utilities.
+ * Prioritizes generous layout breathing room (Zara and Nate Berkus style).
+ */
+
+/* 1. Luxury Container System */
+.container-narrow,
+.container-standard,
+.container-wide,
+.container-full {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-lg);
+}
+
+.container-narrow {
+  max-width: 640px; /* Perfect for reading letters, essays, and stories */
+}
+
+.container-standard {
+  max-width: 1080px; /* High-end core sections */
+}
+
+.container-wide {
+  max-width: 1440px; /* Cinematic collections, banners, and asymmetric grids */
+}
+
+.container-full {
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* 2. Responsive Grid System with Luxury Gaps */
+.grid-editorial {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .grid-editorial {
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--spacing-xxl);
+  }
+}
+
+/* Asymmetrical Grid Columns (Typical of Zara / Nate Berkus high-fashion layouts) */
+.col-span-12 { grid-column: span 12; }
+
+@media (min-width: 768px) {
+  .col-span-4  { grid-column: span 4; }
+  .col-span-5  { grid-column: span 5; }
+  .col-span-6  { grid-column: span 6; }
+  .col-span-7  { grid-column: span 7; }
+  .col-span-8  { grid-column: span 8; }
+}
+
+/* 3. Luxury Whitespace & Section Paddings */
+.section-spacing {
+  padding-top: var(--spacing-super);
+  padding-bottom: var(--spacing-super);
+}
+
+@media (min-width: 1024px) {
+  .section-spacing-double {
+    padding-top: calc(var(--spacing-super) * 1.5);
+    padding-bottom: calc(var(--spacing-super) * 1.5);
+  }
+}
+
+/* Margin and Padding Utilities using Token Variables */
+.m-none { margin: var(--spacing-none); }
+.m-xs   { margin: var(--spacing-xs); }
+.m-sm   { margin: var(--spacing-sm); }
+.m-md   { margin: var(--spacing-md); }
+.m-lg   { margin: var(--spacing-lg); }
+.m-xl   { margin: var(--spacing-xl); }
+.m-xxl  { margin: var(--spacing-xxl); }
+
+.mt-none { margin-top: var(--spacing-none); }
+.mt-sm   { margin-top: var(--spacing-sm); }
+.mt-md   { margin-top: var(--spacing-md); }
+.mt-lg   { margin-top: var(--spacing-lg); }
+.mt-xl   { margin-top: var(--spacing-xl); }
+.mt-xxl  { margin-top: var(--spacing-xxl); }
+.mt-super{ margin-top: var(--spacing-super); }
+
+.mb-none { margin-bottom: var(--spacing-none); }
+.mb-sm   { margin-bottom: var(--spacing-sm); }
+.mb-md   { margin-bottom: var(--spacing-md); }
+.mb-lg   { margin-bottom: var(--spacing-lg); }
+.mb-xl   { margin-bottom: var(--spacing-xl); }
+.mb-xxl  { margin-bottom: var(--spacing-xxl); }
+.mb-super{ margin-bottom: var(--spacing-super); }
+
+.p-none { padding: var(--spacing-none); }
+.p-xs   { padding: var(--spacing-xs); }
+.p-sm   { padding: var(--spacing-sm); }
+.p-md   { padding: var(--spacing-md); }
+.p-lg   { padding: var(--spacing-lg); }
+.p-xl   { padding: var(--spacing-xl); }
+.p-xxl  { padding: var(--spacing-xxl); }
+
+.py-none { padding-top: var(--spacing-none); padding-bottom: var(--spacing-none); }
+.py-sm   { padding-top: var(--spacing-sm); padding-bottom: var(--spacing-sm); }
+.py-md   { padding-top: var(--spacing-md); padding-bottom: var(--spacing-md); }
+.py-lg   { padding-top: var(--spacing-lg); padding-bottom: var(--spacing-lg); }
+.py-xl   { padding-top: var(--spacing-xl); padding-bottom: var(--spacing-xl); }
+.py-xxl  { padding-top: var(--spacing-xxl); padding-bottom: var(--spacing-xxl); }
+.py-super{ padding-top: var(--spacing-super); padding-bottom: var(--spacing-super); }
+
+.px-none { padding-left: var(--spacing-none); padding-right: var(--spacing-none); }
+.px-sm   { padding-left: var(--spacing-sm); padding-right: var(--spacing-sm); }
+.px-md   { padding-left: var(--spacing-md); padding-right: var(--spacing-md); }
+.px-lg   { padding-left: var(--spacing-lg); padding-right: var(--spacing-lg); }
+.px-xl   { padding-left: var(--spacing-xl); padding-right: var(--spacing-xl); }
+.px-xxl  { padding-left: var(--spacing-xxl); padding-right: var(--spacing-xxl); }
+
+/* 4. Display, Flex, Alignments & Structural Layout helpers */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* 5. Utility Colors & Borders */
+.border-brand-red   { border: 1px solid var(--brand-red); }
+.border-brand-green { border: 1px solid var(--brand-green); }
+.border-brand-blue  { border: 1px solid var(--brand-blue); }
+
+.bg-brand-black { background-color: var(--brand-black); }
+.bg-dark-gray   { background-color: var(--colors-neutral-dark-gray); }
+
+.text-white { color: var(--colors-neutral-white); }
+.text-red   { color: var(--brand-red); }
+.text-green { color: var(--brand-green); }
+.text-blue  { color: var(--brand-blue); }
+
+.opacity-hidden { opacity: 0; }
+.overflow-hidden { overflow: hidden; }
+.full-viewport-height { min-height: 100vh; }

@@ -1,0 +1,110 @@
+.page {
+  padding-top: var(--header-height);
+  min-height: 100vh;
+  background-color: var(--surface-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.authBox {
+  background: white;
+  padding: var(--spacing-xxl);
+  box-shadow: var(--shadow-premium);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xxl);
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.subtitle {
+  font-family: var(--font-secondary);
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.formGroup input {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-md);
+  transition: border-color 0.3s ease;
+  background-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: var(--brand-black);
+}
+
+.inputError {
+  border-color: #ef4444 !important;
+}
+
+.errorText {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+  font-family: var(--font-secondary);
+}
+
+.submitBtn {
+  background: var(--brand-black);
+  color: var(--brand-white);
+  padding: var(--spacing-md);
+  border: none;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-md);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  cursor: pointer;
+  margin-top: var(--spacing-md);
+  transition: background 0.3s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--brand-red);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.footerText {
+  text-align: center;
+  margin-top: var(--spacing-xl);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.footerText a {
+  color: var(--brand-black);
+  text-decoration: underline;
+}

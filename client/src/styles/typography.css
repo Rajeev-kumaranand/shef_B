@@ -1,0 +1,208 @@
+/**
+ * typography.css
+ * Luxury Typography System for shef&B.
+ * Features high-fashion serif display weights and modern geometric body scales.
+ */
+
+/* 1. Display Heading - Extra large haute-couture titles */
+.text-display {
+  font-family: var(--typography-fonts-display);
+  font-size: var(--typography-sizes-h1);
+  font-weight: var(--typography-weights-light);
+  line-height: var(--typography-line-heights-tight);
+  letter-spacing: var(--typography-letter-spacings-widest);
+  color: var(--colors-neutral-white);
+  text-transform: uppercase;
+}
+
+/* 2. Hero Heading - Immersive main banner titles */
+.text-hero {
+  font-family: var(--typography-fonts-display);
+  font-size: var(--typography-sizes-h2);
+  font-weight: var(--typography-weights-regular);
+  line-height: var(--typography-line-heights-tight);
+  letter-spacing: var(--typography-letter-spacings-wide);
+  color: var(--colors-neutral-white);
+}
+
+/* 3. Section Heading - Muted, tracked label anchors */
+.text-section {
+  font-family: var(--typography-fonts-body);
+  font-size: var(--typography-sizes-sm);
+  font-weight: var(--typography-weights-semibold);
+  line-height: var(--typography-line-heights-none);
+  letter-spacing: var(--typography-letter-spacings-widest);
+  color: var(--colors-accent-main); /* Brand Blue */
+  text-transform: uppercase;
+}
+
+/* 4. Editorial Heading - Storytelling titles */
+.text-editorial {
+  font-family: var(--typography-fonts-display);
+  font-size: var(--typography-sizes-h3);
+  font-weight: var(--typography-weights-light);
+  line-height: var(--typography-line-heights-snug);
+  letter-spacing: var(--typography-letter-spacings-wide);
+  color: var(--colors-neutral-white);
+  font-style: italic;
+}
+
+/* 5. Body Text - Crisp, geometric narrative reading */
+.text-body {
+  font-family: var(--typography-fonts-body);
+  font-size: var(--typography-sizes-base);
+  font-weight: var(--typography-weights-regular);
+  line-height: var(--typography-line-heights-relaxed);
+  letter-spacing: var(--typography-letter-spacings-wide);
+  color: var(--colors-neutral-editorial-gray);
+}
+
+/* 6. Caption Text - Fine descriptions & technical metadata */
+.text-caption {
+  font-family: var(--typography-fonts-body);
+  font-size: var(--typography-sizes-xs);
+  font-weight: var(--typography-weights-regular);
+  line-height: var(--typography-line-heights-normal);
+  letter-spacing: var(--typography-letter-spacings-wide);
+  color: var(--colors-neutral-editorial-gray);
+  text-transform: uppercase;
+}
+
+/* 7. CTA Text - Premium geometric tracked buttons */
+.text-cta {
+  font-family: var(--typography-fonts-body);
+  font-size: var(--typography-sizes-sm);
+  font-weight: var(--typography-weights-bold);
+  line-height: var(--typography-line-heights-none);
+  letter-spacing: var(--typography-letter-spacings-widest);
+  color: var(--colors-primary-main); /* Brand Red */
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  transition: color var(--animations-durations-fast) var(--animations-easings-luxury);
+}
+
+.text-cta::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--colors-primary-main);
+  transform-origin: bottom right;
+  transition: transform var(--animations-durations-fast) var(--animations-easings-luxury);
+}
+
+.text-cta:hover {
+  color: var(--colors-neutral-white);
+}
+
+.text-cta:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+  background-color: var(--colors-neutral-white);
+}
+
+/* ─────────────────────────────────────────────
+   FONT UTILITY CLASSES (From Google Fonts)
+───────────────────────────────────────────── */
+.ibm-plex-mono-thin {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.ibm-plex-mono-extralight {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.ibm-plex-mono-light {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ibm-plex-mono-regular {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ibm-plex-mono-medium {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ibm-plex-mono-semibold {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.ibm-plex-mono-bold {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ibm-plex-mono-thin-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.ibm-plex-mono-extralight-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.ibm-plex-mono-light-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.ibm-plex-mono-regular-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ibm-plex-mono-medium-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.ibm-plex-mono-semibold-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.ibm-plex-mono-bold-italic {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.plus-jakarta-sans-regular {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.plus-jakarta-sans-bold {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}

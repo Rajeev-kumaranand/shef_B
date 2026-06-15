@@ -1,0 +1,113 @@
+.sectionTitle {
+  margin-bottom: var(--spacing-xxl) !important;
+}
+
+.members {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+}
+
+@media (min-width: 1024px) {
+  .members {
+    gap: var(--spacing-super);
+  }
+}
+
+.memberRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .memberRow {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xxl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .memberRow {
+    gap: var(--spacing-super);
+  }
+}
+
+.alternate {
+  direction: ltr;
+}
+
+@media (min-width: 768px) {
+  .alternate .imageColumn {
+    order: 2;
+  }
+  .alternate .infoColumn {
+    order: 1;
+    text-align: right;
+  }
+  .alternate .blockquote {
+    border-left: none;
+    border-right: 1px solid var(--brand-red);
+    padding-left: 0;
+    padding-right: var(--spacing-md);
+  }
+}
+
+.imageColumn {
+  width: 100%;
+}
+
+.parallaxWrap {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.memberRole {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--brand-red);
+}
+
+.memberName {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-tight);
+}
+
+.blockquote {
+  border-left: 1px solid var(--brand-red);
+  padding-left: var(--spacing-md);
+  margin: var(--spacing-sm) 0;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  font-style: italic;
+  color: var(--text-primary);
+}
+
+.memberBio {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}

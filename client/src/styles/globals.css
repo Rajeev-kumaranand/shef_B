@@ -1,0 +1,143 @@
+/**
+ * globals.css
+ * Consolidated Core Entry Point for shef&B's Luxury UI foundation.
+ * Imports sub-modules, applies base HTML element resets, and adds custom luxury details.
+ */
+
+@import './variables.css';
+@import './typography.css';
+@import './animations.css';
+@import './utilities.css';
+
+/* 1. Global Modern Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--brand-black);
+}
+
+body {
+  background-color: var(--brand-black);
+  color: var(--colors-neutral-white);
+  font-family: var(--typography-fonts-body);
+  font-weight: var(--typography-weights-regular);
+  line-height: var(--typography-line-heights-normal);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* 2. Custom Selection Highlight Colors (Refined Luxury Details) */
+::selection {
+  background-color: var(--brand-red); /* Brand Red highlight */
+  color: var(--colors-neutral-white);
+}
+
+/* 3. Refined Minimalist Scrollbar (Zara & Osman style) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brand-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--colors-neutral-dark-gray);
+  border-radius: var(--radius-none); /* Sharp borders */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-red);
+}
+
+/* 4. Core HTML Typography Elements Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--typography-fonts-display);
+  font-weight: var(--typography-weights-light);
+  line-height: var(--typography-line-heights-tight);
+  color: var(--colors-neutral-white);
+  letter-spacing: var(--typography-letter-spacings-wide);
+}
+
+p {
+  font-family: var(--typography-fonts-body);
+  font-size: var(--typography-sizes-base);
+  color: var(--colors-neutral-editorial-gray);
+  line-height: var(--typography-line-heights-relaxed);
+}
+
+/* 5. Fluid Responsive Overrides for Editorial Viewports */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px; /* Subtle shrink for smaller layouts */
+  }
+
+  .text-display {
+    font-size: var(--typography-sizes-h3); /* Scale display font gracefully down on mobile */
+    letter-spacing: var(--typography-letter-spacings-wide);
+  }
+
+  .text-hero {
+    font-size: var(--typography-sizes-h4);
+  }
+}
+
+@media (min-width: 1536px) {
+  html {
+    font-size: 17px; /* Subtle upscale for ultra-widescreen layouts */
+  }
+}
+
+/* 6. Global Form Elements Reset for Dark Mode (Accessibility Fix) */
+input, textarea, select {
+  background-color: var(--brand-black);
+  color: var(--colors-neutral-white);
+  border: 1px solid var(--border-color);
+  font-family: var(--typography-fonts-body);
+  font-size: var(--typography-sizes-base);
+  padding: 12px;
+  border-radius: 0;
+  outline: none;
+  width: 100%;
+  transition: border-color var(--transition-fast) ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--colors-neutral-white);
+}
+
+::placeholder {
+  color: var(--colors-neutral-editorial-gray);
+  opacity: 1;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+select option {
+  background-color: var(--brand-black);
+  color: var(--colors-neutral-white);
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--typography-fonts-body);
+}

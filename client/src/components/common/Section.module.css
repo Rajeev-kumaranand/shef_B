@@ -1,0 +1,33 @@
+.base {
+  width: 100%;
+  position: relative;
+  overflow: hidden; /* For animations */
+}
+
+/* Spacing Variants */
+.spacingNone {
+  padding: 0;
+}
+
+.spacingCompact {
+  padding: var(--spacing-xl) 0;
+}
+
+.spacingDefault {
+  padding: var(--spacing-xxl) 0;
+}
+
+.spacingLarge {
+  padding: var(--spacing-xxxl) 0;
+}
+
+/* Background Variants */
+.bgDark {
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+}
+
+.bgDarkGray {
+  background-color: var(--surface-secondary);
+  color: var(--brand-white);
+}

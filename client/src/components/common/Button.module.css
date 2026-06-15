@@ -1,0 +1,61 @@
+.base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  border-radius: 0; /* Luxury brutalism */
+  cursor: pointer;
+  transition: all var(--transition-normal) ease;
+  text-decoration: none;
+}
+
+.primary {
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+  border: 1px solid var(--brand-black);
+}
+
+.primary:hover {
+  background-color: transparent;
+  color: var(--brand-black);
+}
+
+.secondary {
+  background-color: var(--brand-red);
+  color: var(--brand-white);
+  border: 1px solid var(--brand-red);
+}
+
+.secondary:hover {
+  background-color: transparent;
+  color: var(--brand-red);
+}
+
+.outline {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.outline:hover {
+  border-color: var(--brand-black);
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+}
+
+.text {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: none;
+  padding: 0;
+  border-bottom: 1px solid var(--text-primary);
+}
+
+.text:hover {
+  color: var(--brand-red);
+  border-bottom-color: var(--brand-red);
+}

@@ -1,0 +1,220 @@
+.footer {
+  background-color: var(--brand-black);
+  color: var(--text-secondary);
+  padding: var(--spacing-xxxl) 0 var(--spacing-xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxxl);
+}
+
+.brandSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding:0;
+}
+
+.largeLogo {
+  font-family: var(--font-primary);
+  font-size: clamp(4rem, 18vw, 15rem);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--tracking-tighter);
+  color: var(--brand-white);
+  line-height: var(--line-height-none);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.logo {
+  height: 48px;
+  margin-bottom: var(--spacing-lg);
+  object-fit: contain;
+}
+
+.fallbackLogo {
+  height: 120px;
+  margin-bottom: var(--spacing-lg);
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .logo {
+    height: 64px;
+  }
+  .fallbackLogo {
+    height: 200px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fallbackLogo {
+    height: 300px;
+  }
+}
+
+.tagline {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  margin-top: var(--spacing-lg);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  max-width: 600px;
+}
+
+.mainContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xxl);
+}
+
+@media (min-width: 1024px) {
+  .mainContent {
+    grid-template-columns: 3fr 1fr;
+    gap: var(--spacing-super);
+  }
+}
+
+.navGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-xl);
+}
+
+@media (min-width: 500px) {
+  .navGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .navGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.navColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.columnTitle {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xl);
+  color: var(--brand-white);
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: var(--tracking-normal);
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.navLink {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-normal) ease;
+  display: inline-block;
+  padding: var(--spacing-xs) 0;
+}
+
+.navLink:hover {
+  color: var(--brand-white);
+}
+
+.contactSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.contactLink {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-normal) ease;
+  display: inline-block;
+  padding: var(--spacing-xs) 0;
+}
+
+.contactLink:hover {
+  color: var(--brand-white);
+}
+
+.address {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-style: normal;
+  line-height: var(--line-height-relaxed);
+  margin-top: var(--spacing-xs);
+}
+
+.bottomSection {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (min-width: 768px) {
+  .bottomSection {
+    flex-direction: row;
+  }
+}
+
+.copyright {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  justify-content: center;
+}
+
+.socialLink {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  transition: color var(--transition-normal) ease;
+  display: inline-block;
+  padding: var(--spacing-xs) 0;
+}
+
+.socialLink:hover {
+  color: var(--brand-white);
+}

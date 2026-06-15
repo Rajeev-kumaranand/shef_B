@@ -1,0 +1,226 @@
+.discoverPage {
+  width: 100%;
+}
+
+/* 1. Hero */
+.heroSection {
+  padding-top: var(--spacing-xxxl);
+  padding-bottom: var(--spacing-xxl);
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-xxxl);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroTitle {
+  font-family: var(--font-primary);
+  font-size: clamp(3rem, 8vw, var(--font-size-h1));
+  font-weight: var(--font-weight-regular);
+  color: var(--text-primary);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--spacing-md);
+}
+
+.heroSubtitle {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.heroDescription {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+  max-width: 600px;
+}
+
+.heroImageWrapper {
+  width: 100%;
+  margin-top: var(--spacing-xl);
+}
+
+/* 2. Brand Story */
+.storySection {
+  text-align: center;
+}
+
+.storyText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+  font-family: var(--font-primary);
+  font-size: clamp(1.5rem, 3vw, var(--font-size-h4));
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+  letter-spacing: var(--tracking-normal);
+}
+
+.storyText p:first-child {
+  color: var(--text-primary);
+}
+
+/* 3. Philosophy */
+.philosophySection {
+  color: var(--text-inverse);
+}
+
+.philosophyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xxl);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .philosophyGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-super);
+  }
+}
+
+.philosophyTitle {
+  color: var(--text-inverse) !important;
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Force override SectionTitle colors if it has specific text colors inside */
+.philosophyTitle :global(.title), 
+.philosophyTitle :global(.subtitle) {
+  color: var(--text-inverse) !important;
+}
+
+.philosophyList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.philosophyItem {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: flex-start;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: var(--spacing-lg);
+}
+
+.philosophyNum {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: var(--colors-neutral-black);
+  margin-top: 0.25rem;
+}
+
+.itemTitle {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: var(--tracking-normal);
+  color: var(--text-secondary);
+}
+
+.itemDesc {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* 4. Experience Grid */
+.expGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .expGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.expCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.cardTitle {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-primary);
+  text-align: center;
+}
+
+/* 5. Featured Gallery */
+.galleryWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 1024px) {
+  .galleryWrapper {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .galleryItem {
+    flex: 1;
+  }
+  
+  .galleryItem:nth-child(2) {
+    flex: 1.5; /* middle item slightly larger or portrait */
+  }
+}
+
+/* 6. Closing */
+.closingSection {
+  text-align: center;
+  padding: var(--spacing-super) 0;
+}
+
+.closingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.closingTitle {
+  font-family: var(--font-primary);
+  font-size: clamp(2rem, 5vw, var(--font-size-h2));
+  font-weight: var(--font-weight-regular);
+  color: var(--text-primary);
+  line-height: var(--line-height-tight);
+}
+
+.closingCta {
+  display: inline-block;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-inverse);
+  background-color: var(--brand-white);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  transition: background-color var(--transition-fast) ease;
+}
+
+.closingCta:hover {
+  background-color: var(--text-secondary);
+}

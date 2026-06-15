@@ -1,0 +1,246 @@
+.page {
+  padding-top: var(--header-height);
+  min-height: 100vh;
+  background-color: var(--surface-primary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--spacing-xxl);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formSection {
+  margin-bottom: var(--spacing-xl);
+}
+
+.sectionTitle {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: var(--spacing-sm);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-md);
+  flex: 1;
+}
+
+.formGroup label {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  background: transparent;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-md);
+  color: var(--text-primary);
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: var(--brand-black);
+}
+
+.formRow {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 600px) {
+  .formRow {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.paymentMethod {
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.paymentMethod.disabled {
+  opacity: 0.5;
+  background: var(--surface-secondary);
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-md);
+}
+
+.submitBtn {
+  width: 100%;
+  padding: var(--spacing-md);
+  background: var(--brand-black);
+  color: var(--brand-white);
+  border: none;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-md);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  cursor: pointer;
+  margin-top: var(--spacing-lg);
+  transition: background 0.3s ease;
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.summaryBox {
+  background: var(--surface-secondary);
+  padding: var(--spacing-lg);
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.summaryItem {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.itemImageWrapper {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  background: white;
+}
+
+.itemImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.itemBadge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--brand-black);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-family: var(--font-secondary);
+}
+
+.itemInfo {
+  flex: 1;
+}
+
+.itemName {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.itemPrice {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.totalsList {
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-md);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-secondary);
+}
+
+.discountRow {
+  color: #16a34a;
+}
+
+.grandTotal {
+  color: var(--text-primary);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+}
+
+.couponSection {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.couponForm {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.couponInput {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-secondary);
+}
+
+.couponBtn {
+  background: var(--brand-black);
+  color: white;
+  border: none;
+  padding: 0 16px;
+  font-family: var(--font-secondary);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.appliedCoupon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #dcfce3;
+  color: #166534;
+  padding: 8px var(--spacing-sm);
+  font-family: var(--font-secondary);
+  font-size: 13px;
+}
+
+.removeCouponBtn {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  text-decoration: underline;
+  cursor: pointer;
+}

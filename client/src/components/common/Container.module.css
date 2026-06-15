@@ -1,0 +1,12 @@
+.base {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-lg);
+}
+
+.narrow   { max-width: 640px; }
+.standard { max-width: 1080px; }
+.wide     { max-width: 1440px; }
+.full     { max-width: 100%; padding-left: 0; padding-right: 0; }

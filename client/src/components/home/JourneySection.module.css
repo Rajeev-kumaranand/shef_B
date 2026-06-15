@@ -1,0 +1,115 @@
+.sectionTitle {
+  margin-bottom: var(--spacing-xxl) !important;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: var(--spacing-md);
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background-color: var(--border-color);
+}
+
+@media (min-width: 768px) {
+  .timeline {
+    padding-left: 0;
+  }
+  
+  .timeline::before {
+    left: 30%;
+  }
+}
+
+.stepRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .stepRow {
+    flex-direction: row;
+    margin-bottom: var(--spacing-xxl);
+  }
+}
+
+.yearColumn {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .yearColumn {
+    width: 30%;
+    justify-content: flex-end;
+    padding-right: var(--spacing-xl);
+  }
+}
+
+.year {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-light);
+  color: var(--brand-red);
+  line-height: var(--line-height-none);
+}
+
+.detailColumn {
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .detailColumn {
+    width: 70%;
+    padding-left: var(--spacing-xl);
+  }
+  
+  /* Timeline dot */
+  .detailColumn::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: -6px; /* center relative to the 1px timeline */
+    width: 11px;
+    height: 11px;
+    background-color: var(--surface-primary);
+    border: 1px solid var(--brand-red);
+  }
+}
+
+.card {
+  max-width: 600px;
+}
+
+.stepTitle {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: var(--tracking-tight);
+}
+
+.stepDesc {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+@media (max-width: 768px) {
+  .stepTitle {
+    font-size: var(--font-size-xl);
+  }
+}
