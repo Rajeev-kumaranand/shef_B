@@ -252,6 +252,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
+  color: var(--text-secondary);
 }
 
 .reviewForm {
@@ -275,10 +276,12 @@
   margin-bottom: 4px;
 }
 
-.formGroup input, .formGroup select, .formGroup textarea {
+.formGroup input, .formGroup select, .formGroup textarea, .formGroup select option {
   padding: 8px;
-  border: 1px solid var(--border-color);
   font-family: var(--font-secondary);
+  background-color: rgb(249, 255, 255);
+  border: 2px solid rgb(216, 216, 216);
+  color: var(--text-secondary);
 }
 
 .submitReviewBtn {

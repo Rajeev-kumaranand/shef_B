@@ -12,8 +12,11 @@
 .title {
   font-family: var(--font-primary);
   font-size: var(--font-size-xxl);
+  color: var(--text-secondary);
 }
-
+.emptyState{
+  color: var(--text-secondary);
+}
 .addBtn {
   background: var(--brand-black);
   color: white;
@@ -35,6 +38,7 @@
   width: 100%;
   border-collapse: collapse;
   font-family: var(--font-secondary);
+  color: var(--text-secondary);
 }
 
 .table th, .table td {
@@ -118,6 +122,7 @@
 .modalHeader h3 {
   font-family: var(--font-primary);
   font-size: var(--font-size-lg);
+  color: var(--text-secondary);
 }
 
 .closeBtn {
@@ -125,6 +130,9 @@
   border: none;
   font-size: 24px;
   cursor: pointer;
+}
+.closeBtn:hover{
+  color: var(--brand-red);
 }
 
 .modalBody {
@@ -180,10 +188,11 @@
 }
 
 .cancelBtn {
-  background: transparent;
+  background: red;
   border: 1px solid var(--border-color);
   padding: 8px 16px;
   cursor: pointer;
+  color: var(--brand-white);
 }
 
 .submitBtn {

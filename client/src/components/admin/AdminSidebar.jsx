@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styles from './AdminSidebar.module.css';
+import logo from '../../assets/logo.png';
+import { useAuth } from '../../context/AuthContext.jsx';
 
 const navItems = [
   { label: 'Dashboard', path: '/admin/dashboard' },
@@ -28,7 +30,7 @@ const MAGAZINE_MENU_ITEMS = [
   { label: 'Authors', path: '/admin/magazine/authors' },
 ];
 
-import { useAuth } from '../../context/AuthContext.jsx';
+
 
 export default function AdminSidebar({ isOpen, setIsOpen }) {
   const { logout } = useAuth();
@@ -37,7 +39,9 @@ export default function AdminSidebar({ isOpen, setIsOpen }) {
       {isOpen && <div className={styles.overlay} onClick={() => setIsOpen(false)} />}
       <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
         <div className={styles.header}>
-          <h2>shef&B</h2>
+          <div className={styles.logo}>
+            <img src={logo} alt="" />
+          </div>
           <span className={styles.badge}>Workspace</span>
         </div>
         <div className={styles.navScrollArea}>

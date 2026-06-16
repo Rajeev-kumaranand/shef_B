@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill-new';
+import 'react-quill-new/dist/quill.snow.css';
 import AdminFormField from '../../components/admin/AdminFormField.jsx';
 import LoadingState from '../../components/admin/states/LoadingState.jsx';
 import EmptyState from '../../components/admin/states/EmptyState.jsx';
@@ -225,7 +225,7 @@ export default function ArticlesPage() {
                   </div>
 
                   <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem' }}>
-                    <h3 style={{ fontSize: '14px', marginBottom: '12px', fontFamily: 'var(--font-secondary)', textTransform: 'uppercase' }}>SEO & Meta</h3>
+                    <h3 style={{ fontSize: '14px', marginBottom: '12px', fontFamily: 'var(--font-secondary)', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>SEO & Meta</h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
                       <AdminFormField label="SEO Title" {...register('metaTitle')} />
                       <AdminFormField label="SEO Description" type="textarea" {...register('metaDescription')} />

@@ -1,4 +1,4 @@
-import { discoverData } from '../data/discoverData.js';
+import { useDiscoverContent } from '../hooks/useApi.js';
 import Container from '../components/common/Container.jsx';
 import Section from '../components/common/Section.jsx';
 import SectionTitle from '../components/common/SectionTitle.jsx';
@@ -10,7 +10,11 @@ import SEOManager from '../components/common/SEOManager.jsx';
 import styles from './Discover.module.css';
 
 export default function Discover() {
-  const { hero, philosophy, craftsmanship, valuesGrid, editorialGallery, cta } = discoverData;
+  const { data: content, loading } = useDiscoverContent();
+
+  if (loading || !content) return <div style={{ minHeight: '100vh', background: 'var(--surface-primary)' }} />;
+
+  const { hero, philosophy, craftsmanship, values: valuesGrid, gallery: editorialGallery, cta } = content;
 
   return (
     <div className={styles.discoverPage}>

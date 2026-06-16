@@ -159,7 +159,7 @@ export default function ProductsPage() {
                   <td>
                     {product.trackInventory ? (
                       <span style={{ 
-                        color: product.stock === 0 ? '#ef4444' : (product.stock <= product.lowStockThreshold ? '#eab308' : 'inherit'),
+                        color: product.stock === 0 ? '#ef4444' : (product.stock <= product.lowStockThreshold ? '#eab308' : 'green'),
                         fontWeight: product.stock <= product.lowStockThreshold ? 600 : 400
                       }}>
                         {product.stock} {product.stock === 0 && '(Out)'}
@@ -219,7 +219,7 @@ export default function ProductsPage() {
 
                   <AdminFormField label="Category" {...register('category')} />
                   
-                  <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+                  <div className={styles.checkbox} style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
                     <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px' }}>
                       <input type="checkbox" {...register('active')} /> Active
                     </label>
@@ -252,7 +252,7 @@ export default function ProductsPage() {
 
                   {/* SEO Section inside Product Modal */}
                   <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem' }}>
-                    <h3 style={{ fontSize: '14px', marginBottom: '12px', fontFamily: 'var(--font-secondary)', textTransform: 'uppercase' }}>SEO Settings</h3>
+                    <h3 style={{ fontSize: '14px', marginBottom: '12px', fontFamily: 'var(--font-secondary)', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>SEO Settings</h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
                       <AdminFormField label="SEO Title" {...register('seoTitle')} />
                       <AdminFormField label="SEO Description" type="textarea" {...register('seoDescription')} />

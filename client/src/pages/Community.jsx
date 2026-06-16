@@ -1,4 +1,4 @@
-import { communityData } from '../data/communityData.js';
+import { useCommunityContent } from '../hooks/useApi.js';
 import Container from '../components/common/Container.jsx';
 import Section from '../components/common/Section.jsx';
 import SectionTitle from '../components/common/SectionTitle.jsx';
@@ -10,7 +10,11 @@ import SEOManager from '../components/common/SEOManager.jsx';
 import styles from './Community.module.css';
 
 export default function Community() {
-  const { hero, memberStories, testimonials, experiences, gallery, cta } = communityData;
+  const { data: content, loading } = useCommunityContent();
+
+  if (loading || !content) return <div style={{ minHeight: '100vh', background: 'var(--surface-primary)' }} />;
+
+  const { hero, memberStories, testimonials, experiences, gallery, cta } = content;
 
   return (
     <div className={styles.communityPage}>

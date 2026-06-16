@@ -19,7 +19,7 @@
   background-color: var(--surface-tertiary);
 }
 .table td {
-  color: var(--text-primary);
+  color: var(--text-secondary);
 }
 .actionsHeader {
   text-align: right !important;

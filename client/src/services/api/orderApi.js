@@ -8,7 +8,7 @@ const api = axios.create({
 
 // Interceptor for auth token (Admin routes)
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('shefb_admin_token');
+  const token = localStorage.getItem('token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

@@ -1,4 +1,4 @@
-import { latestData } from '../data/latestData.js';
+import { useLatestContent } from '../hooks/useApi.js';
 import Container from '../components/common/Container.jsx';
 import Section from '../components/common/Section.jsx';
 import SectionTitle from '../components/common/SectionTitle.jsx';
@@ -9,7 +9,11 @@ import SEOManager from '../components/common/SEOManager.jsx';
 import styles from './TheLatest.module.css';
 
 export default function TheLatest() {
-  const { hero, featuredArticle, articles, highlights, newsletter } = latestData;
+  const { data: content, loading } = useLatestContent();
+
+  if (loading || !content) return <div style={{ minHeight: '100vh', background: 'var(--surface-primary)' }} />;
+
+  const { hero, featuredArticle, articles, highlights, newsletter } = content;
 
   return (
     <div className={styles.latestPage}>

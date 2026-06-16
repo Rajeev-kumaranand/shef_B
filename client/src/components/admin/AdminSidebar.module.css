@@ -37,27 +37,32 @@
 }
 
 .header {
-  padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-md);
+  padding: 0;
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
 }
-
-.header h2 {
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
-  margin: 0;
-  letter-spacing: var(--tracking-tight);
+.logo {
+  max-width: 200px;
+  margin: 0 auto;
+  margin: 0%;
+  padding: 0;
+}
+.logo img {
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  margin: 0 auto;
 }
 
 .badge {
   font-family: var(--font-secondary);
-  font-size: 10px;
+  font-size: 20px;
   text-transform: uppercase;
   background-color: var(--border-color);
   padding: 2px 6px;
+  padding-bottom: 10px;
+  /* padding-left: 0; */
   border-radius: var(--radius-sm);
   color: var(--text-secondary);
   font-weight: var(--font-weight-semibold);
@@ -88,12 +93,11 @@
 }
 
 .navItem:hover {
-  background-color: var(--border-color);
-  color: var(--text-primary);
+  background-color: rgb(231, 231, 231);
 }
 
 .navItem.active {
-  background-color: var(--surface-primary);
+  background-color: gray;
   color: var(--text-primary);
   font-weight: var(--font-weight-medium);
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
@@ -113,7 +117,7 @@
 .avatar {
   width: 32px;
   height: 32px;
-  background-color: var(--text-primary);
+  background-color: var(--brand-green);
   color: var(--brand-white);
   border-radius: var(--radius-full);
   display: flex;
@@ -133,7 +137,7 @@
   font-family: var(--font-secondary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--text-primary);
+  color: var(--text-secondary);
 }
 
 .userRole {
@@ -145,11 +149,11 @@
 .logoutBtn {
   margin-top: var(--spacing-md);
   width: 100%;
-  background: none;
+  background: red;
   border: 1px solid var(--border-color);
   padding: 8px;
   border-radius: var(--radius-sm);
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-family: var(--font-secondary);
   font-size: var(--font-size-xs);
   cursor: pointer;
@@ -157,6 +161,10 @@
 }
 
 .logoutBtn:hover {
-  background-color: var(--surface-primary);
+  background-color: rgb(233, 0, 0);
   color: var(--text-primary);
 }
+ .sectionTitle{
+  color: var(--text-secondary);
+  font-weight: 700;
+ }

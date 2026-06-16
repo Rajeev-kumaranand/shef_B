@@ -88,7 +88,7 @@ export default function SettingsPage() {
           <form onSubmit={handleSubmit(onSubmit)} style={{ background: 'white', padding: 'var(--spacing-xl)', border: '1px solid var(--border-color)' }}>
             
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-lg)' }}>
-              <h2 style={{ fontFamily: 'var(--font-primary)' }}>{TABS.find(t => t.id === activeTab)?.label}</h2>
+              <h2 style={{ fontFamily: 'var(--font-primary)', color: 'var(--text-secondary)'  }}>{TABS.find(t => t.id === activeTab)?.label}</h2>
               <button type="submit" className={styles.primaryBtn} disabled={isSubmitting}>
                 Save Changes
               </button>
@@ -129,11 +129,11 @@ export default function SettingsPage() {
               <div style={{ display: 'grid', gap: 'var(--spacing-md)' }}>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '16px' }}>
                   <input type="checkbox" id="codEnabled" {...register('codEnabled')} />
-                  <label htmlFor="codEnabled" style={{ fontFamily: 'var(--font-secondary)' }}>Enable Cash on Delivery (COD)</label>
+                  <label htmlFor="codEnabled" style={{ fontFamily: 'var(--font-secondary)', color: 'var(--text-secondary)'  }}>Enable Cash on Delivery (COD)</label>
                 </div>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '16px' }}>
                   <input type="checkbox" id="onlinePaymentEnabled" {...register('onlinePaymentEnabled')} />
-                  <label htmlFor="onlinePaymentEnabled" style={{ fontFamily: 'var(--font-secondary)' }}>Enable Online Payments (Razorpay)</label>
+                  <label htmlFor="onlinePaymentEnabled" style={{ fontFamily: 'var(--font-secondary)', color: 'var(--text-secondary)'  }}>Enable Online Payments (Razorpay)</label>
                 </div>
                 <AdminFormField label="Flat Shipping Cost ($)" type="number" step="0.01" {...register('flatShippingCost')} />
                 <AdminFormField label="Free Shipping Threshold ($) (0 to disable)" type="number" step="0.01" {...register('freeShippingThreshold')} />
@@ -145,7 +145,7 @@ export default function SettingsPage() {
               <div style={{ display: 'grid', gap: 'var(--spacing-md)' }}>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '16px' }}>
                   <input type="checkbox" id="announcementEnabled" {...register('announcementEnabled')} />
-                  <label htmlFor="announcementEnabled" style={{ fontFamily: 'var(--font-secondary)' }}>Enable Global Announcement Bar</label>
+                  <label htmlFor="announcementEnabled" style={{ fontFamily: 'var(--font-secondary)', color: 'var(--text-secondary)'  }}>Enable Global Announcement Bar</label>
                 </div>
                 <AdminFormField label="Announcement Text" {...register('announcementText')} />
                 <AdminFormField label="Call to Action Text (Optional)" {...register('announcementCtaText')} />

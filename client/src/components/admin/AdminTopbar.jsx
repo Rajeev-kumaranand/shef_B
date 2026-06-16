@@ -11,11 +11,11 @@ export default function AdminTopbar({ title, onMenuClick }) {
         </svg>
       </button>
       <h1 className={styles.title}>{title}</h1>
-      <div className={styles.actions}>
+      {/* <div className={styles.actions}>
         <button className={styles.actionBtn}>
           New Entry
         </button>
-      </div>
+      </div> */}
     </header>
   );
 }

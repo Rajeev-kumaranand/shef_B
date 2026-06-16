@@ -35,3 +35,23 @@ export const getPublicShop = async () => {
   const response = await publicApi.get('/shop');
   return response.data;
 };
+
+export const getPublicLatest = async () => {
+  const response = await publicApi.get('/latest');
+  return response.data;
+};
+
+export const getPublicDiscover = async () => {
+  const response = await publicApi.get('/discover');
+  return response.data;
+};
+
+export const getPublicCommunity = async () => {
+  const response = await publicApi.get('/community');
+  return response.data;
+};
+
+export const getPublicNote = async () => {
+  const response = await publicApi.get('/note');
+  return response.data;
+};

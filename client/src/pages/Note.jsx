@@ -1,4 +1,4 @@
-import { noteData } from '../data/noteData.js';
+import { useNoteContent } from '../hooks/useApi.js';
 import Container from '../components/common/Container.jsx';
 import Section from '../components/common/Section.jsx';
 import EditorialHero from '../components/common/EditorialHero.jsx';
@@ -9,7 +9,11 @@ import SEOManager from '../components/common/SEOManager.jsx';
 import styles from './Note.module.css';
 
 export default function Note() {
-  const { hero, foundersLetter, longFormEditorial, signatureBlock } = noteData;
+  const { data: content, loading } = useNoteContent();
+
+  if (loading || !content) return <div style={{ minHeight: '100vh', background: 'var(--surface-primary)' }} />;
+
+  const { hero, letter: foundersLetter, editorial: longFormEditorial, signature: signatureBlock } = content;
   
   return (
     <div className={styles.notePage}>

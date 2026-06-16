@@ -4,11 +4,12 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--spacing-lg);
-  background-color: var(--surface-primary);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   position: sticky;
   top: 0;
   z-index: 100;
+  background-color: var(--brand-white);
 }
 
 .menuBtn {
@@ -30,7 +31,7 @@
   font-family: var(--font-secondary);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   margin: 0;
   flex: 1;
 }
@@ -42,8 +43,8 @@
 }
 
 .actionBtn {
-  background-color: var(--text-primary);
-  color: var(--brand-white);
+  background-color: var(--text-secondary);
+  color: var(--brand-black);
   border: none;
   padding: 6px 16px;
   border-radius: var(--radius-sm);

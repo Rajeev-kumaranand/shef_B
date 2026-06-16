@@ -77,7 +77,7 @@ export default function AuthorsPage() {
 
       {isModalOpen && (
         <div className={styles.modalOverlay}>
-          <div className={styles.modal}>
+          <div className={styles.modal2}>
             <div className={styles.modalHeader}>
               <h2>New Author</h2>
               <button className={styles.closeBtn} onClick={() => setIsModalOpen(false)}>×</button>

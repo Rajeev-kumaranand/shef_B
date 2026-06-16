@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useShopContent } from '../hooks/useShopContent.js';
@@ -16,21 +16,22 @@ import styles from './Shop.module.css';
 
 import SEOManager from '../components/common/SEOManager.jsx';
 
-const categories = [
-  { id: 'all', label: 'All Objects' },
-  { id: 'furniture', label: 'Furniture' },
-  { id: 'objects', label: 'Objects' },
-  { id: 'textiles', label: 'Textiles' },
-  { id: 'art', label: 'Art' },
-];
-
 export default function Shop() {
   const [activeCategory, setActiveCategory] = useState('all');
   const { data: content, loading: contentLoading } = useShopContent();
   const { data: products, loading: productsLoading } = useProducts();
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
-// console.log(content)
+
+  const dynamicCategories = useMemo(() => {
+    if (!products) return [{ id: 'all', label: 'All Objects' }];
+    const cats = new Set(products.map(p => p.category).filter(Boolean));
+    return [
+      { id: 'all', label: 'All Objects' },
+      ...Array.from(cats).map(c => ({ id: c.toLowerCase(), label: c }))
+    ];
+  }, [products]);
+
   if (contentLoading || productsLoading) return <LoadingState />;
   if (!content) return null;
 
@@ -39,7 +40,7 @@ export default function Shop() {
   const featuredProducts = activeProducts.filter(p => p.featured);
   const filteredProducts = activeCategory === 'all' 
     ? activeProducts 
-    : activeProducts.filter(p => p.category === activeCategory);
+    : activeProducts.filter(p => p.category?.toLowerCase() === activeCategory);
 
   const getImageUrl = (path) => {
     if (!path) return '/logo.png';
@@ -90,7 +91,7 @@ export default function Shop() {
           <SectionTitle title="The Collection" alignment="center" />
           
           <div className={styles.categoryNav}>
-            {categories.map((cat) => (
+            {dynamicCategories.map((cat) => (
               <button
                 key={cat.id}
                 className={`${styles.categoryBtn} ${activeCategory === cat.id ? styles.active : ''}`}
@@ -205,7 +206,7 @@ export default function Shop() {
           <div className={styles.storyText}>
             {content.storyParagraphs?.map((p, idx) => (
               <FadeUp key={idx} delay={0.1 * idx}>
-                <p className={styles.storyParagraph}>{p}</p>
+                <p className={styles.storyParagraph}>{typeof p === 'object' ? p.value : p}</p>
               </FadeUp>
             ))}
           </div>

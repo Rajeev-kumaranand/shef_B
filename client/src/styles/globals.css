@@ -102,8 +102,8 @@ p {
 
 /* 6. Global Form Elements Reset for Dark Mode (Accessibility Fix) */
 input, textarea, select {
-  background-color: var(--brand-black);
-  color: var(--colors-neutral-white);
+  background-color: var(--surface-secondary);
+  color: var(--text-secondary);
   border: 1px solid var(--border-color);
   font-family: var(--typography-fonts-body);
   font-size: var(--typography-sizes-base);
@@ -133,8 +133,8 @@ select {
 }
 
 select option {
-  background-color: var(--brand-black);
-  color: var(--colors-neutral-white);
+  background-color: var(--surface-secondary);
+  color: var(--text-secondary);
 }
 
 button {

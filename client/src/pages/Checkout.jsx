@@ -66,7 +66,7 @@ export default function Checkout() {
     if (settings.freeShippingThreshold > 0 && subtotalAfterDiscount >= settings.freeShippingThreshold) {
       shipping = 0;
     } else {
-      shipping = settings.flatShippingCost || 0;
+      shipping = parseFloat(settings.flatShippingCost) || 0;
     }
   }
 

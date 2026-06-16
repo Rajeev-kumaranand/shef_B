@@ -14,6 +14,7 @@
   font-size: var(--font-size-2xl);
   font-weight: 300;
   letter-spacing: var(--tracking-wide);
+  color: var(--text-secondary);
 }
 
 .uploadZone {
@@ -73,6 +74,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--text-secondary);
 }
 
 .filesize {
@@ -96,7 +98,7 @@
 }
 
 .copyBtn {
-  color: var(--text-primary);
+  color: var(--brand-green);
 }
 
 .deleteBtn {
@@ -104,7 +106,7 @@
 }
 
 .primaryBtn {
-  background-color: var(--text-primary);
+  background-color: var(--brand-blue);
   color: var(--surface-primary);
   padding: 0.75rem 1.5rem;
   border: none;

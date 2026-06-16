@@ -9,7 +9,7 @@
 .title {
   font-family: var(--font-primary);
   font-size: var(--font-size-xxl);
-  color: var(--text-primary);
+  color: var(--text-secondary);
 }
 
 .emptyState {
@@ -40,6 +40,7 @@
   border-bottom: 1px solid var(--border-color);
   font-family: var(--font-secondary);
   font-size: var(--font-size-sm);
+  color: var(--text-secondary);
 }
 
 .table th {
@@ -120,13 +121,18 @@
   padding: var(--spacing-md) var(--spacing-lg);
   border-bottom: 1px solid var(--border-color);
 }
-
+.modalHeader > h3 {
+  color: var(--text-secondary);
+}
 .closeBtn {
   background: transparent;
   border: none;
   font-size: 24px;
   cursor: pointer;
   color: var(--text-secondary);
+}
+.closeBtn:hover {
+  color: var(--brand-red);
 }
 
 .modalBody {
@@ -146,6 +152,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   margin-bottom: var(--spacing-sm);
+  color: var(--text-secondary);
 }
 
 .itemsSection {
@@ -165,6 +172,7 @@
   padding: var(--spacing-xs) 0;
   font-family: var(--font-secondary);
   font-size: var(--font-size-sm);
+  color: var(--text-secondary);
 }
 
 .totals {
@@ -209,16 +217,19 @@
   margin-bottom: 4px;
 }
 
-.input {
+.input, .statusForm > select, .statusForm > select >option {
   padding: 8px;
   border: 1px solid var(--border-color);
   font-family: var(--font-secondary);
+  background-color: var(--surface-secondary);
+  color: var(--text-secondary);
 }
 
 .statusForm {
   display: flex;
   gap: var(--spacing-md);
 }
+
 
 .select {
   flex: 1;
@@ -228,7 +239,7 @@
 }
 
 .updateBtn {
-  background: var(--brand-black);
+  background: var(--brand-blue);
   color: white;
   padding: 0 var(--spacing-lg);
   border: none;
@@ -240,7 +251,7 @@
 }
 
 .updateBtn:hover:not(:disabled) {
-  background: var(--brand-brown);
+  background: #1a79e7;
 }
 
 .updateBtn:disabled {

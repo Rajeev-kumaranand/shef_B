@@ -159,7 +159,7 @@ export default function Slides() {
                 <button type="button" onClick={() => setMediaPickerOpen(true)} className={styles.secondaryBtn} style={{ padding: '0.5rem 1rem', border: '1px solid var(--border-color)', background: 'transparent', cursor: 'pointer' }}>Change Image</button>
               </div>
             ) : (
-              <button type="button" onClick={() => setMediaPickerOpen(true)} className={styles.secondaryBtn} style={{ padding: '0.75rem 1.5rem', border: '1px dashed var(--border-color)', background: 'var(--surface-secondary)', cursor: 'pointer', width: '100%', marginBottom: '12px' }}>
+              <button type="button" onClick={() => setMediaPickerOpen(true)} className={styles.secondaryBtn} style={{ padding: '0.75rem 1.5rem', border: '1px dashed var(--border-color)', cursor: 'pointer', width: '100%', marginBottom: '12px' }}>
                 Select Image from Library
               </button>
             )}

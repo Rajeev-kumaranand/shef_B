@@ -102,16 +102,6 @@ export default function InquiriesPage() {
       </div>
 
       <div className={styles.filters} style={{ display: 'flex', gap: '16px', marginBottom: '24px' }}>
-        <form onSubmit={handleSearch} style={{ display: 'flex', gap: '8px', flex: 1 }}>
-          <input 
-            type="text" 
-            placeholder="Search name, email, or subject..." 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            style={{ flex: 1, padding: '8px 12px', border: '1px solid var(--border-color)' }}
-          />
-          <button type="submit" className={styles.secondaryBtn}>Search</button>
-        </form>
         <select 
           value={statusFilter} 
           onChange={(e) => setStatusFilter(e.target.value)}
@@ -122,6 +112,16 @@ export default function InquiriesPage() {
           <option value="IN_PROGRESS">In Progress</option>
           <option value="CLOSED">Closed</option>
         </select>
+        <form onSubmit={handleSearch} style={{ display: 'flex', gap: '8px' }}>
+          <input 
+            type="text" 
+            placeholder="Search by name, email, or subject..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{ width: '400px', padding: '8px 12px', border: '1px solid var(--border-color)' }}
+          />
+          <button type="submit" className={styles.secondaryBtn}>Search</button>
+        </form>
       </div>
 
       {inquiries.length === 0 ? (

@@ -4,7 +4,11 @@ import {
   getPublicCompany, 
   getPublicContact, 
   getPublicNavigation, 
-  getPublicSlides 
+  getPublicSlides,
+  getPublicLatest,
+  getPublicDiscover,
+  getPublicCommunity,
+  getPublicNote
 } from '../services/api/publicApi.js';
 import { parseJsonField } from '../utils/contentParser.js';
 
@@ -12,6 +16,42 @@ import { homeData } from '../data/homeData.js';
 import { orgData } from '../data/orgData.js';
 import { navigationData } from '../data/navigationData.js';
 import { slidesData } from '../data/slidesData.js';
+import { latestData } from '../data/latestData.js';
+import { discoverData } from '../data/discoverData.js';
+import { communityData } from '../data/communityData.js';
+import { noteData } from '../data/noteData.js';
+
+const normalizeStringArray = (arr) => {
+  if (!Array.isArray(arr)) return arr;
+  return arr.map(item => {
+    if (item && typeof item === 'object') {
+      if (item.value !== undefined) return item.value;
+      if (item.title !== undefined) return item.title;
+    }
+    return item;
+  });
+};
+
+const formatImageUrl = (path) => {
+  if (!path || typeof path !== 'string') return path;
+  if (path.startsWith('http')) return path;
+  if (!path.includes('uploads')) return path; 
+  const cleanPath = path.replace(/^\/+/, '');
+  const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const serverUrl = baseUrl.replace('/api', '');
+  return `${serverUrl}/${cleanPath}`;
+};
+
+const normalizeString = (val) => {
+  if (!val) return val;
+  try {
+    const parsed = typeof val === 'string' ? JSON.parse(val) : val;
+    if (Array.isArray(parsed) && parsed.length > 0 && parsed[0]?.value !== undefined) {
+      return parsed.map(p => p.value).join('\n');
+    }
+  } catch (e) {}
+  return val;
+};
 
 const useFetchData = (apiCall, fallbackData, transformData = null) => {
   const [data, setData] = useState(null);
@@ -131,6 +171,170 @@ export const useSlides = () => {
       order: slide.order,
       active: slide.active
     }));
+  });
+};
+
+export const useLatestContent = () => {
+  return useFetchData(getPublicLatest, latestData, (apiData) => {
+    return {
+      hero: {
+        title: apiData.heroTitle || latestData.hero.title,
+        subtitle: apiData.heroSubtitle || latestData.hero.subtitle,
+        description: normalizeString(apiData.heroDescription) || latestData.hero.description,
+      },
+      featuredArticle: (() => {
+        const parsed = parseJsonField(apiData.featuredArticle, null);
+        let articleObj = parsed ? (Array.isArray(parsed) ? parsed[0] : parsed) : latestData.featuredArticle;
+        if (!articleObj) return null;
+        
+        let imageUrl = null;
+        if (typeof articleObj.image === 'string') imageUrl = formatImageUrl(articleObj.image);
+        else if (articleObj.image?.url) imageUrl = formatImageUrl(articleObj.image.url);
+        
+        if (!imageUrl && latestData.featuredArticle?.image) {
+          imageUrl = latestData.featuredArticle.image.url;
+        }
+        
+        return { ...articleObj, image: imageUrl ? { url: imageUrl } : null };
+      })(),
+      articles: parseJsonField(apiData.articles, latestData.articles).map((article, i) => {
+        let imageUrl = null;
+        if (typeof article.image === 'string') imageUrl = formatImageUrl(article.image);
+        else if (article.image?.url) imageUrl = formatImageUrl(article.image.url);
+        
+        if (!imageUrl && latestData.articles[i]?.image) {
+          imageUrl = latestData.articles[i].image.url;
+        }
+        
+        return { ...article, image: imageUrl ? { url: imageUrl } : null };
+      }),
+      highlights: {
+        title: apiData.highlightsTitle || latestData.highlights.title,
+        topics: normalizeStringArray(parseJsonField(apiData.highlightsTopics, latestData.highlights.topics))
+      },
+      newsletter: {
+        title: apiData.newsletterTitle || latestData.newsletter.title,
+        description: apiData.newsletterDescription || latestData.newsletter.description,
+        cta: apiData.newsletterCta || latestData.newsletter.cta
+      }
+    };
+  });
+};
+
+export const useDiscoverContent = () => {
+  return useFetchData(getPublicDiscover, discoverData, (apiData) => {
+    return {
+      hero: {
+        title: apiData.heroTitle || discoverData.hero.title,
+        subtitle: apiData.heroSubtitle || discoverData.hero.subtitle,
+        description: normalizeString(apiData.heroDescription) || discoverData.hero.description,
+        image: { url: (apiData.heroImage && apiData.heroImage.includes('uploads')) ? formatImageUrl(apiData.heroImage) : discoverData.hero.image?.url }
+      },
+      philosophy: {
+        heading: apiData.philosophyHeading || discoverData.philosophy.heading,
+        paragraphs: normalizeStringArray(parseJsonField(apiData.philosophyParagraphs, discoverData.philosophy.paragraphs))
+      },
+      craftsmanship: {
+        title: apiData.craftsmanshipTitle || discoverData.craftsmanship.title,
+        items: parseJsonField(apiData.craftsmanshipItems, discoverData.craftsmanship.items),
+        image: { url: (apiData.craftsmanshipImage && apiData.craftsmanshipImage.includes('uploads')) ? formatImageUrl(apiData.craftsmanshipImage) : discoverData.craftsmanship.image?.url }
+      },
+      values: {
+        title: apiData.valuesTitle || discoverData.valuesGrid.title,
+        cards: parseJsonField(apiData.valuesCards, discoverData.valuesGrid.cards).map((c, i) => {
+           let imageUrl = null;
+           if (typeof c.icon === 'string' && c.icon.trim() !== '') imageUrl = formatImageUrl(c.icon);
+           else if (typeof c.image === 'string' && c.image.startsWith('/')) imageUrl = formatImageUrl(c.image);
+           else if (c.image?.url) imageUrl = formatImageUrl(c.image.url);
+           
+           if (!imageUrl && discoverData.valuesGrid.cards[i]?.image) {
+              imageUrl = discoverData.valuesGrid.cards[i].image.url;
+           }
+           
+           return { ...c, image: imageUrl ? { url: imageUrl } : null };
+        })
+      },
+      gallery: {
+        title: apiData.galleryTitle || discoverData.editorialGallery.title,
+        images: parseJsonField(apiData.galleryImages, discoverData.editorialGallery.images).map((img, i) => {
+           let imageUrl = img?.url;
+           if (imageUrl && imageUrl.includes('uploads')) imageUrl = formatImageUrl(imageUrl);
+           
+           if (!imageUrl && discoverData.editorialGallery.images[i]) {
+              imageUrl = discoverData.editorialGallery.images[i].url;
+           }
+           return { ...img, url: imageUrl };
+        })
+      },
+      cta: {
+        title: apiData.ctaTitle || discoverData.cta.title,
+        buttonText: apiData.ctaButtonText || discoverData.cta.buttonText,
+        link: apiData.ctaLink || discoverData.cta.link
+      }
+    };
+  });
+};
+
+export const useCommunityContent = () => {
+  return useFetchData(getPublicCommunity, communityData, (apiData) => {
+    return {
+      hero: {
+        title: apiData.heroTitle || communityData.hero.title,
+        subtitle: apiData.heroSubtitle || communityData.hero.subtitle,
+        description: apiData.heroDescription || communityData.hero.description,
+        image: { url: apiData.heroImage || communityData.hero.image?.url }
+      },
+      memberStories: {
+        title: apiData.storiesTitle || communityData.memberStories.title,
+        stories: parseJsonField(apiData.stories, communityData.memberStories.stories)
+      },
+      testimonials: {
+        title: apiData.testimonialsTitle || communityData.testimonials.title,
+        items: parseJsonField(apiData.testimonials, communityData.testimonials.items)
+      },
+      experiences: {
+        title: apiData.experiencesTitle || communityData.experiences.title,
+        events: parseJsonField(apiData.experiences, communityData.experiences.events)
+      },
+      gallery: {
+        title: apiData.galleryTitle || communityData.gallery.title,
+        images: parseJsonField(apiData.galleryImages, communityData.gallery.images)
+      },
+      cta: {
+        title: apiData.ctaTitle || communityData.cta.title,
+        description: apiData.ctaDescription || communityData.cta.description,
+        buttonText: apiData.ctaButtonText || communityData.cta.buttonText
+      }
+    };
+  });
+};
+
+export const useNoteContent = () => {
+  return useFetchData(getPublicNote, noteData, (apiData) => {
+    return {
+      hero: {
+        title: apiData.heroTitle || noteData.hero.title,
+        subtitle: apiData.heroSubtitle || noteData.hero.subtitle,
+        description: apiData.heroDescription || noteData.hero.description,
+        image: { url: apiData.heroImage || noteData.hero.image?.url }
+      },
+      letter: {
+        title: apiData.letterTitle || noteData.foundersLetter.title,
+        salutation: apiData.letterSalutation || noteData.foundersLetter.salutation,
+        paragraphs: normalizeStringArray(parseJsonField(apiData.letterParagraphs, noteData.foundersLetter.paragraphs)),
+        image: { url: apiData.letterImage || noteData.foundersLetter.image?.url }
+      },
+      editorial: {
+        title: apiData.editorialTitle || noteData.longFormEditorial.title,
+        content: normalizeStringArray(parseJsonField(apiData.editorialContent, noteData.longFormEditorial.content))
+      },
+      signature: {
+        name: apiData.signatureName || noteData.signatureBlock.name,
+        role: apiData.signatureRole || noteData.signatureBlock.role,
+        bio: apiData.signatureBio || noteData.signatureBlock.bio,
+        image: { url: apiData.signatureImage || noteData.signatureBlock.image?.url }
+      }
+    };
   });
 };
 

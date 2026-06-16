@@ -19,6 +19,7 @@
 
 .formSection {
   margin-bottom: var(--spacing-xl);
+  /* background-color: #ef4444; */
 }
 
 .sectionTitle {
@@ -27,6 +28,7 @@
   margin-bottom: var(--spacing-md);
   border-bottom: 1px solid var(--border-color);
   padding-bottom: var(--spacing-sm);
+  color: var(--text-secondary);
 }
 
 .formGroup {
@@ -50,7 +52,7 @@
   background: transparent;
   font-family: var(--font-secondary);
   font-size: var(--font-size-md);
-  color: var(--text-primary);
+  color: var(--text-secondary);
 }
 
 .formGroup input:focus,
@@ -89,6 +91,7 @@
   cursor: pointer;
   font-family: var(--font-secondary);
   font-size: var(--font-size-md);
+  color: var(--text-secondary);
 }
 
 .submitBtn {

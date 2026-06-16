@@ -18,6 +18,12 @@
   text-align: center;
   margin-bottom: var(--spacing-xl);
 }
+.logo img {
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  margin: 0 auto;
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -34,7 +40,7 @@
   font-size: var(--font-size-xs);
 }
 .loginBtn {
-  background-color: var(--text-primary);
+  background-color: var(--brand-black);
   color: var(--brand-white);
   border: none;
   padding: 12px;

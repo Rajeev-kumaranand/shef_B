@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { contactData } from '../data/contactData.js';
+import { useContact } from '../hooks/useApi.js';
 import Container from '../components/common/Container.jsx';
 import Section from '../components/common/Section.jsx';
 import SectionTitle from '../components/common/SectionTitle.jsx';
@@ -11,7 +12,21 @@ import SEOManager from '../components/common/SEOManager.jsx';
 import styles from './Contact.module.css';
 
 export default function Contact() {
+  const { data: contactApiData } = useContact();
   const { hero, contactInfo, socials, form, map } = contactData;
+
+  const displayDetails = contactInfo.details.map(detail => {
+    if (detail.label === 'General Inquiries' && contactApiData?.email) {
+      return { ...detail, value: contactApiData.email, link: `mailto:${contactApiData.email}` };
+    }
+    if (detail.label === 'Phone' && contactApiData?.phone) {
+      return { ...detail, value: contactApiData.phone, link: `tel:${contactApiData.phone.replace(/[^0-9+]/g, '')}` };
+    }
+    if (detail.label === 'Studio' && contactApiData?.address) {
+      return { ...detail, value: contactApiData.address };
+    }
+    return detail;
+  });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -93,7 +108,7 @@ export default function Contact() {
               <FadeUp delay={0.1}>
                 <h3 className={styles.colTitle}>{contactInfo.title}</h3>
                 <div className={styles.detailsList}>
-                  {contactInfo.details.map((detail, idx) => (
+                  {displayDetails.map((detail, idx) => (
                     <div key={idx} className={styles.detailItem}>
                       <span className={styles.detailLabel}>{detail.label}</span>
                       {detail.link ? (

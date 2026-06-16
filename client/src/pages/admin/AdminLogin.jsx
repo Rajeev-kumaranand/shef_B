@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext.jsx';
 import styles from './AdminLogin.module.css';
 import AdminCard from '../../components/admin/AdminCard.jsx';
 import AdminFormField from '../../components/admin/AdminFormField.jsx';
+import Logo from "../../assets/logo.png"
 
 export default function AdminLogin() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
@@ -20,7 +21,9 @@ export default function AdminLogin() {
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginBox}>
-        <div className={styles.logo}>shef&B CMS</div>
+        <div className={styles.logo}>
+          <img src={Logo} alt="" />
+        </div>
         <AdminCard>
           <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
             <div className={styles.fieldWrapper}>

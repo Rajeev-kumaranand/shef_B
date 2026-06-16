@@ -19,10 +19,10 @@ export default function Dashboard() {
         const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
         
         const [slidesRes, navRes, orderRes, productsRes, inquiriesRes] = await Promise.all([
-          getSlides(),
-          getNavigations(),
-          getOrderStats(),
-          getProducts(),
+          getSlides().catch(() => null),
+          getNavigations().catch(() => null),
+          getOrderStats().catch(() => null),
+          getProducts().catch(() => null),
           axios.get(`${API_URL}/admin/inquiries/stats`, { headers: { Authorization: `Bearer ${token}` } }).catch(() => null)
         ]);
         
@@ -82,7 +82,7 @@ export default function Dashboard() {
             <div className={styles.statContent}>
               <span className={styles.statLabel}>{stat.label}</span>
               <span className={styles.statValue} style={stat.highlight ? { color: stat.highlight } : {}}>
-                {stat.value}
+                {stat.value !== undefined && stat.value !== null && stat.value !== '' ? stat.value : 0}
               </span>
             </div>
           </AdminCard>

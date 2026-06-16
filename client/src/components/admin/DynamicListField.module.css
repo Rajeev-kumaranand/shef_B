@@ -21,6 +21,7 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
+  color: var(--text-secondary);
 }
 
 .list {
@@ -62,14 +63,14 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--text-secondary);
+  color: var(--brand-black);
   font-size: var(--font-size-xs);
   text-transform: uppercase;
   transition: color var(--transition-fast) var(--ease-editorial);
 }
 
 .actionBtn:hover {
-  color: var(--text-primary);
+  color: var(--brand-red);
 }
 
 .deleteBtn {
@@ -104,7 +105,7 @@
   padding: var(--spacing-sm);
   border: 1px solid var(--border-color);
   background: var(--surface-primary);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   font-family: var(--font-secondary);
   font-size: var(--font-size-sm);
   border-radius: var(--radius-xs);
@@ -131,7 +132,7 @@
 }
 
 .mediaBtn {
-  background: var(--surface-primary);
+  background: var(--brand-red);
   border: 1px dashed var(--border-color);
   color: var(--text-primary);
   padding: var(--spacing-sm) var(--spacing-md);
@@ -150,7 +151,7 @@
   padding: var(--spacing-sm);
   background: transparent;
   border: 1px dashed var(--border-color);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   cursor: pointer;

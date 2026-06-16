@@ -9,6 +9,10 @@
 .title {
   font-family: var(--font-primary);
   font-size: var(--font-size-xxl);
+  color: var(--text-secondary);
+}
+.emptyState{
+  color: var(--text-secondary);
 }
 
 .tableWrapper {

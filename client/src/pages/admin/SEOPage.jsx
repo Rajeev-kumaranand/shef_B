@@ -106,7 +106,7 @@ export default function SEOPage() {
             <form onSubmit={handleSubmit(onSubmit)} style={{ background: 'white', padding: 'var(--spacing-xl)', border: '1px solid var(--border-color)' }}>
               
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-lg)' }}>
-                <h2 style={{ fontFamily: 'var(--font-primary)' }}>General Meta Tags</h2>
+                <h2 style={{ fontFamily: 'var(--font-primary)', color: 'var(--text-secondary)' }}>General Meta Tags</h2>
                 <button type="submit" className={styles.primaryBtn} disabled={isSubmitting}>
                   Save Changes
                 </button>
@@ -115,7 +115,7 @@ export default function SEOPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)', marginBottom: 'var(--spacing-xl)' }}>
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <label style={{ fontFamily: 'var(--font-secondary)', fontSize: '12px' }}>Meta Title</label>
+                    <label style={{ fontFamily: 'var(--font-secondary)', fontSize: '12px', color: 'var(--text-secondary)'  }}>Meta Title</label>
                     <span style={{ fontSize: '12px', color: title.length > 60 ? '#ef4444' : 'var(--text-secondary)' }}>{title.length} / 60</span>
                   </div>
                   <input {...register('title')} style={{ width: '100%', padding: '8px', border: '1px solid var(--border-color)' }} />
@@ -123,7 +123,7 @@ export default function SEOPage() {
                 
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <label style={{ fontFamily: 'var(--font-secondary)', fontSize: '12px' }}>Meta Description</label>
+                    <label style={{ fontFamily: 'var(--font-secondary)', fontSize: '12px', color: 'var(--text-secondary)'  }}>Meta Description</label>
                     <span style={{ fontSize: '12px', color: description.length > 160 ? '#ef4444' : 'var(--text-secondary)' }}>{description.length} / 160</span>
                   </div>
                   <textarea {...register('description')} rows="3" style={{ width: '100%', padding: '8px', border: '1px solid var(--border-color)' }} />
@@ -133,21 +133,21 @@ export default function SEOPage() {
                 <AdminFormField label="Canonical URL (Optional)" {...register('canonicalUrl')} />
               </div>
 
-              <h2 style={{ fontFamily: 'var(--font-primary)', marginBottom: 'var(--spacing-lg)' }}>Open Graph (Facebook/LinkedIn)</h2>
+              <h2 style={{ fontFamily: 'var(--font-primary)', marginBottom: 'var(--spacing-lg)', color: 'var(--text-secondary)'  }}>Open Graph (Facebook/LinkedIn)</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)', marginBottom: 'var(--spacing-xl)' }}>
                 <AdminFormField label="OG Title" {...register('ogTitle')} />
                 <AdminFormField label="OG Description" type="textarea" {...register('ogDescription')} />
                 <AdminFormField label="OG Image URL" {...register('ogImage')} />
               </div>
 
-              <h2 style={{ fontFamily: 'var(--font-primary)', marginBottom: 'var(--spacing-lg)' }}>Twitter Cards</h2>
+              <h2 style={{ fontFamily: 'var(--font-primary)', marginBottom: 'var(--spacing-lg)', color: 'var(--text-secondary)'  }}>Twitter Cards</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)', marginBottom: 'var(--spacing-xl)' }}>
                 <AdminFormField label="Twitter Title" {...register('twitterTitle')} />
                 <AdminFormField label="Twitter Description" type="textarea" {...register('twitterDescription')} />
                 <AdminFormField label="Twitter Image URL" {...register('twitterImage')} />
               </div>
 
-              <h2 style={{ fontFamily: 'var(--font-primary)', marginBottom: 'var(--spacing-lg)' }}>Advanced</h2>
+              <h2 style={{ fontFamily: 'var(--font-primary)', marginBottom: 'var(--spacing-lg)', color: 'var(--text-secondary)'  }}>Advanced</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
                 <AdminFormField label="JSON-LD Schema Markup" type="textarea" style={{ minHeight: '150px', fontFamily: 'monospace' }} {...register('schemaMarkup')} placeholder="{ &quot;@context&quot;: &quot;https://schema.org&quot;, ... }" />
               </div>
@@ -156,7 +156,7 @@ export default function SEOPage() {
 
           {/* Live Preview Panel */}
           <div style={{ background: 'white', padding: 'var(--spacing-xl)', border: '1px solid var(--border-color)' }}>
-            <h2 style={{ fontFamily: 'var(--font-primary)', marginBottom: 'var(--spacing-lg)' }}>Google Search Preview</h2>
+            <h2 style={{ fontFamily: 'var(--font-primary)', marginBottom: 'var(--spacing-lg)', color: 'var(--text-secondary)'  }}>Google Search Preview</h2>
             <div style={{ padding: '16px', background: '#f8f9fa', border: '1px solid #dfe1e5', borderRadius: '8px', maxWidth: '600px' }}>
               <div style={{ fontSize: '14px', color: '#202124', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ background: '#ddd', width: '28px', height: '28px', borderRadius: '50%', display: 'inline-block' }}></span>
