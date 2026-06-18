@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useCustomerAuth } from '../../context/CustomerAuthContext.jsx';
 import Container from '../../components/common/Container.jsx';
@@ -8,6 +8,7 @@ import styles from './AuthPages.module.css';
 
 export default function Login() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { login } = useCustomerAuth();
   const [loading, setLoading] = useState(false);
   
@@ -18,7 +19,8 @@ export default function Login() {
     const success = await login(data);
     setLoading(false);
     if (success) {
-      navigate('/account');
+      const redirectUrl = searchParams.get('redirect');
+      navigate(redirectUrl || '/account');
     }
   };
 

@@ -71,7 +71,7 @@ export default function CommunityContent() {
               title="Hero Paragraphs" itemLabel="Paragraph"
               schema={[{ name: 'value', type: 'textarea', label: 'Text' }]}
             />
-            <AdminFormField label="Hero Image URL" {...register('heroImage')} />
+            <AdminFormField type="media" label="Hero Image URL" {...register('heroImage')} />
           </AdminCard>
 
           <AdminCard title="Community Stories">

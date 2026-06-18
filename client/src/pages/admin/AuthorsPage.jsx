@@ -87,7 +87,7 @@ export default function AuthorsPage() {
               <div className={styles.modalBody}>
                 <AdminFormField label="Name" {...register('name', { required: true })} />
                 <AdminFormField label="Designation" {...register('designation')} />
-                <AdminFormField label="Profile Image URL" {...register('image')} />
+                <AdminFormField type="media" label="Profile Image URL" {...register('image')} />
                 <AdminFormField label="Biography" type="textarea" {...register('bio')} />
               </div>
               <div className={styles.modalFooter}>

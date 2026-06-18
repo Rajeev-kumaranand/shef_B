@@ -85,7 +85,7 @@ export default function DynamicListField({ name, control, register, setValue, wa
                             <img src={getImageUrl(currentValue)} alt="Preview" className={styles.mediaPreview} />
                           ) : (
                             <div className={styles.mediaPreview} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', color: 'var(--text-secondary)' }}>No Image</div>
-                          )}
+                          )} 
                           <button 
                             type="button" 
                             className={styles.mediaBtn} 

@@ -30,8 +30,16 @@ export default function ProductDetails() {
 
   useEffect(() => {
     fetchProduct();
-    window.scrollTo(0, 0);
   }, [slug]);
+
+  useEffect(() => {
+    if (!loading && product) {
+      // Force scroll to top when content actually paints
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }, 10);
+    }
+  }, [loading, product, slug]);
 
   const fetchProduct = async () => {
     setLoading(true);
@@ -92,7 +100,7 @@ export default function ProductDetails() {
   const submitReview = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('shefb_customer_token');
       if (!token) {
         toast.error('You must be logged in to leave a review');
         return;

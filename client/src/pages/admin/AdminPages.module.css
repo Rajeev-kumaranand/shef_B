@@ -204,6 +204,7 @@
   max-width: 600px;
   max-height: 90vh;
   overflow-y: auto;
+  overscroll-behavior: contain;
   box-shadow: var(--shadow-premium);
 }
 

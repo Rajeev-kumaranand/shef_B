@@ -50,9 +50,10 @@
 }
 
 .card {
-  background: white;
+  background: rgb(255, 255, 255);
   padding: var(--spacing-lg);
   box-shadow: var(--shadow-sm);
+  color: var(--text-secondary);
 }
 
 .card h3 {
@@ -61,12 +62,13 @@
   margin-bottom: var(--spacing-md);
   border-bottom: 1px solid var(--border-color);
   padding-bottom: var(--spacing-xs);
+  color: var(--text-secondary);
 }
 
 .card p {
   font-family: var(--font-secondary);
   font-size: var(--font-size-sm);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   margin-bottom: var(--spacing-xs);
 }
 
@@ -112,6 +114,7 @@
 .orderCard {
   border: 1px solid var(--border-color);
   padding: var(--spacing-md);
+  color: var(--text-secondary);
 }
 
 .orderHeader {
@@ -125,6 +128,7 @@
   font-family: var(--font-secondary);
   font-size: var(--font-size-md);
   margin-bottom: 4px;
+  color: var(--text-secondary);
 }
 
 .orderDate {

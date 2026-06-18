@@ -8,22 +8,29 @@ const api = axios.create({
 
 // Interceptor for auth token (Admin routes)
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  // If authorization header is already set, don't overwrite it
+  if (!config.headers.Authorization) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
   }
   return config;
 });
 
-// Public: Create order
+// Public / Customer: Create order
 export const createOrder = async (orderData) => {
-  const response = await api.post('/orders', orderData);
+  const token = localStorage.getItem('shefb_customer_token');
+  const headers = token ? { Authorization: `Bearer ${token}` } : {};
+  const response = await api.post('/orders', orderData, { headers });
   return response.data;
 };
 
-// Public: Get order by ID/Number
+// Public / Customer: Get order by ID/Number
 export const getOrder = async (id) => {
-  const response = await api.get(`/orders/${id}`);
+  const token = localStorage.getItem('shefb_customer_token');
+  const headers = token ? { Authorization: `Bearer ${token}` } : {};
+  const response = await api.get(`/orders/${id}`, { headers });
   return response.data;
 };
 

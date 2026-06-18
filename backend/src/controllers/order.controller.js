@@ -78,7 +78,7 @@ export const createOrder = async (req, res) => {
       return await tx.order.create({
         data: {
           orderNumber,
-          customerId: customerId || null,
+          customerId: req.customer.id,
           customerName,
           customerEmail,
           customerPhone,

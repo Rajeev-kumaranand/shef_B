@@ -1,6 +1,7 @@
 .layout {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   background-color: var(--surface-primary);
   color: var(--text-primary);
 }
@@ -16,6 +17,7 @@
   flex: 1;
   padding: var(--spacing-lg);
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .contentInner {

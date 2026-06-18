@@ -44,7 +44,7 @@ export default function AdminSidebar({ isOpen, setIsOpen }) {
           </div>
           <span className={styles.badge}>Workspace</span>
         </div>
-        <div className={styles.navScrollArea}>
+        <div className={styles.navScrollArea} data-lenis-prevent>
           <nav className={styles.nav}>
             {navItems.map((item) => (
               <NavLink

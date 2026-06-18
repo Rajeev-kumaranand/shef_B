@@ -92,6 +92,14 @@
   font-family: var(--font-secondary);
   font-size: var(--font-size-md);
   color: var(--text-secondary);
+  width: 250px;
+}
+.radioLabel > input {
+  height: 14px;
+  width: 14px;
+}
+.radioLabel > span {
+  width: 500px;
 }
 
 .submitBtn {
@@ -169,6 +177,7 @@
   font-family: var(--font-secondary);
   font-size: var(--font-size-sm);
   margin-bottom: var(--spacing-xs);
+  color: var(--text-secondary);
 }
 
 .itemPrice {
@@ -193,7 +202,7 @@
 }
 
 .grandTotal {
-  color: var(--text-primary);
+  color: var(--text-secondary);
   font-size: var(--font-size-lg);
   font-weight: 600;
   margin-top: var(--spacing-md);
@@ -215,8 +224,12 @@
 .couponInput {
   flex: 1;
   padding: 8px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--text-secondary);
   font-family: var(--font-secondary);
+}
+.couponInput:focus {
+  outline: none;
+  border-color: var(--brand-black);
 }
 
 .couponBtn {

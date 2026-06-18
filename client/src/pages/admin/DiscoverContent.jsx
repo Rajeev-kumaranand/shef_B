@@ -71,7 +71,7 @@ export default function DiscoverContent() {
               title="Hero Paragraphs" itemLabel="Paragraph"
               schema={[{ name: 'value', type: 'textarea', label: 'Text' }]}
             />
-            <AdminFormField label="Hero Image URL" {...register('heroImage')} />
+            <AdminFormField type="media" label="Hero Image URL" {...register('heroImage')} />
           </AdminCard>
 
           <AdminCard title="Philosophy Section">
@@ -86,7 +86,7 @@ export default function DiscoverContent() {
 
           <AdminCard title="Craftsmanship Section">
             <AdminFormField label="Heading" {...register('craftsmanshipTitle')} />
-            <AdminFormField label="Image URL" {...register('craftsmanshipImage')} />
+            <AdminFormField type="media" label="Image URL" {...register('craftsmanshipImage')} />
             <DynamicListField
               name="craftsmanshipItems"
               control={control} register={register} setValue={setValue} watch={watch}

@@ -83,17 +83,21 @@
 }
 
 .logo {
-  /* font-family: var(--font-primary);
-  font-size: var(--font-size-h4);
-  font-weight: var(--font-weight-medium); */
-  /* color: var(--text-primary); */
-  /* text-decoration: none; */
-  /* letter-spacing: var(--tracking-tight); */
   transition: color var(--transition-normal) var(--ease-luxury);
-  /* background-color: blue; */
-  /* height: 50px; */
   padding-bottom: 0;
   margin-bottom: 0;
+}
+
+.logoImg {
+  height: 50px;
+  object-fit: contain;
+  transition: height 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .logoImg {
+    height: 80px;
+  }
 }
 
 .transparent .logo {
@@ -140,7 +144,7 @@
 .hamburgerLine {
   width: 20px;
   height: 1px;
-  background-color: var(--text-primary);
+  background-color: var(--brand-black);
   transition: background-color var(--transition-normal) var(--ease-luxury);
 }
 

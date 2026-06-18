@@ -53,6 +53,7 @@ const NoteContent = lazy(() => import('../pages/admin/NoteContent.jsx'));
 const MediaLibrary = lazy(() => import('../pages/admin/MediaLibrary.jsx'));
 const AdminLogin = lazy(() => import('../pages/admin/AdminLogin.jsx'));
 const ProtectedRoute = lazy(() => import('../components/auth/ProtectedRoute.jsx'));
+const CustomerProtectedRoute = lazy(() => import('../components/auth/CustomerProtectedRoute.jsx'));
 const SEOPage = lazy(() => import('../pages/admin/SEOPage.jsx'));
 const SettingsPage = lazy(() => import('../pages/admin/SettingsPage.jsx'));
 const InquiriesPage = lazy(() => import('../pages/admin/InquiriesPage.jsx'));
@@ -63,6 +64,14 @@ const AuthorsPage = lazy(() => import('../pages/admin/AuthorsPage.jsx'));
 const withSuspense = (Component) => (
   <Suspense fallback={<PageLoader />}>
     <Component />
+  </Suspense>
+);
+
+const withCustomerAuth = (Component) => (
+  <Suspense fallback={<PageLoader />}>
+    <CustomerProtectedRoute>
+      <Component />
+    </CustomerProtectedRoute>
   </Suspense>
 );
 
@@ -80,17 +89,17 @@ export const router = createBrowserRouter([
       { path: 'community', element: withSuspense(Community) },
       { path: 'note', element: withSuspense(Note) },
       { path: 'contact', element: withSuspense(Contact) },
-      { path: 'wishlist', element: withSuspense(Wishlist) },
-      { path: 'checkout', element: withSuspense(Checkout) },
-      { path: 'order-success/:orderNumber', element: withSuspense(OrderSuccess) },
+      { path: 'wishlist', element: withCustomerAuth(Wishlist) },
+      { path: 'checkout', element: withCustomerAuth(Checkout) },
+      { path: 'order-success/:orderNumber', element: withCustomerAuth(OrderSuccess) },
       { path: 'magazine', element: withSuspense(Magazine) },
       { path: 'magazine/:slug', element: withSuspense(ArticleDetails) },
       
       // Customer Account Routes
       { path: 'account/login', element: withSuspense(Login) },
       { path: 'account/register', element: withSuspense(Register) },
-      { path: 'account', element: withSuspense(AccountDashboard) },
-      { path: 'account/orders/:id', element: withSuspense(OrderTracking) },
+      { path: 'account', element: withCustomerAuth(AccountDashboard) },
+      { path: 'account/orders/:id', element: withCustomerAuth(OrderTracking) },
 
       { path: '*', element: <NotFound /> }
     ],

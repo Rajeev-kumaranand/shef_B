@@ -228,7 +228,7 @@ export const useDiscoverContent = () => {
         title: apiData.heroTitle || discoverData.hero.title,
         subtitle: apiData.heroSubtitle || discoverData.hero.subtitle,
         description: normalizeString(apiData.heroDescription) || discoverData.hero.description,
-        image: { url: (apiData.heroImage && apiData.heroImage.includes('uploads')) ? formatImageUrl(apiData.heroImage) : discoverData.hero.image?.url }
+        image: { url: (apiData.heroImage && apiData.heroImage.trim() !== '') ? formatImageUrl(apiData.heroImage) : discoverData.hero.image?.url }
       },
       philosophy: {
         heading: apiData.philosophyHeading || discoverData.philosophy.heading,
@@ -237,7 +237,7 @@ export const useDiscoverContent = () => {
       craftsmanship: {
         title: apiData.craftsmanshipTitle || discoverData.craftsmanship.title,
         items: parseJsonField(apiData.craftsmanshipItems, discoverData.craftsmanship.items),
-        image: { url: (apiData.craftsmanshipImage && apiData.craftsmanshipImage.includes('uploads')) ? formatImageUrl(apiData.craftsmanshipImage) : discoverData.craftsmanship.image?.url }
+        image: { url: (apiData.craftsmanshipImage && apiData.craftsmanshipImage.trim() !== '') ? formatImageUrl(apiData.craftsmanshipImage) : discoverData.craftsmanship.image?.url }
       },
       values: {
         title: apiData.valuesTitle || discoverData.valuesGrid.title,
@@ -281,12 +281,29 @@ export const useCommunityContent = () => {
       hero: {
         title: apiData.heroTitle || communityData.hero.title,
         subtitle: apiData.heroSubtitle || communityData.hero.subtitle,
-        description: apiData.heroDescription || communityData.hero.description,
-        image: { url: apiData.heroImage || communityData.hero.image?.url }
+        description: normalizeString(apiData.heroDescription) || communityData.hero.description,
+        image: { url: (apiData.heroImage && apiData.heroImage.trim() !== '') ? formatImageUrl(apiData.heroImage) : communityData.hero.image?.url }
       },
       memberStories: {
         title: apiData.storiesTitle || communityData.memberStories.title,
-        stories: parseJsonField(apiData.stories, communityData.memberStories.stories)
+        stories: parseJsonField(apiData.stories, communityData.memberStories.stories).map((s, i) => {
+          const defaultStory = communityData.memberStories.stories[i] || {};
+          let imageUrl = null;
+          if (typeof s.image === 'string') imageUrl = formatImageUrl(s.image);
+          else if (s.image?.url) imageUrl = formatImageUrl(s.image.url);
+          
+          if (!imageUrl && defaultStory.image) {
+             imageUrl = defaultStory.image.url;
+          }
+          return { 
+            ...defaultStory, 
+            ...s, 
+            name: s.name || s.title || defaultStory.name,
+            role: s.role || s.author || defaultStory.role,
+            quote: s.quote || s.excerpt || defaultStory.quote,
+            image: imageUrl ? { url: imageUrl } : null 
+          };
+        })
       },
       testimonials: {
         title: apiData.testimonialsTitle || communityData.testimonials.title,
@@ -298,11 +315,20 @@ export const useCommunityContent = () => {
       },
       gallery: {
         title: apiData.galleryTitle || communityData.gallery.title,
-        images: parseJsonField(apiData.galleryImages, communityData.gallery.images)
+        images: parseJsonField(apiData.galleryImages, communityData.gallery.images).map((img, i) => {
+          let imageUrl = img?.url;
+          if (typeof img === 'string') imageUrl = img;
+          if (imageUrl && typeof imageUrl === 'string' && imageUrl.includes('uploads')) imageUrl = formatImageUrl(imageUrl);
+          
+          if (!imageUrl && communityData.gallery.images[i]) {
+             imageUrl = communityData.gallery.images[i].url;
+          }
+          return typeof img === 'object' ? { ...img, url: imageUrl } : { url: imageUrl };
+        })
       },
       cta: {
         title: apiData.ctaTitle || communityData.cta.title,
-        description: apiData.ctaDescription || communityData.cta.description,
+        description: normalizeString(apiData.ctaDescription) || communityData.cta.description,
         buttonText: apiData.ctaButtonText || communityData.cta.buttonText
       }
     };
@@ -315,24 +341,32 @@ export const useNoteContent = () => {
       hero: {
         title: apiData.heroTitle || noteData.hero.title,
         subtitle: apiData.heroSubtitle || noteData.hero.subtitle,
-        description: apiData.heroDescription || noteData.hero.description,
-        image: { url: apiData.heroImage || noteData.hero.image?.url }
+        description: normalizeString(apiData.heroDescription) || noteData.hero.description,
+        image: { url: (apiData.heroImage && apiData.heroImage.trim() !== '') ? formatImageUrl(apiData.heroImage) : noteData.hero.image?.url }
       },
       letter: {
         title: apiData.letterTitle || noteData.foundersLetter.title,
         salutation: apiData.letterSalutation || noteData.foundersLetter.salutation,
         paragraphs: normalizeStringArray(parseJsonField(apiData.letterParagraphs, noteData.foundersLetter.paragraphs)),
-        image: { url: apiData.letterImage || noteData.foundersLetter.image?.url }
+        image: { url: (apiData.letterImage && apiData.letterImage.trim() !== '') ? formatImageUrl(apiData.letterImage) : noteData.foundersLetter.image?.url }
       },
       editorial: {
         title: apiData.editorialTitle || noteData.longFormEditorial.title,
-        content: normalizeStringArray(parseJsonField(apiData.editorialContent, noteData.longFormEditorial.content))
+        content: parseJsonField(apiData.editorialContent, noteData.longFormEditorial.content).map(block => {
+          if (block.type === 'image') {
+            let imageUrl = null;
+            if (typeof block.value === 'string') imageUrl = formatImageUrl(block.value);
+            else if (block.value?.url) imageUrl = formatImageUrl(block.value.url);
+            return { ...block, value: { url: imageUrl } };
+          }
+          return block;
+        })
       },
       signature: {
         name: apiData.signatureName || noteData.signatureBlock.name,
         role: apiData.signatureRole || noteData.signatureBlock.role,
         bio: apiData.signatureBio || noteData.signatureBlock.bio,
-        image: { url: apiData.signatureImage || noteData.signatureBlock.image?.url }
+        image: { url: (apiData.signatureImage && apiData.signatureImage.trim() !== '') ? formatImageUrl(apiData.signatureImage) : noteData.signatureBlock.image?.url }
       }
     };
   });

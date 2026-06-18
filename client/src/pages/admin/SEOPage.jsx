@@ -137,14 +137,14 @@ export default function SEOPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)', marginBottom: 'var(--spacing-xl)' }}>
                 <AdminFormField label="OG Title" {...register('ogTitle')} />
                 <AdminFormField label="OG Description" type="textarea" {...register('ogDescription')} />
-                <AdminFormField label="OG Image URL" {...register('ogImage')} />
+                <AdminFormField type="media" label="OG Image URL" {...register('ogImage')} />
               </div>
 
               <h2 style={{ fontFamily: 'var(--font-primary)', marginBottom: 'var(--spacing-lg)', color: 'var(--text-secondary)'  }}>Twitter Cards</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)', marginBottom: 'var(--spacing-xl)' }}>
                 <AdminFormField label="Twitter Title" {...register('twitterTitle')} />
                 <AdminFormField label="Twitter Description" type="textarea" {...register('twitterDescription')} />
-                <AdminFormField label="Twitter Image URL" {...register('twitterImage')} />
+                <AdminFormField type="media" label="Twitter Image URL" {...register('twitterImage')} />
               </div>
 
               <h2 style={{ fontFamily: 'var(--font-primary)', marginBottom: 'var(--spacing-lg)', color: 'var(--text-secondary)'  }}>Advanced</h2>

@@ -35,6 +35,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-lg);
   font-weight: 500;
+  color: var(--text-secondary);
 }
 
 .closeBtn {
@@ -42,12 +43,15 @@
   border: none;
   font-size: var(--font-size-xl);
   cursor: pointer;
-  color: var(--text-primary);
+  color: var(--text-secondary);
 }
-
+.closeBtn:hover{
+  color: red;
+}
 .cartItems {
   flex: 1;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: var(--spacing-md);
   display: flex;
   flex-direction: column;
@@ -78,6 +82,7 @@
   font-size: var(--font-size-sm);
   font-weight: 500;
   margin-bottom: var(--spacing-xs);
+  color: var(--text-secondary);
 }
 
 .itemPrice {
@@ -105,6 +110,7 @@
 
 .qtyValue {
   font-size: var(--font-size-sm);
+  color: var(--text-secondary);
 }
 
 .removeBtn {
@@ -151,7 +157,7 @@
   padding: var(--spacing-sm);
   background: transparent;
   border: none;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   text-decoration: underline;
   cursor: pointer;
   font-family: var(--font-secondary);
@@ -171,6 +177,6 @@
 .emptyTitle {
   font-family: var(--font-primary);
   font-size: var(--font-size-xl);
-  color: var(--text-primary);
   margin-bottom: var(--spacing-sm);
+  color: var(--text-secondary);
 }

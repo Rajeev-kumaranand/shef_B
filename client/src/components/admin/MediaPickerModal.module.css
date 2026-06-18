@@ -1,6 +1,7 @@
 .container {
   max-height: 60vh;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding-right: var(--spacing-sm);
 }
 
@@ -44,6 +45,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
+  color: var(--text-secondary);
 }
 
 .loading, .empty {

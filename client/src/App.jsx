@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { router } from './routes/routes.jsx';
 import LenisProvider from './providers/LenisProvider.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
-import { CartProvider } from './context/CartContext.jsx';
 import { SettingsProvider } from './context/SettingsContext.jsx';
 import { Toaster } from 'react-hot-toast';
 import { themeData } from './data/themeData.js';
@@ -105,12 +104,10 @@ function App() {
         <HelmetProvider>
           <SettingsProvider>
             <AuthProvider>
-              <CartProvider>
-                <LenisProvider>
-                  <RouterProvider router={router} />
-                </LenisProvider>
-                <Toaster position="bottom-right" />
-              </CartProvider>
+              <LenisProvider>
+                <RouterProvider router={router} />
+              </LenisProvider>
+              <Toaster position="bottom-right" />
             </AuthProvider>
           </SettingsProvider>
         </HelmetProvider>

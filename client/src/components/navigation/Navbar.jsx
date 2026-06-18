@@ -11,7 +11,7 @@ import { useCompany, useNavigation } from '../../hooks/useApi.js';
 import { useSettings } from '../../context/SettingsContext.jsx';
 import { useCart } from '../../context/CartContext.jsx';
 import { useWishlist } from '../../context/WishlistContext.jsx';
-import { useAuth } from '../../context/AuthContext.jsx';
+import { useCustomerAuth } from '../../context/CustomerAuthContext.jsx';
 import NavLinkItem from './NavLinkItem.jsx';
 import MobileMenu from './MobileMenu.jsx';
 import Container from '../common/Container.jsx';
@@ -20,7 +20,7 @@ import styles from './Navbar.module.css';
 import { cn } from '../../utils/cn.js';
 import Logo from '../../assets/logo.png'
 
-import { FiShoppingBag, FiHeart, FiUser, FiPlus } from 'react-icons/fi';
+import { FiShoppingBag, FiHeart, FiUser, FiPlus, FiLogOut } from 'react-icons/fi';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,7 +33,7 @@ export default function Navbar() {
   const { settings, loading: settingsLoading } = useSettings();
   const { cartCount, setIsCartOpen } = useCart();
   const { wishlistCount } = useWishlist();
-  const { customer } = useAuth(); // Assuming useAuth exposes customer
+  const { customer, logout } = useCustomerAuth();
 
   // Check if we are on the Home page to support transparent layout
   const isHomePage = location.pathname === '/';
@@ -62,7 +62,7 @@ export default function Navbar() {
         <Container width="wide" className={styles.container}>
           {/* Logo */}
           <Link to="/" className={styles.logo}>
-            <img src={Logo} alt="shef&B" style={{ height: '80px', objectFit: 'contain' }} />
+            <img src={Logo} alt="shef&B" className={styles.logoImg} />
           </Link>
 
           {/* Desktop Navigation */}
@@ -104,6 +104,19 @@ export default function Navbar() {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className={styles.floatingMenu}>
+          {customer && (
+            <motion.div 
+              className={styles.floatingItem}
+              initial={{ opacity: 0, scale: 0, x: 0, y: 0 }}
+              animate={isHovered ? { opacity: 1, scale: 1, x: 53, y: -53 } : { opacity: 0, scale: 0, x: 0, y: 0 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            >
+              <button onClick={logout} className={styles.floatingActionIconBtn} aria-label="Logout">
+                <FiLogOut size={20} />
+              </button>
+            </motion.div>
+          )}
+
           {/* Account */}
           <motion.div 
             className={styles.floatingItem}
@@ -123,7 +136,7 @@ export default function Navbar() {
             animate={isHovered ? { opacity: 1, scale: 1, x: -53, y: -53 } : { opacity: 0, scale: 0, x: 0, y: 0 }}
             transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.05 }}
           >
-            <Link to="/wishlist" className={styles.floatingActionIconBtn} aria-label="Wishlist">
+            <Link to={customer ? "/wishlist" : `/account/login?redirect=${encodeURIComponent('/wishlist')}`} className={styles.floatingActionIconBtn} aria-label="Wishlist">
               <FiHeart size={20} />
               {wishlistCount > 0 && <span className={styles.iconBadge}>{wishlistCount}</span>}
             </Link>
@@ -136,14 +149,24 @@ export default function Navbar() {
             animate={isHovered ? { opacity: 1, scale: 1, x: -75, y: 0 } : { opacity: 0, scale: 0, x: 0, y: 0 }}
             transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 }}
           >
-            <button 
-              className={styles.floatingActionIconBtn}
-              onClick={() => setIsCartOpen(true)}
-              aria-label="Cart"
-            >
-              <FiShoppingBag size={20} />
-              {cartCount > 0 && <span className={styles.iconBadge}>{cartCount}</span>}
-            </button>
+            {customer ? (
+              <button 
+                className={styles.floatingActionIconBtn}
+                onClick={() => setIsCartOpen(true)}
+                aria-label="Cart"
+              >
+                <FiShoppingBag size={20} />
+                {cartCount > 0 && <span className={styles.iconBadge}>{cartCount}</span>}
+              </button>
+            ) : (
+              <Link 
+                to={`/account/login?redirect=${encodeURIComponent(location.pathname)}`} 
+                className={styles.floatingActionIconBtn}
+                aria-label="Cart"
+              >
+                <FiShoppingBag size={20} />
+              </Link>
+            )}
           </motion.div>
         </div>
         

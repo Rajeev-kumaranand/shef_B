@@ -13,7 +13,10 @@ export default function Note() {
 
   if (loading || !content) return <div style={{ minHeight: '100vh', background: 'var(--surface-primary)' }} />;
 
-  const { hero, letter: foundersLetter, editorial: longFormEditorial, signature: signatureBlock } = content;
+  const hero = content.hero;
+  const foundersLetter = content.foundersLetter || content.letter;
+  const longFormEditorial = content.longFormEditorial || content.editorial;
+  const signatureBlock = content.signatureBlock || content.signature;
   
   return (
     <div className={styles.notePage}>

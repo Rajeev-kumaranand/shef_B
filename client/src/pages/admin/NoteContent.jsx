@@ -67,7 +67,7 @@ export default function NoteContent() {
               title="Hero Paragraphs" itemLabel="Paragraph"
               schema={[{ name: 'value', type: 'textarea', label: 'Text' }]}
             />
-            <AdminFormField label="Hero Image URL" {...register('heroImage')} />
+            <AdminFormField type="media" label="Hero Image URL" {...register('heroImage')} />
           </AdminCard>
 
           <AdminCard title="The Letter">
@@ -79,7 +79,7 @@ export default function NoteContent() {
               title="Letter Paragraphs" itemLabel="Paragraph"
               schema={[{ name: 'value', type: 'textarea', label: 'Text' }]}
             />
-            <AdminFormField label="Letter Image URL" {...register('letterImage')} />
+            <AdminFormField type="media" label="Letter Image URL" {...register('letterImage')} />
           </AdminCard>
 
           <AdminCard title="Editorial Content">
@@ -96,7 +96,7 @@ export default function NoteContent() {
             <AdminFormField label="Name" {...register('signatureName')} />
             <AdminFormField label="Role" {...register('signatureRole')} />
             <AdminFormField label="Bio" type="textarea" {...register('signatureBio')} />
-            <AdminFormField label="Signature Image URL" {...register('signatureImage')} />
+            <AdminFormField type="media" label="Signature Image URL" {...register('signatureImage')} />
           </AdminCard>
 
           <button type="submit" className={styles.primaryBtn} disabled={isSubmitting} style={{ alignSelf: 'flex-start' }}>Save All Changes</button>

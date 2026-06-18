@@ -99,8 +99,8 @@ export default function SettingsPage() {
                 <AdminFormField label="Site Name" {...register('siteName', { required: true })} />
                 <AdminFormField label="Site Tagline" {...register('siteTagline')} />
                 <AdminFormField label="Footer Copyright Text" {...register('footerCopyrightText')} />
-                <AdminFormField label="Logo Image URL" {...register('logoImage')} />
-                <AdminFormField label="Favicon Image URL" {...register('faviconImage')} />
+                <AdminFormField type="media" label="Logo Image URL" {...register('logoImage')} />
+                <AdminFormField type="media" label="Favicon Image URL" {...register('faviconImage')} />
               </div>
             )}
 

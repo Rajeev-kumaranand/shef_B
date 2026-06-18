@@ -210,7 +210,7 @@ export default function ArticlesPage() {
                     </div>
                   </div>
 
-                  <AdminFormField label="Featured Image URL" {...register('featuredImage')} />
+                  <AdminFormField type="media" label="Featured Image URL" {...register('featuredImage')} />
                   <AdminFormField label="Excerpt" type="textarea" {...register('excerpt')} />
                   
                   <div>

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useNavigation } from '../../hooks/useApi.js';
 import { useSettings } from '../../context/SettingsContext.jsx';
+import { orgData } from '../../data/orgData.js';
 import Skeleton from '../common/Skeleton.jsx';
 import styles from './Footer.module.css';
 import Logo from "../../assets/logo.png"
@@ -92,29 +93,29 @@ export default function Footer() {
                 <Skeleton width="150px" height="80px" />
               ) : (
                 <>
-                  {settings?.contactEmail && (
+                  {(settings?.contactEmail || orgData.contact.email) && (
                     <motion.a 
-                      href={`mailto:${settings.contactEmail}`} 
+                      href={`mailto:${settings?.contactEmail || orgData.contact.email}`} 
                       className={styles.contactLink}
                       whileHover={{ x: 8 }}
                       transition={{ duration: 0.3, ease: 'easeOut' }}
                     >
-                      {settings.contactEmail}
+                      {settings?.contactEmail || orgData.contact.email}
                     </motion.a>
                   )}
-                  {settings?.contactPhone && (
+                  {(settings?.contactPhone || orgData.contact.phone) && (
                     <motion.a 
-                      href={`tel:${settings.contactPhone}`} 
+                      href={`tel:${settings?.contactPhone || orgData.contact.phone}`} 
                       className={styles.contactLink}
                       whileHover={{ x: 8 }}
                       transition={{ duration: 0.3, ease: 'easeOut' }}
                     >
-                      {settings.contactPhone}
+                      {settings?.contactPhone || orgData.contact.phone}
                     </motion.a>
                   )}
-                  {settings?.contactAddress && (
+                  {(settings?.contactAddress || orgData.contact.address) && (
                     <address className={styles.address}>
-                      {settings.contactAddress}
+                      {settings?.contactAddress || orgData.contact.address}
                     </address>
                   )}
                 </>

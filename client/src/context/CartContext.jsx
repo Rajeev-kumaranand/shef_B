@@ -1,5 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useCustomerAuth } from './CustomerAuthContext.jsx';
 
 const CartContext = createContext();
 
@@ -15,6 +17,10 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
+  
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { customer } = useCustomerAuth();
 
   // Load from local storage
   useEffect(() => {
@@ -37,6 +43,12 @@ export const CartProvider = ({ children }) => {
   }, [cartItems, isInitialized]);
 
   const addToCart = (product, quantity = 1) => {
+    if (!customer) {
+      toast('Please login to continue.');
+      navigate(`/account/login?redirect=${encodeURIComponent(location.pathname)}`);
+      return;
+    }
+
     setCartItems(prev => {
       const existing = prev.find(item => item.productId === product.id);
       if (existing) {

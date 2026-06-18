@@ -12,7 +12,7 @@ import { authenticateAdmin, authenticateCustomer } from '../middlewares/auth.mid
 const router = express.Router();
 
 // Public / Customer routes
-router.post('/', createOrder);
+router.post('/', authenticateCustomer, createOrder);
 router.get('/my-orders', authenticateCustomer, getMyOrders);
 router.get('/:id', getOrderById);
 

@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeUpVariant } from '../../motion/motionVariants.js';
-import styles from './AdminModal.module.css';
+import styles from './Modal.module.css';
 
-export default function AdminModal({ isOpen, onClose, title, children }) {
+export default function Modal({ isOpen, onClose, title, children }) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
