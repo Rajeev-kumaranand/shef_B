@@ -1,11 +1,9 @@
-import { useRef, useMemo } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useDiscoverContent } from '../hooks/useApi.js';
-import LoadingState from '../components/admin/states/LoadingState.jsx';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import SEOManager from '../components/common/SEOManager.jsx';
 import styles from './Discover.module.css';
 
-// Import static portfolio images
+// Import static images
 import img23_1 from '../assets/slidesImages/slide23-1.jpg';
 import img23_2 from '../assets/slidesImages/slide23-2.jpg';
 import img23_3 from '../assets/slidesImages/slide23-3.jpg';
@@ -15,55 +13,34 @@ import img24_3 from '../assets/slidesImages/slide24-3.jpg';
 import img21 from '../assets/slidesImages/slide21.jpg';
 import img22 from '../assets/slidesImages/slide22.jpg';
 
+import img1 from '../assets/slidesImages/slide1.jpg';
+import img2 from '../assets/slidesImages/slide2.jpg';
+import img3 from '../assets/slidesImages/slide3.jpg';
+import img4 from '../assets/slidesImages/slide4.jpg';
+import img5 from '../assets/slidesImages/slide5.jpg';
+import img6 from '../assets/slidesImages/slide6.jpg';
+
 export default function Discover() {
-  const { data: content, loading } = useDiscoverContent();
   const targetRef = useRef(null);
+  
   const { scrollYProgress } = useScroll({
     target: targetRef,
+    offset: ["start start", "end end"]
   });
 
-  // Scroll track horizontally as user scrolls vertically
-  // Using consistent calc strings allows Framer Motion to interpolate the values smoothly
-  const x = useTransform(scrollYProgress, [0, 1], ["calc(0% + 0vw)", "calc(-100% + 100vw)"]);
-
-  // Combine images to create a continuous overlapping collage
-  const allImages = useMemo(() => {
-    const images = [];
-    if (!content) return images;
-
-    const { hero, values: valuesGrid, gallery: editorialGallery } = content;
-
-    if (hero?.image) {
-      images.push({ url: hero.image, type: 'hero', title: hero.title || '' });
-    }
-    
-    if (valuesGrid?.cards) {
-      valuesGrid.cards.forEach(c => {
-        if (c.image?.url) images.push({ url: c.image.url, type: 'value', title: c.title });
-      });
-    }
-
-    if (editorialGallery?.images) {
-      editorialGallery.images.forEach(img => {
-        if (img?.url) images.push({ url: img.url, type: 'gallery', title: '' });
-      });
-    }
-
-    return images;
-  }, [content]);
-
-  if (loading || !content) return <LoadingState />;
-
-  const { hero } = content;
-
-  const getImageUrl = (path) => {
-    if (!path) return '';
-    const pathStr = typeof path === 'object' ? (path.url || path.src || '') : path;
-    if (!pathStr || typeof pathStr !== 'string') return '';
-    if (pathStr.startsWith('http')) return pathStr;
-    const base = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:5000';
-    return `${base}${pathStr}`;
-  };
+  // Smooth out the scroll progress
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 400, damping: 90 });
+  
+  // We have 6 slides with explicit widths:
+  // Slide 1 (Portfolio 1): 80vw
+  // Slide 2 (Portfolio 2): 80vw
+  // Slide 3 (Intro): 40vw
+  // Slide 4 (Gallery 1): 80vw
+  // Slide 5 (Gallery 2): 80vw
+  // Slide 6 (Outro): 40vw
+  // Total Width = 400vw.
+  // To reach the end, we translate by -(400vw - 100vw viewport) = -300vw.
+  const x = useTransform(smoothProgress, [0, 1], ["0vw", "-300vw"]);
 
   return (
     <div className={styles.discoverPage}>
@@ -73,50 +50,51 @@ export default function Discover() {
         <div className={styles.stickyContainer}>
           <motion.div style={{ x }} className={styles.horizontalTrack}>
             
-            {/* Custom Portfolio Slide 1 */}
-            <div className={styles.portfolioSlide}>
-              <img src={img23_1} alt="Portfolio Living Room" className={`${styles.absImg} ${styles.img23_1}`} loading="eager" />
-              <img src={img23_2} alt="Portfolio Bathroom" className={`${styles.absImg} ${styles.img23_2}`} loading="eager" />
-              <img src={img23_3} alt="Portfolio Bedroom" className={`${styles.absImg} ${styles.img23_3}`} loading="eager" />
-              <img src={img21} alt="Portfolio Extra 1" className={`${styles.absImg} ${styles.img21}`} loading="eager" />
+            {/* Slide 1 - Portfolio 1 */}
+            <div className={styles.portfolioSlide} style={{ width: '80vw' }}>
+              <img src={img23_1} alt="Portfolio" className={`${styles.absImg} ${styles.img23_1}`} loading="eager" />
+              <img src={img23_2} alt="Portfolio" className={`${styles.absImg} ${styles.img23_2}`} loading="eager" />
+              <img src={img23_3} alt="Portfolio" className={`${styles.absImg} ${styles.img23_3}`} loading="eager" />
+              <img src={img21} alt="Portfolio" className={`${styles.absImg} ${styles.img21}`} loading="eager" />
             </div>
 
-            {/* Custom Portfolio Slide 2 */}
-            <div className={styles.portfolioSlide}>
-              <img src={img24_1} alt="Portfolio Cafe/Lounge" className={`${styles.absImg} ${styles.img24_1}`} loading="lazy" />
-              <img src={img24_2} alt="Portfolio Top Down Living Room" className={`${styles.absImg} ${styles.img24_2}`} loading="lazy" />
-              <img src={img24_3} alt="Portfolio Plaid Bedroom" className={`${styles.absImg} ${styles.img24_3}`} loading="lazy" />
-              <img src={img22} alt="Portfolio Extra 2" className={`${styles.absImg} ${styles.img22}`} loading="lazy" />
+            {/* Slide 2 - Portfolio 2 */}
+            <div className={styles.portfolioSlide} style={{ width: '80vw' }}>
+              <img src={img24_1} alt="Portfolio" className={`${styles.absImg} ${styles.img24_1}`} loading="eager" />
+              <img src={img24_2} alt="Portfolio" className={`${styles.absImg} ${styles.img24_2}`} loading="eager" />
+              <img src={img24_3} alt="Portfolio" className={`${styles.absImg} ${styles.img24_3}`} loading="eager" />
+              <img src={img22} alt="Portfolio" className={`${styles.absImg} ${styles.img22}`} loading="eager" />
             </div>
 
-            {/* Intro Slide */}
-            <div className={styles.introSlide}>
-              <h1 className={styles.heroTitle}>{hero?.title || 'Discover'}</h1>
-              <p className={styles.heroSubtitle}>{hero?.subtitle}</p>
-              <p className={styles.heroDesc}>{hero?.description}</p>
+            {/* Slide 3 - Intro / Hero (Compact width to reduce empty space) */}
+            <div style={{ width: '40vw', flexShrink: 0, display: 'flex', justifyContent: 'center' }}>
+              <div className={styles.introSlide} style={{ width: '100%', padding: '0 2vw' }}>
+                <h1 className={styles.heroTitle}>Discover</h1>
+                <p className={styles.heroSubtitle}>Design that defines you</p>
+                <p className={styles.heroDesc}>Explore our extensive portfolio of interior designs, where every space tells a unique story of style, comfort, and innovation.</p>
+              </div>
             </div>
 
-            {/* Collage Slides */}
-            {allImages.map((item, idx) => {
-              // Generate pseudo-random layouts based on index
-              const sizeClass = idx % 3 === 0 ? styles.sizeLarge : idx % 3 === 1 ? styles.sizeMedium : styles.sizeSmall;
-              const alignClass = idx % 2 === 0 ? styles.alignTop : styles.alignBottom;
-              const offsetClass = idx % 4 === 0 ? styles.offsetRight : idx % 4 === 2 ? styles.offsetLeft : '';
+            {/* Slide 4 - Gallery Collage 1 */}
+            <div className={styles.portfolioSlide} style={{ width: '80vw' }}>
+              <img src={img1} alt="Gallery" className={`${styles.absImg} ${styles.img23_1}`} loading="lazy" />
+              <img src={img2} alt="Gallery" className={`${styles.absImg} ${styles.img23_2}`} loading="lazy" />
+              <img src={img3} alt="Gallery" className={`${styles.absImg} ${styles.img23_3}`} loading="lazy" />
+            </div>
 
-              return (
-                <div key={idx} className={`${styles.imageSlide} ${alignClass}`}>
-                  <div className={`${styles.imageWrapper} ${sizeClass} ${offsetClass}`}>
-                    <img src={getImageUrl(item.url)} alt={item.title || `Gallery image ${idx}`} loading="lazy" />
-                    {item.title && <h3 className={styles.imageOverlayTitle}>{item.title}</h3>}
-                  </div>
-                </div>
-              );
-            })}
+            {/* Slide 5 - Gallery Collage 2 */}
+            <div className={styles.portfolioSlide} style={{ width: '80vw' }}>
+              <img src={img4} alt="Gallery" className={`${styles.absImg} ${styles.img24_1}`} loading="lazy" />
+              <img src={img5} alt="Gallery" className={`${styles.absImg} ${styles.img24_2}`} loading="lazy" />
+              <img src={img6} alt="Gallery" className={`${styles.absImg} ${styles.img24_3}`} loading="lazy" />
+            </div>
 
-            {/* Outro Slide */}
-            <div className={styles.outroSlide}>
-              <h2 className={styles.outroTitle}>{content.cta?.title || "Explore Further"}</h2>
-              <a href={content.cta?.link || "/shop"} className={styles.outroCta}>{content.cta?.buttonText || "Shop Now"}</a>
+            {/* Slide 6 - Outro (Compact width) */}
+            <div style={{ width: '40vw', flexShrink: 0, display: 'flex', justifyContent: 'center' }}>
+              <div className={styles.outroSlide}>
+                <h2 className={styles.outroTitle}>Explore Further</h2>
+                <a href="/shop" className={styles.outroCta}>Shop Now</a>
+              </div>
             </div>
 
           </motion.div>
