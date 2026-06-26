@@ -47,6 +47,7 @@
   --text-primary:   var(--colors-neutral-white);
   --text-secondary: var(--colors-neutral-editorial-gray);
   --text-inverse:   var(--colors-neutral-black);
+  --text-black:   var(--colors-neutral-dark-gray);
 
   --border-color: #E0E0E0;
 

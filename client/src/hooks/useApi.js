@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { 
-  getPublicHome, 
-  getPublicCompany, 
-  getPublicContact, 
-  getPublicNavigation, 
+import {
+  getPublicHome,
+  getPublicCompany,
+  getPublicContact,
+  getPublicNavigation,
   getPublicSlides,
   getPublicLatest,
   getPublicDiscover,
@@ -35,7 +35,7 @@ const normalizeStringArray = (arr) => {
 const formatImageUrl = (path) => {
   if (!path || typeof path !== 'string') return path;
   if (path.startsWith('http')) return path;
-  if (!path.includes('uploads')) return path; 
+  if (!path.includes('uploads')) return path;
   const cleanPath = path.replace(/^\/+/, '');
   const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
   const serverUrl = baseUrl.replace('/api', '');
@@ -49,7 +49,7 @@ const normalizeString = (val) => {
     if (Array.isArray(parsed) && parsed.length > 0 && parsed[0]?.value !== undefined) {
       return parsed.map(p => p.value).join('\n');
     }
-  } catch (e) {}
+  } catch (e) { }
   return val;
 };
 
@@ -186,26 +186,26 @@ export const useLatestContent = () => {
         const parsed = parseJsonField(apiData.featuredArticle, null);
         let articleObj = parsed ? (Array.isArray(parsed) ? parsed[0] : parsed) : latestData.featuredArticle;
         if (!articleObj) return null;
-        
+
         let imageUrl = null;
         if (typeof articleObj.image === 'string') imageUrl = formatImageUrl(articleObj.image);
         else if (articleObj.image?.url) imageUrl = formatImageUrl(articleObj.image.url);
-        
+
         if (!imageUrl && latestData.featuredArticle?.image) {
           imageUrl = latestData.featuredArticle.image.url;
         }
-        
+
         return { ...articleObj, image: imageUrl ? { url: imageUrl } : null };
       })(),
       articles: parseJsonField(apiData.articles, latestData.articles).map((article, i) => {
         let imageUrl = null;
         if (typeof article.image === 'string') imageUrl = formatImageUrl(article.image);
         else if (article.image?.url) imageUrl = formatImageUrl(article.image.url);
-        
+
         if (!imageUrl && latestData.articles[i]?.image) {
           imageUrl = latestData.articles[i].image.url;
         }
-        
+
         return { ...article, image: imageUrl ? { url: imageUrl } : null };
       }),
       highlights: {
@@ -242,28 +242,28 @@ export const useDiscoverContent = () => {
       values: {
         title: apiData.valuesTitle || discoverData.valuesGrid.title,
         cards: parseJsonField(apiData.valuesCards, discoverData.valuesGrid.cards).map((c, i) => {
-           let imageUrl = null;
-           if (typeof c.icon === 'string' && c.icon.trim() !== '') imageUrl = formatImageUrl(c.icon);
-           else if (typeof c.image === 'string' && c.image.startsWith('/')) imageUrl = formatImageUrl(c.image);
-           else if (c.image?.url) imageUrl = formatImageUrl(c.image.url);
-           
-           if (!imageUrl && discoverData.valuesGrid.cards[i]?.image) {
-              imageUrl = discoverData.valuesGrid.cards[i].image.url;
-           }
-           
-           return { ...c, image: imageUrl ? { url: imageUrl } : null };
+          let imageUrl = null;
+          if (typeof c.icon === 'string' && c.icon.trim() !== '') imageUrl = formatImageUrl(c.icon);
+          else if (typeof c.image === 'string' && c.image.startsWith('/')) imageUrl = formatImageUrl(c.image);
+          else if (c.image?.url) imageUrl = formatImageUrl(c.image.url);
+
+          if (!imageUrl && discoverData.valuesGrid.cards[i]?.image) {
+            imageUrl = discoverData.valuesGrid.cards[i].image.url;
+          }
+
+          return { ...c, image: imageUrl ? { url: imageUrl } : null };
         })
       },
       gallery: {
         title: apiData.galleryTitle || discoverData.editorialGallery.title,
         images: parseJsonField(apiData.galleryImages, discoverData.editorialGallery.images).map((img, i) => {
-           let imageUrl = img?.url;
-           if (imageUrl && imageUrl.includes('uploads')) imageUrl = formatImageUrl(imageUrl);
-           
-           if (!imageUrl && discoverData.editorialGallery.images[i]) {
-              imageUrl = discoverData.editorialGallery.images[i].url;
-           }
-           return { ...img, url: imageUrl };
+          let imageUrl = img?.url;
+          if (imageUrl && imageUrl.includes('uploads')) imageUrl = formatImageUrl(imageUrl);
+
+          if (!imageUrl && discoverData.editorialGallery.images[i]) {
+            imageUrl = discoverData.editorialGallery.images[i].url;
+          }
+          return { ...img, url: imageUrl };
         })
       },
       cta: {
@@ -291,17 +291,17 @@ export const useCommunityContent = () => {
           let imageUrl = null;
           if (typeof s.image === 'string') imageUrl = formatImageUrl(s.image);
           else if (s.image?.url) imageUrl = formatImageUrl(s.image.url);
-          
+
           if (!imageUrl && defaultStory.image) {
-             imageUrl = defaultStory.image.url;
+            imageUrl = defaultStory.image.url;
           }
-          return { 
-            ...defaultStory, 
-            ...s, 
+          return {
+            ...defaultStory,
+            ...s,
             name: s.name || s.title || defaultStory.name,
             role: s.role || s.author || defaultStory.role,
             quote: s.quote || s.excerpt || defaultStory.quote,
-            image: imageUrl ? { url: imageUrl } : null 
+            image: imageUrl ? { url: imageUrl } : null
           };
         })
       },
@@ -319,9 +319,9 @@ export const useCommunityContent = () => {
           let imageUrl = img?.url;
           if (typeof img === 'string') imageUrl = img;
           if (imageUrl && typeof imageUrl === 'string' && imageUrl.includes('uploads')) imageUrl = formatImageUrl(imageUrl);
-          
+
           if (!imageUrl && communityData.gallery.images[i]) {
-             imageUrl = communityData.gallery.images[i].url;
+            imageUrl = communityData.gallery.images[i].url;
           }
           return typeof img === 'object' ? { ...img, url: imageUrl } : { url: imageUrl };
         })

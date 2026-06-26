@@ -38,16 +38,16 @@ export default function Magazine() {
   return (
     <div style={{ paddingTop: '80px', minHeight: '100vh', background: 'var(--surface-primary)' }}>
       <SEOManager pageKey="magazine" />
-      
+
       <Container width="wide">
         <FadeUp>
-          <SectionTitle 
-            title="The Editorial" 
+          <SectionTitle
+            title="The Editorial"
             subtitle="Stories on design, craft, and the art of living well."
             alignment="center"
           />
         </FadeUp>
-        
+
         {featuredArticle && (
           <FadeUp delay={0.2}>
             <Link to={`/magazine/${featuredArticle.slug}`} style={{ display: 'block', textDecoration: 'none', color: 'inherit', marginBottom: '80px' }}>

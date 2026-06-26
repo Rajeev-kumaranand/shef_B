@@ -18,31 +18,40 @@ export default function TheLatest() {
   return (
     <div className={styles.latestPage}>
       <SEOManager pageKey="latest" />
-      <EditorialHero 
+      {/* <EditorialHero 
         title={hero.title}
         subtitle={hero.subtitle}
         description={hero.description}
-      />
+      /> */}
 
-      <Section spacing="large" className={styles.featuredSection}>
-        <Container width="wide">
-          <SectionTitle title="Featured" />
-          <ArticleCard article={featuredArticle} featured={true} />
-        </Container>
-      </Section>
+      <div className={styles.image1FeatureSection}>
+         <div className={styles.image1Grid}>
+            <div className={styles.image1SideCol}>
+               {articles[0] && <ArticleCard article={articles[0]} small={true} />}
+               {articles[1] && <ArticleCard article={articles[1]} small={true} />}
+            </div>
+            <div className={styles.image1MidCol}>
+               {featuredArticle && <ArticleCard article={featuredArticle} middle={true} />}
+            </div>
+            <div className={styles.image1SideCol}>
+               {articles[2] && <ArticleCard article={articles[2]} small={true} />}
+               {articles[3] && <ArticleCard article={articles[3]} small={true} />}
+            </div>
+         </div>
+      </div>
 
-      <Section spacing="large" background="darkGray" className={styles.gridSection}>
+      <div className={styles.gridSection}>
         <Container width="wide">
           <SectionTitle title="Recent Publications" className={styles.inverseTitle} />
           <div className={styles.articleGrid}>
-            {articles.map((article, idx) => (
+            {articles.slice(4).map((article, idx) => (
               <FadeUp key={article.id} delay={idx * 0.1}>
                 <ArticleCard article={article} />
               </FadeUp>
             ))}
           </div>
         </Container>
-      </Section>
+      </div>
 
       <Section spacing="large">
         <Container width="narrow">

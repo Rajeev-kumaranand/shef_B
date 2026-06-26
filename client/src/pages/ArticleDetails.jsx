@@ -47,14 +47,14 @@ export default function ArticleDetails() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--surface-primary)', paddingBottom: '120px' }}>
       <SEOManager productSeo={articleSeo} />
-      
+
       {/* Article Hero */}
       <div style={{ position: 'relative', height: '80vh', width: '100%', background: 'var(--surface-secondary)' }}>
         {article.featuredImage && (
           <img src={article.featuredImage} alt={article.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         )}
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)' }} />
-        
+
         <Container width="standard" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, paddingBottom: '80px', color: 'white' }}>
           <FadeUp>
             <span style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '2px', fontFamily: 'var(--font-secondary)', marginBottom: '16px', display: 'block' }}>
@@ -88,17 +88,17 @@ export default function ArticleDetails() {
           )}
 
           {/* Render Rich Text */}
-          <div 
+          <div
             className="rich-text-content"
-            style={{ 
-              fontFamily: 'var(--font-secondary)', 
-              fontSize: '18px', 
-              lineHeight: '1.8', 
-              color: 'var(--text-primary)' 
+            style={{
+              fontFamily: 'var(--font-secondary)',
+              fontSize: '18px',
+              lineHeight: '1.8',
+              color: 'var(--text-primary)'
             }}
-            dangerouslySetInnerHTML={{ __html: article.content }} 
+            dangerouslySetInnerHTML={{ __html: article.content }}
           />
-          
+
           {/* Tags */}
           {article.tags && article.tags.length > 0 && (
             <div style={{ marginTop: '60px', paddingTop: '40px', borderTop: '1px solid var(--border-color)', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
@@ -113,4 +113,5 @@ export default function ArticleDetails() {
       </Container>
     </div>
   );
+}
 }

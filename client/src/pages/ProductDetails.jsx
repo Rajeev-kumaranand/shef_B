@@ -17,14 +17,14 @@ export default function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   const [activeImage, setActiveImage] = useState('');
   const [reviews, setReviews] = useState([]);
   const [reviewsAvg, setReviewsAvg] = useState(0);
   const [reviewsCount, setReviewsCount] = useState(0);
   const [reviewFormOpen, setReviewFormOpen] = useState(false);
   const [reviewForm, setReviewForm] = useState({ rating: 5, title: '', comment: '' });
-  
+
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
 
@@ -49,10 +49,10 @@ export default function ProductDetails() {
         const prod = res.data;
         setProduct(prod);
         setActiveImage(prod.image);
-        
+
         // Fetch Reviews
         fetchReviews(prod.id);
-        
+
         // Fetch related products (same category)
         const allRes = await getProducts();
         if (allRes.success) {
@@ -60,7 +60,7 @@ export default function ProductDetails() {
             .filter(p => p.id !== prod.id && p.active)
             .filter(p => p.category === prod.category)
             .slice(0, 4);
-          
+
           // If we don't have enough in the same category, fill with random active products
           if (related.length < 4) {
             const others = allRes.data
@@ -140,7 +140,7 @@ export default function ProductDetails() {
     try {
       const parsed = JSON.parse(product.gallery);
       if (Array.isArray(parsed)) galleryImages = [product.image, ...parsed];
-    } catch (e) {}
+    } catch (e) { }
   }
 
   const isWished = isInWishlist(product.id);
@@ -160,10 +160,10 @@ export default function ProductDetails() {
             {/* Gallery Column */}
             <div className={styles.galleryCol}>
               <div className={styles.mainImageWrapper}>
-                <img 
-                  src={getImageUrl(activeImage)} 
-                  alt={product.name} 
-                  className={styles.mainImage} 
+                <img
+                  src={getImageUrl(activeImage)}
+                  alt={product.name}
+                  className={styles.mainImage}
                   style={stockStatus === 'out' ? { opacity: 0.5, filter: 'grayscale(1)' } : {}}
                 />
                 {stockStatus === 'out' && <div className={styles.outOfStockBadge}>Out of Stock</div>}
@@ -171,8 +171,8 @@ export default function ProductDetails() {
               {galleryImages.length > 1 && (
                 <div className={styles.thumbnailStrip}>
                   {galleryImages.map((img, idx) => (
-                    <button 
-                      key={idx} 
+                    <button
+                      key={idx}
                       className={`${styles.thumbnailBtn} ${activeImage === img ? styles.activeThumb : ''}`}
                       onClick={() => setActiveImage(img)}
                     >
@@ -187,7 +187,7 @@ export default function ProductDetails() {
             <div className={styles.infoCol}>
               <div className={styles.category}>{product.category}</div>
               <h1 className={styles.title}>{product.name}</h1>
-              
+
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
                 <div className={styles.price}>${parseFloat(product.price).toFixed(2)}</div>
                 {reviewsCount > 0 && (
@@ -198,9 +198,9 @@ export default function ProductDetails() {
                   </div>
                 )}
               </div>
-              
+
               <div className={styles.shortDesc}>{product.shortDesc}</div>
-              
+
               <div className={styles.stock}>
                 {stockStatus === 'out' ? (
                   <span style={{ color: '#ef4444', fontWeight: 600 }}>Out of Stock</span>
@@ -214,15 +214,15 @@ export default function ProductDetails() {
               </div>
 
               <div className={styles.actions}>
-                <button 
-                  className={styles.addToCartBtn} 
+                <button
+                  className={styles.addToCartBtn}
                   onClick={() => addToCart(product)}
                   disabled={stockStatus === 'out'}
                   style={stockStatus === 'out' ? { background: '#ccc', cursor: 'not-allowed' } : {}}
                 >
                   {stockStatus === 'out' ? 'Unavailable' : 'Add to Cart'}
                 </button>
-                <button 
+                <button
                   className={`${styles.wishlistBtn} ${isWished ? styles.wished : ''}`}
                   onClick={() => toggleWishlist(product)}
                   aria-label="Wishlist"
@@ -254,7 +254,7 @@ export default function ProductDetails() {
             <form onSubmit={submitReview} className={styles.reviewForm}>
               <div className={styles.formGroup}>
                 <label>Rating</label>
-                <select value={reviewForm.rating} onChange={e => setReviewForm(prev => ({...prev, rating: e.target.value}))}>
+                <select value={reviewForm.rating} onChange={e => setReviewForm(prev => ({ ...prev, rating: e.target.value }))}>
                   <option value="5">5 - Excellent</option>
                   <option value="4">4 - Good</option>
                   <option value="3">3 - Average</option>
@@ -264,11 +264,11 @@ export default function ProductDetails() {
               </div>
               <div className={styles.formGroup}>
                 <label>Title (Optional)</label>
-                <input type="text" value={reviewForm.title} onChange={e => setReviewForm(prev => ({...prev, title: e.target.value}))} placeholder="Summarize your experience" />
+                <input type="text" value={reviewForm.title} onChange={e => setReviewForm(prev => ({ ...prev, title: e.target.value }))} placeholder="Summarize your experience" />
               </div>
               <div className={styles.formGroup}>
                 <label>Comment</label>
-                <textarea required rows="4" value={reviewForm.comment} onChange={e => setReviewForm(prev => ({...prev, comment: e.target.value}))} placeholder="Tell us what you thought about this product"></textarea>
+                <textarea required rows="4" value={reviewForm.comment} onChange={e => setReviewForm(prev => ({ ...prev, comment: e.target.value }))} placeholder="Tell us what you thought about this product"></textarea>
               </div>
               <button type="submit" className={styles.submitReviewBtn}>Submit Review</button>
             </form>
@@ -285,7 +285,7 @@ export default function ProductDetails() {
                     <span className={styles.reviewDate}>{new Date(review.createdAt).toLocaleDateString()}</span>
                   </div>
                   <div className={styles.reviewStars}>
-                    {[1,2,3,4,5].map(star => (
+                    {[1, 2, 3, 4, 5].map(star => (
                       <span key={star} style={{ color: star <= review.rating ? '#eab308' : '#d1d5db' }}>★</span>
                     ))}
                   </div>
@@ -302,7 +302,7 @@ export default function ProductDetails() {
       {relatedProducts.length > 0 && (
         <Section spacing="large" background="lightGray">
           <Container width="wide">
-            <h2 className={styles.relatedTitle}>Related Objects</h2>
+            <h2 className={styles.relatedTitle}>You May Also Like</h2>
             <div className={styles.relatedGrid}>
               {relatedProducts.map(rel => (
                 <div key={rel.id} className={styles.relatedCard} onClick={() => navigate(`/shop/${rel.slug}`)}>

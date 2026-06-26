@@ -1,140 +1,114 @@
 .notePage {
   width: 100%;
+  min-height: 100vh;
+  padding-top: 50px;
+  background-color: #F6F5F0;
 }
 
-.sectionTitle {
-  font-family: var(--font-primary);
-  font-size: var(--font-size-h2);
-  color: var(--text-primary);
-  letter-spacing: var(--tracking-tight);
-  text-align: center;
-  margin-bottom: var(--spacing-xxl);
-}
-
-.letterContent {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-xxl);
-}
-
-.salutation {
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-lg);
-  color: var(--text-primary);
-  font-style: italic;
-}
-
-.paragraph {
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-lg);
-  color: var(--text-secondary);
-  line-height: var(--line-height-relaxed);
-}
-
-.paragraph::first-letter {
-  font-family: var(--font-primary);
-  font-size: 2.5em;
-  color: var(--text-primary);
-  float: left;
-  line-height: 0.8;
-  padding-right: var(--spacing-xs);
-  margin-top: 0.1em;
-}
-
-.imageBlock {
+.noteContainer {
   width: 100%;
-  margin: var(--spacing-xxl) 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-.editorialFlow {
+.narrowContainer {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.contentWrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  padding-bottom: 34px;
+  padding-top: 32px;
 }
 
-.quoteBlock {
-  margin: var(--spacing-xxl) 0;
-  padding: 0 var(--spacing-xl);
-  border-left: 2px solid var(--brand-black);
+.leftContent {
+  width: 100%;
+  max-width: 100%;
 }
 
-.pullQuote {
+.mainQuote {
   font-family: var(--font-primary);
-  font-size: var(--font-size-h3);
-  color: var(--text-primary);
-  line-height: var(--line-height-relaxed);
-  font-style: italic;
-  margin: 0;
+  font-size: 46px;
+  line-height: 1.2;
+  color: var(--text-black);
+  font-weight: 400;
+  margin-bottom: 64px;
+  letter-spacing: -0.5px;
+  max-width: 650px;
 }
 
-.signatureSection {
-  border-top: 1px solid var(--border-color);
-  padding-top: var(--spacing-xxxl);
-  margin-top: var(--spacing-xl);
+.personBlock {
+  margin-bottom: 30px;
+  max-width: 650px;
 }
 
-.signatureFlex {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: var(--spacing-xxl);
-  align-items: center;
+.bioText {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-black);
+  margin-bottom: 24px;
 }
-
-@media (min-width: 768px) {
-  .signatureFlex {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+.personBlock2 {
+  margin-bottom: 34px auto;
+  max-width: 100%;
 }
-
-.signatureText {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
+.bioText2 {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-black);
   text-align: center;
+  max-width: 950px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  
 }
 
-@media (min-width: 768px) {
-  .signatureText {
-    text-align: left;
-  }
+.signatureInfo {
+  margin-top: 24px;
 }
 
-.sigName {
-  font-family: var(--font-primary);
-  font-size: var(--font-size-xl);
-  color: var(--text-primary);
-  letter-spacing: var(--tracking-normal);
-  margin: 0;
-}
-
-.sigRole {
+.personName {
   font-family: var(--font-secondary);
-  font-size: var(--font-size-xs);
+  font-size: 20px;
+  color: var(--text-black);
+  margin: 0 0 4px 0;
   text-transform: uppercase;
-  letter-spacing: var(--tracking-widest);
-  color: var(--text-secondary);
+  letter-spacing: 2px;
+}
+
+.personTitle {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: var(--text-black);
+  font-weight: 500;
   margin: 0;
 }
 
-.sigBio {
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
-  line-height: var(--line-height-relaxed);
-  max-width: 400px;
-  margin: 0;
+.companySection {
+  padding: 0px 0;
+  padding-bottom: 64px;
 }
 
-@media (max-width: 767px) {
-  .sigBio {
-    margin: 0 auto;
-  }
+.companyText {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-black);
+  text-align: center;
+  max-width: 1500px;
+  margin: 0 auto;
 }
-
-.sigImage {
-  width: 100%;
-  max-width: 250px;
-}
+ .logo{
+    height: 80px;
+    
+ }
+ .logo img{
+  height: 100%;
+ }

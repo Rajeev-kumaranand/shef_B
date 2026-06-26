@@ -29,7 +29,7 @@ export default function OrderSuccess() {
   }, [orderNumber]);
 
   if (loading) return <LoadingState />;
-  
+
   if (!order) {
     return (
       <div className={styles.page}>
@@ -50,7 +50,7 @@ export default function OrderSuccess() {
           <div className={styles.successIcon}>✓</div>
           <h1 className={styles.title}>Thank You, {order.customerName}</h1>
           <p className={styles.subtitle}>Your order has been received.</p>
-          
+
           <div className={styles.orderDetails}>
             <div className={styles.detailRow}>
               <span>Order Number</span>
