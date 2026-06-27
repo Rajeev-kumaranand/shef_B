@@ -1,72 +1,134 @@
 .overlay {
   position: fixed;
-  inset: 0;
-  background-color: var(--brand-black);
-  color: var(--brand-white);
-  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--surface-primary); /* Solid white, like Zara */
+  z-index: 40; /* Lower than Navbar (50) */
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  padding-top: 50px; /* Clear the navbar */
 }
 
 .header {
-  padding: 2rem var(--spacing-xl);
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
 }
 
 .closeBtn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  color: var(--brand-white);
+  background: none;
+  border: none;
+  color: var(--brand-black);
   cursor: pointer;
-  padding: 0.75rem;
-  transition: all var(--transition-fast) ease;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.closeBtn:hover {
+  opacity: 0.5;
+}
+
+.logoContainer {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.closeBtn:hover {
-  background: var(--brand-white);
-  color: var(--brand-black);
-  transform: rotate(90deg);
+.logo {
+  height: 90px;
+  object-fit: contain;
+  position: fixed;
+  top: 10%;
+  z-index: 10;
 }
 
 .navContainer {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 0 var(--spacing-xl) 4rem var(--spacing-xl);
+  padding: 0px 48px;
+}
+
+@media (min-width: 1024px) {
+  .navContainer {
+    flex-direction: row;
+    padding: 100px 120px;
+    gap: 80px;
+  }
 }
 
 .nav {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: var(--spacing-lg);
-  width: 100%;
+  gap: 24px;
+  margin-bottom: 48px;
 }
 
+/* Make standard NavLinks mimic Zara's massive categories */
 .linkItem {
-  font-family: var(--font-secondary);
-  font-size: 2rem;
-  font-weight: 300;
+  font-family: var(--font-primary);
+  font-size: 32px !important;
+  font-weight: 400 !important;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.6) !important;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  display: block;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  width: 100%;
-  position: relative;
+  color: var(--brand-black) !important;
+  letter-spacing: -1px;
 }
 
-.linkItem:hover, .linkItem.active {
-  color: var(--brand-white) !important;
-  border-bottom-color: var(--brand-white);
-  transform: translateX(10px);
+.linkItem:hover {
+  color: var(--brand-black) !important;
+  opacity: 0.6;
+}
+
+/* Zara Secondary / Tertiary Links Menu */
+.zaraMenuLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+@media (min-width: 768px) {
+  .zaraMenuLinks {
+    flex-direction: row;
+    gap: 80px;
+  }
+}
+
+.secondaryTitle {
+  font-family: var(--font-secondary);
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  color: var(--brand-black);
+}
+
+.secondaryLinks, .tertiaryLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.secondaryLinks a, .tertiaryLinks a {
+  font-family: var(--font-secondary);
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--brand-black);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.secondaryLinks a:hover, .tertiaryLinks a:hover {
+  opacity: 0.5;
+}
+
+.tertiaryLinks {
+  padding-top: 40px;
 }

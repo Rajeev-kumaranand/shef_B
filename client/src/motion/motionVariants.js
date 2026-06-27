@@ -54,7 +54,7 @@ export const navbarVariant = {
 };
 
 export const mobileMenuVariant = {
-  closed: { opacity: 0, x: '100%' },
+  closed: { opacity: 0, x: '-100%' },
   open: { opacity: 1, x: 0, transition: { duration: 0.5, ease: LUXURY_EASE } },
 };
 

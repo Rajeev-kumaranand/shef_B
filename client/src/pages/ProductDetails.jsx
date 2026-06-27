@@ -191,10 +191,10 @@ export default function ProductDetails() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
                 <div className={styles.price}>${parseFloat(product.price).toFixed(2)}</div>
                 {reviewsCount > 0 && (
-                  <div style={{ color: '#eab308', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <div style={{ color: 'red', display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <span>★</span>
-                    <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{reviewsAvg}</span>
-                    <span style={{ color: 'var(--text-secondary)', fontSize: '13px' }}>({reviewsCount})</span>
+                    <span style={{ color: 'black', fontWeight: 600 }}>{reviewsAvg}</span>
+                    <span style={{ color: 'black', fontSize: '13px' }}>({reviewsCount})</span>
                   </div>
                 )}
               </div>
@@ -207,9 +207,9 @@ export default function ProductDetails() {
                 ) : stockStatus === 'low' ? (
                   <span style={{ color: '#eab308', fontWeight: 600 }}>Low Stock - Only {product.stock} left!</span>
                 ) : product.trackInventory ? (
-                  <span style={{ color: 'var(--brand-green)' }}>In Stock</span>
+                  <span style={{ color: 'black' }}>In Stock</span>
                 ) : (
-                  <span style={{ color: 'var(--text-secondary)' }}>Made to Order</span>
+                  <span style={{ color: 'black' }}>Made to Order</span>
                 )}
               </div>
 
@@ -241,20 +241,58 @@ export default function ProductDetails() {
       </Section>
 
       {/* Reviews Section */}
-      <Section spacing="large" background="white">
+      <Section spacing="large" background="white" className={styles.reviewContainer}>
         <Container width="narrow">
-          <div className={styles.reviewsHeader}>
-            <h2>Customer Reviews</h2>
-            <button className={styles.writeReviewBtn} onClick={() => setReviewFormOpen(!reviewFormOpen)}>
-              {reviewFormOpen ? 'Cancel Review' : 'Write a Review'}
-            </button>
+          <div className={styles.reviewsTitleContainer}>
+            <h2 className={styles.reviewsTitleCursive}>Customer Reviews</h2>
+          </div>
+
+          <div className={styles.reviewsSummaryLayout}>
+            {/* Left Col: Average summary */}
+            <div className={styles.reviewSummaryLeft}>
+              <div className={styles.reviewSummaryStars}>
+                 {[1, 2, 3, 4, 5].map(star => (
+                    <span key={star} style={{ color: star <= Math.round(reviewsAvg) ? 'red' : '#d1d5db', fontSize: '18px' }}>★</span>
+                 ))}
+              </div>
+              <p className={styles.reviewSummaryAvgText}>{Number(reviewsAvg).toFixed(2)} Out Of 5</p>
+              <p className={styles.reviewSummaryBasedText}>Based On {reviewsCount} Review{reviewsCount !== 1 ? 's' : ''}</p>
+            </div>
+
+            {/* Middle Col: Distribution */}
+            <div className={styles.reviewSummaryMiddle}>
+              {[5, 4, 3, 2, 1].map(ratingValue => {
+                const count = reviews.filter(r => r.rating === ratingValue).length;
+                const percentage = reviewsCount > 0 ? (count / reviewsCount) * 100 : 0;
+                return (
+                  <div key={ratingValue} className={styles.distributionRow}>
+                    <div className={styles.distributionStars}>
+                      {[1, 2, 3, 4, 5].map(star => (
+                        <span key={star} style={{ color: star <= ratingValue ? 'red' : '#d1d5db', fontSize: '12px' }}>★</span>
+                      ))}
+                    </div>
+                    <div className={styles.distributionBarContainer}>
+                      <div className={styles.distributionBarFill} style={{ width: `${percentage}%` }}></div>
+                    </div>
+                    <span className={styles.distributionCount}>{count}</span>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Right Col: Write Review Button */}
+            <div className={styles.reviewSummaryRight}>
+              <button className={styles.writeReviewBlackBtn} onClick={() => setReviewFormOpen(!reviewFormOpen)}>
+                {reviewFormOpen ? 'Cancel Review' : 'Write A Review'}
+              </button>
+            </div>
           </div>
 
           {reviewFormOpen && (
             <form onSubmit={submitReview} className={styles.reviewForm}>
               <div className={styles.formGroup}>
                 <label>Rating</label>
-                <select value={reviewForm.rating} onChange={e => setReviewForm(prev => ({ ...prev, rating: e.target.value }))}>
+                <select value={reviewForm.rating} onChange={e => setReviewForm(prev => ({ ...prev, rating: parseInt(e.target.value) }))}>
                   <option value="5">5 - Excellent</option>
                   <option value="4">4 - Good</option>
                   <option value="3">3 - Average</option>
@@ -274,23 +312,46 @@ export default function ProductDetails() {
             </form>
           )}
 
+          <div className={styles.reviewsToolbar}>
+            <select className={styles.reviewsSortSelect}>
+              <option>Most Recent</option>
+              <option>Highest Rating</option>
+              <option>Lowest Rating</option>
+            </select>
+          </div>
+          
+          <hr className={styles.reviewsDivider} />
+
           <div className={styles.reviewsList}>
             {reviews.length === 0 ? (
               <p className={styles.noReviews}>No reviews yet. Be the first to review this product!</p>
             ) : (
               reviews.map(review => (
-                <div key={review.id} className={styles.reviewItem}>
-                  <div className={styles.reviewMeta}>
-                    <span className={styles.reviewAuthor}>{review.customer?.name}</span>
-                    <span className={styles.reviewDate}>{new Date(review.createdAt).toLocaleDateString()}</span>
+                <div key={review.id} className={styles.zaraReviewItem}>
+                  <div className={styles.zaraReviewHeader}>
+                    <div className={styles.zaraReviewStars}>
+                      {[1, 2, 3, 4, 5].map(star => (
+                        <span key={star} style={{ color: star <= review.rating ? 'red' : '#d1d5db', fontSize: '14px' }}>★</span>
+                      ))}
+                    </div>
+                    <span className={styles.zaraReviewDate}>
+                      {new Date(review.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+                    </span>
                   </div>
-                  <div className={styles.reviewStars}>
-                    {[1, 2, 3, 4, 5].map(star => (
-                      <span key={star} style={{ color: star <= review.rating ? '#eab308' : '#d1d5db' }}>★</span>
-                    ))}
+                  
+                  <div className={styles.zaraReviewAuthorBlock}>
+                    <div className={styles.authorIcon}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                      </svg>
+                    </div>
+                    <span className={styles.zaraReviewAuthor}>{review.customer?.name}</span>
+                    <span className={styles.verifiedBadge}>Verified</span>
                   </div>
-                  {review.title && <h4 className={styles.reviewTitle}>{review.title}</h4>}
-                  <p className={styles.reviewComment}>{review.comment}</p>
+                  
+                  {review.title && <h4 className={styles.zaraReviewTitle}>{review.title}</h4>}
+                  <p className={styles.zaraReviewComment}>{review.comment}</p>
                 </div>
               ))
             )}

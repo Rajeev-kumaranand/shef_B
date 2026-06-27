@@ -9,3 +9,7 @@
   width: 100%;
   padding-top: 80px; /* Offset for fixed navbar */
 }
+
+.mainHome {
+  padding-top: 0;
+}

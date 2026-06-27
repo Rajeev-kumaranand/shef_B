@@ -2,7 +2,7 @@
  * MainLayout.jsx
  * Wrapper for the public-facing application, including global Nav and Footer.
  */
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from '../components/navigation/Navbar.jsx';
 import Footer from '../components/footer/Footer.jsx';
 import PageTransition from '../components/common/PageTransition.jsx';
@@ -13,8 +13,12 @@ import { CartProvider } from '../context/CartContext.jsx';
 import { WishlistProvider } from '../context/WishlistContext.jsx';
 import { CustomerAuthProvider } from '../context/CustomerAuthContext.jsx';
 import styles from './MainLayout.module.css';
+import { cn } from '../utils/cn.js';
 
 export default function MainLayout() {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
   return (
     <CustomerAuthProvider>
       <WishlistProvider>
@@ -24,12 +28,12 @@ export default function MainLayout() {
             <AnnouncementBar />
             <Navbar />
             <CartDrawer />
-            <main className={styles.main}>
+            <main className={cn(styles.main, isHomePage && styles.mainHome)}>
               <PageTransition>
                 <Outlet />
               </PageTransition>
             </main>
-            <Footer />
+            {!isHomePage && <Footer />}
           </div>
         </CartProvider>
       </WishlistProvider>

@@ -1,40 +1,18 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { contactData } from '../data/contactData.js';
-import { useContact } from '../hooks/useApi.js';
 import Container from '../components/common/Container.jsx';
-import Section from '../components/common/Section.jsx';
-import SectionTitle from '../components/common/SectionTitle.jsx';
-import ImageReveal from '../components/common/ImageReveal.jsx';
-import FadeUp from '../components/animation/FadeUp.jsx';
 import SEOManager from '../components/common/SEOManager.jsx';
 import styles from './Contact.module.css';
 
 export default function Contact() {
-  const { data: contactApiData } = useContact();
-  const { hero, contactInfo, socials, form, map } = contactData;
-
-  const displayDetails = contactInfo.details.map(detail => {
-    if (detail.label === 'General Inquiries' && contactApiData?.email) {
-      return { ...detail, value: contactApiData.email, link: `mailto:${contactApiData.email}` };
-    }
-    if (detail.label === 'Phone' && contactApiData?.phone) {
-      return { ...detail, value: contactApiData.phone, link: `tel:${contactApiData.phone.replace(/[^0-9+]/g, '')}` };
-    }
-    if (detail.label === 'Studio' && contactApiData?.address) {
-      return { ...detail, value: contactApiData.address };
-    }
-    return detail;
-  });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: form.fields[2].options[0],
     message: ''
   });
   const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [saveInfo, setSaveInfo] = useState(false);
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
@@ -47,18 +25,13 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      const res = await axios.post(`${API_URL}/contact`, formData);
+      const res = await axios.post(`${API_URL}/contact`, {
+        ...formData,
+        subject: 'General Inquiry' // Default subject
+      });
       if (res.data.success) {
-        setSubmitted(true);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: form.fields[2].options[0], // Reset to default subject
-          message: ''
-        });
+        setFormData({ name: '', email: '', message: '' });
         toast.success('Your inquiry has been sent successfully!');
-        setTimeout(() => setSubmitted(false), 5000);
       }
     } catch (err) {
       if (err.response?.data?.errors) {
@@ -76,156 +49,105 @@ export default function Contact() {
   return (
     <div className={styles.contactPage}>
       <SEOManager pageKey="contact" />
-      {/* 1. Hero */}
-      <Section className={styles.heroSection} spacing="none">
-        <Container width="wide" className={styles.heroContainer}>
-          <div className={styles.heroContent}>
-            <FadeUp delay={0.1}>
-              <p className={styles.heroSubtitle}>{hero.subtitle}</p>
-            </FadeUp>
-            <FadeUp delay={0.2}>
-              <h1 className={styles.heroTitle}>{hero.title}</h1>
-            </FadeUp>
-            <FadeUp delay={0.3}>
-              <p className={styles.heroDescription}>{hero.description}</p>
-            </FadeUp>
-          </div>
-          {hero.image && (
-            <div className={styles.heroImageWrapper}>
-              <ImageReveal src={hero.image.url} alt="Contact Hero" aspectRatio="cinematic" />
-            </div>
-          )}
-        </Container>
-      </Section>
-
-      {/* 2. Main Layout: Info + Form */}
-      <Section spacing="large">
-        <Container width="wide">
-          <div className={styles.grid}>
-
-            {/* Left: Contact Information & Socials */}
-            <div className={styles.infoCol}>
-              <FadeUp delay={0.1}>
-                <h3 className={styles.colTitle}>{contactInfo.title}</h3>
-                <div className={styles.detailsList}>
-                  {displayDetails.map((detail, idx) => (
-                    <div key={idx} className={styles.detailItem}>
-                      <span className={styles.detailLabel}>{detail.label}</span>
-                      {detail.link ? (
-                        <a href={detail.link} className={styles.detailValueLink}>{detail.value}</a>
-                      ) : (
-                        <span className={styles.detailValue}>{detail.value}</span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </FadeUp>
-
-              <FadeUp delay={0.2} className={styles.socialsWrapper}>
-                <h3 className={styles.colTitle}>{socials.title}</h3>
-                <div className={styles.socialsList}>
-                  {socials.platforms.map((platform, idx) => (
-                    <a
-                      key={idx}
-                      href={platform.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.socialLink}
-                    >
-                      {platform.name}
-                    </a>
-                  ))}
-                </div>
-              </FadeUp>
-            </div>
-
-            {/* Right: Inquiry Form */}
-            <div className={styles.formCol}>
-              <FadeUp delay={0.3}>
-                <SectionTitle title={form.title} className={styles.formTitle} />
-
-                {submitted ? (
-                  <div className={styles.successMessage}>
-                    <p>Thank you for your inquiry. A member of our team will be in touch shortly.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className={styles.contactForm}>
-                    {form.fields.map((field, idx) => (
-                      <div key={idx} className={styles.inputGroup}>
-                        <label htmlFor={field.name} className={styles.label}>
-                          {field.label} {field.required && '*'}
-                        </label>
-                        {field.type === 'textarea' ? (
-                          <textarea
-                            id={field.name}
-                            name={field.name}
-                            required={field.required}
-                            rows={5}
-                            className={styles.textarea}
-                            value={formData[field.name]}
-                            onChange={handleChange}
-                          />
-                        ) : field.type === 'select' ? (
-                          <div className={styles.selectWrapper}>
-                            <select
-                              id={field.name}
-                              name={field.name}
-                              required={field.required}
-                              className={styles.select}
-                              value={formData[field.name]}
-                              onChange={handleChange}
-                            >
-                              {field.options.map((opt, oIdx) => (
-                                <option key={oIdx} value={opt}>{opt}</option>
-                              ))}
-                            </select>
-                          </div>
-                        ) : (
-                          <input
-                            type={field.type}
-                            id={field.name}
-                            name={field.name}
-                            required={field.required}
-                            className={styles.input}
-                            value={formData[field.name]}
-                            onChange={handleChange}
-                          />
-                        )}
-                      </div>
-                    ))}
-                    <button type="submit" className={styles.submitBtn} disabled={loading}>
-                      {loading ? 'Sending...' : form.submitText}
-                    </button>
-                  </form>
-                )}
-              </FadeUp>
-            </div>
-
-          </div>
-        </Container>
-      </Section>
-
-      {/* 3. Embedded Map Placeholder */}
-      <Section spacing="default" className={styles.mapSection}>
-        <Container width="full">
-          <FadeUp>
-            <div className={styles.mapWrapper}>
-              {map.placeholderImage && (
-                <img
-                  src={map.placeholderImage.url}
-                  alt="Location Map"
-                  className={styles.mapImage}
-                  loading="lazy"
+      
+      <Container width="wide">
+        <div className={styles.layoutGrid}>
+          
+          {/* Left Form Column */}
+          <div className={styles.formColumn}>
+            <h1 className={styles.mainTitle}>We Would Love To Hear From You.</h1>
+            
+            <form onSubmit={handleSubmit} className={styles.contactForm}>
+              <div className={styles.inputRow}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  required
+                  className={styles.input}
+                  value={formData.name}
+                  onChange={handleChange}
                 />
-              )}
-              <div className={styles.mapOverlay}>
-                <h4 className={styles.mapOverlayTitle}>{map.title}</h4>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                  className={styles.input}
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
+              
+              <textarea
+                name="message"
+                placeholder="Message"
+                required
+                rows={8}
+                className={styles.textarea}
+                value={formData.message}
+                onChange={handleChange}
+              />
+              
+              <div className={styles.checkboxGroup}>
+                <input 
+                  type="checkbox" 
+                  id="saveInfo"
+                  checked={saveInfo}
+                  onChange={(e) => setSaveInfo(e.target.checked)}
+                  className={styles.checkbox}
+                />
+                <label htmlFor="saveInfo" className={styles.checkboxLabel}>
+                  Save My Name, Email, And Website In This Browser For The Next Time I Comment.
+                </label>
+              </div>
+              
+              <button type="submit" className={styles.submitBtn} disabled={loading}>
+                {loading ? 'SENDING...' : 'SUBMIT NOW'}
+              </button>
+            </form>
+          </div>
+
+          {/* Right Info Column */}
+          <div className={styles.infoColumn}>
+            <div className={styles.infoBlock}>
+              <h3 className={styles.infoTitle}>Address</h3>
+              <p className={styles.infoText}>Birla Cosmetics Pvt Ltd.</p>
+              <p className={styles.infoText}>D-1 Aditya Birla Center,</p>
+              <p className={styles.infoText}>S.K. Ahire Marg,</p>
+              <p className={styles.infoText}>Worli, Mumbai 400030</p>
+            </div>
+
+            <div className={styles.infoBlock}>
+              <h3 className={styles.infoTitle}>Information</h3>
+              <p className={styles.infoText}>02261109542</p>
+              <p className={styles.infoText}>Teamlovetc@Lovetc.com</p>
+            </div>
+
+            <div className={styles.infoBlock}>
+              <h3 className={styles.infoTitle}>Social Media</h3>
+              <div className={styles.socialIcons}>
+                <a href="#" className={styles.iconLink}>
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+                <a href="#" className={styles.iconLink}>
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
               </div>
             </div>
-          </FadeUp>
-        </Container>
-      </Section>
 
+            <div className={styles.infoBlock}>
+              <h3 className={styles.infoTitle}>We're Open</h3>
+              <p className={styles.infoText}>Business Hours: Mon-Fri (10am – 6pm)</p>
+            </div>
+
+            <div className={styles.infoBlock}>
+              <h3 className={styles.infoTitle}>CIN No.- U47722MH2023PTC407434</h3>
+            </div>
+          </div>
+
+        </div>
+      </Container>
     </div>
   );
 }

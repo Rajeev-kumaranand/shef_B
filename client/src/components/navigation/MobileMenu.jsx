@@ -1,12 +1,10 @@
-/**
- * MobileMenu.jsx
- * Full-screen overlay menu for mobile devices.
- */
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { mobileMenuVariant, staggerContainerVariant, mobileMenuItemVariant } from '../../motion/motionVariants.js';
 import NavLinkItem from './NavLinkItem.jsx';
 import styles from './MobileMenu.module.css';
+import Logo from '../../assets/logo.png';
 
 export default function MobileMenu({ isOpen, onClose, navigationData }) {
   // Lock body scroll when open
@@ -31,13 +29,8 @@ export default function MobileMenu({ isOpen, onClose, navigationData }) {
           animate="open"
           exit="closed"
         >
-          <div className={styles.header}>
-            <button className={styles.closeBtn} onClick={onClose} aria-label="Close Menu">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
+          <div className={styles.logoContainer}>
+            <img src={Logo} alt="SHEF & B." className={styles.logo} />
           </div>
           
           <motion.div
@@ -49,10 +42,28 @@ export default function MobileMenu({ isOpen, onClose, navigationData }) {
             <nav className={styles.nav}>
               {navigationData.map((item) => (
                 <motion.div key={item.id} variants={mobileMenuItemVariant}>
+                  {/* We map items to large Zara-style text */}
                   <NavLinkItem item={item} onClick={onClose} className={styles.linkItem} />
                 </motion.div>
               ))}
             </nav>
+
+            <div className={styles.zaraMenuLinks}>
+               <div className={styles.secondaryLinks}>
+                 <p className={styles.secondaryTitle}>NEW COLLECTION</p>
+                 <Link to="/shop" onClick={onClose}>NEW IN</Link>
+                 <Link to="/shop" onClick={onClose}>COLLECTION</Link>
+               </div>
+               
+               <div className={styles.tertiaryLinks}>
+                 <Link to="/shop" onClick={onClose}>LINEN</Link>
+                 <Link to="/shop" onClick={onClose}>DRESSES</Link>
+                 <Link to="/shop" onClick={onClose}>TOPS | BODIES</Link>
+                 <Link to="/shop" onClick={onClose}>T-SHIRTS</Link>
+                 <Link to="/shop" onClick={onClose}>SHIRTS</Link>
+                 <Link to="/shop" onClick={onClose}>KNITWEAR</Link>
+               </div>
+            </div>
           </motion.div>
         </motion.div>
       )}

@@ -5,29 +5,21 @@
   width: 100%;
   z-index: 50;
   background-color: var(--surface-primary);
-  /* background-color: rgb(156, 255, 117); */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-color);
+  /* Remove blur and border for maximum minimalism like Zara */
+  border-bottom: none;
   transition:
     background-color var(--transition-slow) var(--ease-luxury),
-    padding var(--transition-slow) var(--ease-luxury),
-    border-color var(--transition-slow) var(--ease-luxury);
-  padding: var(--spacing-md) 0;
-
+    padding var(--transition-slow) var(--ease-luxury);
+  padding: var(--spacing-lg) 0;
 }
 
 .scrolled {
   padding: var(--spacing-sm) 0;
-  box-shadow: var(--shadow-subtle);
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: var(--surface-primary);
 }
 
 .transparent {
   background-color: transparent;
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-  border-bottom-color: rgba(255, 255, 255, 0.1);
   padding: var(--spacing-lg) 0;
 }
 
@@ -35,114 +27,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px 0;
 }
 
-.actions {
-  background-color: rgb(119, 119, 119);
-}
-
-.actionBtn,
-.actionIconBtn {
-  background: none;
-  border: none;
-  color: var(--text-primary);
-  font-family: var(--font-secondary);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  cursor: pointer;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.actionBtn:hover,
-.actionIconBtn:hover {
-  opacity: 0.7;
-}
-
-.iconBadge {
-  position: absolute;
-  top: -6px;
-  right: -8px;
-  background: var(--brand-black);
-  color: var(--brand-white);
-  font-size: 10px;
-  font-weight: bold;
-  height: 16px;
-  min-width: 16px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 4px;
-}
-
-.logo {
-  transition: color var(--transition-normal) var(--ease-luxury);
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
-.logoImg {
-  height: 50px;
-  object-fit: contain;
-  transition: height 0.3s ease;
-}
-
-@media (min-width: 768px) {
-  .logoImg {
-    height: 80px;
-  }
-}
-
-.transparent .logo {
-  color: var(--brand-white);
-}
-
-.desktopNav {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .desktopNav {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xl);
-  }
-}
-
-/* Override nav link colors when transparent */
-.transparentLink {
-  color: var(--brand-white) !important;
-}
-
-.transparentLink:hover {
-  color: var(--brand-red) !important;
-}
-
-.mobileToggle {
+/* --- Zara Style Menu Toggle --- */
+.menuToggle {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px; /* Increased gap for 2 lines */
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   background: transparent;
 }
 
-@media (min-width: 768px) {
-  .mobileToggle {
-    display: none;
-  }
-}
-
 .hamburgerLine {
-  width: 20px;
+  width: 24px;
   height: 1px;
   background-color: var(--brand-black);
   transition: background-color var(--transition-normal) var(--ease-luxury);
@@ -152,98 +52,78 @@
   background-color: var(--brand-white);
 }
 
-/* Floating Actions Menu */
-.floatingContainer {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 1000;
+/* --- Zara Style Search --- */
+.navRight {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
 }
 
-.floatingMenu {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.floatingItem {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: auto;
-}
-
-.floatingActionIconBtn {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: var(--brand-white, #ffffff);
-  color: var(--brand-black, #000000);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  text-decoration: none;
-  border: 1px solid var(--border-color, #eaeaea);
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-  margin: 5px;
-  /* Offset to center within 60x60 container */
-}
-
-.floatingActionIconBtn:hover {
-  transform: scale(1.1);
-  background-color: var(--surface-secondary, #f9f9f9);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.floatingMainBtn {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: var(--brand-black, #000000);
-  color: var(--brand-white, #ffffff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+.searchBtn {
+  background: transparent;
   border: none;
+  border-bottom: 1px solid var(--brand-black);
+  color: var(--brand-black);
+  font-family: var(--font-secondary);
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 0 0 4px 0;
+  width: 80px;
+  text-align: left;
   cursor: pointer;
-  z-index: 10;
-  position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
 }
 
-.floatingMainBtn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+.transparentSearch {
+  border-bottom-color: var(--brand-white);
+  color: var(--brand-white);
 }
 
-.floatingActionIconBtn .iconBadge {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  background: var(--brand-black, #000);
-  color: var(--brand-white, #fff);
-  font-size: 10px;
-  font-weight: bold;
-  height: 18px;
-  min-width: 18px;
-  border-radius: 50%;
+.searchBtn:hover {
+  opacity: 0.6;
+}
+
+/* --- Zara Style Right Sidebar Actions --- */
+.zaraSidebar {
+  position: fixed;
+  top: 150px; /* Aligned roughly below the header area */
+  right: 24px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 4px;
-  border: 2px solid var(--brand-white, #fff);
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  z-index: 50;
+}
+
+.zaraSidebarLink {
+  background: transparent;
+  border: none;
+  color: var(--brand-black);
+  font-family: var(--font-secondary);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.bagCount {
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.transparentSidebar .zaraSidebarLink {
+  color: var(--brand-white);
+}
+
+.zaraSidebarLink:hover {
+  opacity: 0.6;
+}
+
+@media (min-width: 768px) {
+  .zaraSidebar {
+    right: 48px;
+    top: 200px;
+  }
 }

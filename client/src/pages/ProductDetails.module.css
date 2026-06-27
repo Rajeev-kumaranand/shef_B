@@ -1,6 +1,8 @@
 .page {
   padding-top: var(--header-height);
   min-height: 100vh;
+  background-color: white;
+  color: black;
 }
 
 .grid {
@@ -19,7 +21,8 @@
 .mainImageWrapper {
   width: 100%;
   aspect-ratio: 4/5;
-  background: var(--surface-secondary);
+  background: white;
+  border: 1px solid black;
   overflow: hidden;
 }
 
@@ -51,7 +54,7 @@
 
 .activeThumb {
   opacity: 1;
-  border-color: var(--brand-black);
+  border-color: red;
 }
 
 .thumbnail {
@@ -70,7 +73,7 @@
   font-size: var(--font-size-sm);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
-  color: var(--text-secondary);
+  color: black;
   margin-bottom: var(--spacing-md);
 }
 
@@ -90,7 +93,7 @@
 
 .shortDesc {
   font-size: var(--font-size-lg);
-  color: var(--text-secondary);
+  color: black;
   margin-bottom: var(--spacing-lg);
   line-height: 1.5;
 }
@@ -111,8 +114,8 @@
 .addToCartBtn {
   flex: 1;
   padding: var(--spacing-md);
-  background: var(--brand-black);
-  color: var(--brand-white);
+  background: black;
+  color: white;
   border: none;
   font-family: var(--font-secondary);
   text-transform: uppercase;
@@ -122,15 +125,15 @@
 }
 
 .addToCartBtn:hover {
-  background: var(--brand-brown);
+  background: red;
 }
 
 .wishlistBtn {
   width: 56px;
   height: 56px;
-  border: 1px solid var(--border-color);
-  background: transparent;
-  color: var(--text-primary);
+  border: 1px solid black;
+  background: white;
+  color: black;
   font-size: 24px;
   display: flex;
   align-items: center;
@@ -151,7 +154,7 @@
 }
 
 .description p {
-  color: var(--text-secondary);
+  color: black;
   line-height: 1.6;
 }
 
@@ -161,6 +164,7 @@
   font-size: var(--font-size-xxl);
   text-align: center;
   margin-bottom: var(--spacing-xl);
+  color: black;
 }
 
 .relatedGrid {
@@ -187,7 +191,8 @@
 
 .relatedImageWrapper {
   aspect-ratio: 4/5;
-  background: var(--surface-secondary);
+  background: white;
+  border: 1px solid black;
   margin-bottom: var(--spacing-md);
   overflow: hidden;
 }
@@ -207,10 +212,11 @@
   font-family: var(--font-secondary);
   font-size: 14px;
   margin-bottom: 4px;
+  color: black;
 }
 
 .relatedPrice {
-  color: var(--text-secondary);
+  color: black;
   font-size: var(--font-size-sm);
 }
 
@@ -229,76 +235,214 @@
   z-index: 10;
 }
 
-/* Reviews */
-.reviewsHeader {
+/* Reviews - Zara Style */
+.reviewContainer{
+  background-color: white;
+  padding: 0;
+}
+.reviewsTitleContainer {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.reviewsTitleCursive {
+  font-family: "Brush Script MT", "Caveat", "Dancing Script", cursive;
+  font-size: 42px;
+  font-weight: normal;
+  color: black;
+}
+
+.reviewsSummaryLayout {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 10%;
   margin-bottom: var(--spacing-xl);
-  padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid var(--border-color);
 }
 
-.reviewsHeader h2 {
+.reviewSummaryLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.reviewSummaryStars {
+  display: flex;
+  gap: 2px;
+}
+
+.reviewSummaryAvgText {
   font-family: var(--font-primary);
-  font-size: var(--font-size-xl);
+  font-size: 14px;
+  color: black;
+  margin-top: 8px;
 }
 
-.writeReviewBtn {
-  background: transparent;
-  border: 1px solid var(--border-color);
-  padding: 8px 16px;
-  font-family: var(--font-secondary);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  color: var(--text-secondary);
+.reviewSummaryBasedText {
+  font-family: var(--font-primary);
+  font-size: 13px;
+  color: black;
 }
 
-.reviewForm {
-  background: var(--surface-secondary);
-  padding: var(--spacing-lg);
-  margin-bottom: var(--spacing-xl);
+.reviewSummaryMiddle {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: 6px;
+  border-left: 1px solid #f1f1f1;
+  border-right: 1px solid #f1f1f1;
+  padding: 0 40px;
 }
 
-.formGroup {
+.distributionRow {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
-.formGroup label {
-  font-family: var(--font-secondary);
+.distributionStars {
+  display: flex;
+  gap: 2px;
+  width: 70px;
+}
+
+.distributionBarContainer {
+  width: 120px;
+  height: 8px;
+  background-color: #f1f1f1;
+  overflow: hidden;
+}
+
+.distributionBarFill {
+  height: 100%;
+  background-color: red;
+}
+
+.distributionCount {
+  font-family: var(--font-primary);
   font-size: 12px;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
+  color: black;
+  width: 12px;
+  text-align: right;
 }
 
-.formGroup input, .formGroup select, .formGroup textarea, .formGroup select option {
-  padding: 8px;
-  font-family: var(--font-secondary);
-  background-color: rgb(249, 255, 255);
-  border: 2px solid rgb(216, 216, 216);
-  color: var(--text-secondary);
+.reviewSummaryRight {
+  display: flex;
+  justify-content: center;
 }
 
-.submitReviewBtn {
-  background: var(--brand-black);
+.writeReviewBlackBtn {
+  background-color: black;
   color: white;
   border: none;
-  padding: 12px 24px;
-  font-family: var(--font-secondary);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  padding: 12px 32px;
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-  align-self: flex-start;
+  transition: opacity 0.2s ease;
+  width: 180px;
 }
 
-.noReviews {
-  color: var(--text-secondary);
-  font-style: italic;
+.writeReviewBlackBtn:hover {
+  background-color: red;
+}
+
+.reviewsToolbar {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: var(--spacing-md);
+}
+
+.reviewsSortSelect {
+  border: 1px solid black;
+  padding: 6px 12px;
+  font-family: var(--font-primary);
+  font-size: 12px;
+  background: white;
+  color: black;
+  outline: none;
+  cursor: pointer;
+}
+
+.reviewsDivider {
+  border: none;
+  border-top: 1px solid #f1f1f1;
+  margin-bottom: var(--spacing-xl);
+}
+
+.zaraReviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: var(--spacing-xxl);
+}
+
+.zaraReviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.zaraReviewStars {
+  display: flex;
+  gap: 2px;
+}
+
+.zaraReviewDate {
+  font-family: var(--font-primary);
+  font-size: 12px;
+  color: black;
+}
+
+.zaraReviewAuthorBlock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.authorIcon {
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.zaraReviewAuthor {
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 600;
+  color: black;
+}
+
+.verifiedBadge {
+  background-color: black;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  text-transform: uppercase;
+  font-family: var(--font-primary);
+}
+
+.zaraReviewTitle {
+  font-family: var(--font-primary);
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+  margin: 0;
+}
+
+.zaraReviewComment {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  color: black;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .reviewsList {
@@ -309,7 +453,7 @@
 
 .reviewItem {
   padding-bottom: var(--spacing-md);
-  border-bottom: 1px dashed var(--border-color);
+  border-bottom: 1px dashed black;
 }
 
 .reviewMeta {
@@ -321,11 +465,12 @@
 .reviewAuthor {
   font-family: var(--font-secondary);
   font-weight: 600;
+  color: black;
 }
 
 .reviewDate {
   font-size: 12px;
-  color: var(--text-secondary);
+  color: black;
 }
 
 .reviewStars {
@@ -335,9 +480,10 @@
 .reviewTitle {
   font-family: var(--font-primary);
   margin-bottom: 4px;
+  color: black;
 }
 
 .reviewComment {
-  color: var(--text-secondary);
+  color: black;
   line-height: 1.5;
 }

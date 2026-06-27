@@ -1,0 +1,191 @@
+/* Zara-Style Full Screen Container */
+.homeContainer {
+  width: 100%;
+}
+
+.snapSection {
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--surface-primary);
+  padding-bottom: 50px;
+  /* margin-bottom: 20vh;  */
+  /* Add large white gap between images like Zara */
+}
+
+.fullScreenImage {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Optional Overlay Styling (like 'THE NEW' or 'SCROLL DOWN') */
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  right: -30%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none; /* Let clicks pass through to images if needed */
+}
+
+.zaraBrandingText {
+  
+  font-family: "GFS Didot", serif;
+  font-weight: 400;
+  font-style: normal;
+
+  font-size: 15vw; /* Massive text like Zara */
+  font-weight: 400;
+  color: var(--brand-black);
+  text-transform: uppercase;
+  letter-spacing: -2vw;
+  mix-blend-mode: overlay; /* To blend with light/dark images nicely */
+  line-height: 0.8;
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-secondary);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--brand-black);
+  mix-blend-mode: overlay;
+  text-shadow: 0 2px 4px rgba(255,255,255,0.4);
+}
+
+.scrollLineContainer {
+  width: 1px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.scrollLineContainer .line {
+  width: 100%;
+  height: 100%;
+  background-color: var(--brand-black);
+}
+
+/* Invisible navigation trigger at the end */
+.navigationTrigger {
+  height: 10vh; /* Just tall enough to trigger intersection */
+  scroll-snap-align: start;
+  background-color: transparent;
+}
+
+/* Zara Collage Grid */
+.collageGrid {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0;
+}
+
+.collageImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Zara-Style Home Footer */
+.zaraHomeFooter {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--surface-primary);
+  padding: 10vh 20px 40px;
+  text-align: center;
+}
+
+.footerTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10vh;
+}
+
+.footerHeading {
+  font-family: "Didot", "Helvetica Now Text", "Arial";
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--brand-black);
+  margin: 0;
+}
+
+.footerScrollText {
+  font-family: var(--font-secondary);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--brand-black);
+  text-transform: uppercase;
+}
+
+.footerLineContainer {
+  width: 1px;
+  height: 60px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.footerLineContainer .footerLine {
+  width: 100%;
+  height: 100%;
+  background-color: var(--brand-black);
+}
+
+.footerBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 5vh;
+}
+
+.newsletterText {
+  font-family: var(--font-secondary);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--brand-black);
+  text-transform: uppercase;
+}
+
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  font-family: var(--font-secondary);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--brand-black);
+  margin-bottom: 24px;
+}
+
+.legalText {
+  font-family: var(--font-secondary);
+  font-size: 9px;
+  line-height: 1.6;
+  color: var(--brand-gray);
+  text-align: center;
+  opacity: 0.7;
+}
