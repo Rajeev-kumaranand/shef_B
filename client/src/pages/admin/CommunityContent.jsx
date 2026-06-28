@@ -81,10 +81,11 @@ export default function CommunityContent() {
               control={control} register={register} setValue={setValue} watch={watch}
               title="Stories" itemLabel="Story"
               schema={[
-                { name: 'title', type: 'text', label: 'Title' },
-                { name: 'excerpt', type: 'textarea', label: 'Excerpt' },
-                { name: 'author', type: 'text', label: 'Author' },
-                { name: 'image', type: 'media', label: 'Image' }
+                { name: 'name', type: 'text', label: 'Name' },
+                { name: 'role', type: 'text', label: 'Role' },
+                { name: 'quote', type: 'textarea', label: 'Quote / Excerpt' },
+                { name: 'image', type: 'media', label: 'Featured Image' },
+                { name: 'fullContent', type: 'richtext', label: 'Full Case Study Content' }
               ]}
             />
           </AdminCard>

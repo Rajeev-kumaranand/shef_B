@@ -24,8 +24,9 @@ export default function Home() {
   const shopTriggerRef = useRef(null);
 
   // Take a few nice slide images for the full-screen Zara-style experience
-  // Filter out any slides that might not exist or use the first 5
-  const fullScreenImages = slidesData.slice(1, 6);
+  // The user requested to use only slides 4, 7, 9, 10, and 22
+  const targetSlideIds = ['slide4', 'slide7', 'slide9', 'slide10', 'slide22'];
+  const fullScreenImages = slidesData.filter(s => targetSlideIds.includes(s.id));
   // Grab 9 images for the massive Zara-style collage grid
   const collageImages = slidesData.slice(6, 15);
 

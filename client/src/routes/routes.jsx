@@ -59,6 +59,7 @@ const SettingsPage = lazy(() => import('../pages/admin/SettingsPage.jsx'));
 const InquiriesPage = lazy(() => import('../pages/admin/InquiriesPage.jsx'));
 const ArticlesPage = lazy(() => import('../pages/admin/ArticlesPage.jsx'));
 const AuthorsPage = lazy(() => import('../pages/admin/AuthorsPage.jsx'));
+const AdminCommunityReviews = lazy(() => import('../pages/admin/AdminCommunityReviews.jsx'));
 
 // Helper for Suspense wrapper
 const withSuspense = (Component) => (
@@ -128,6 +129,7 @@ export const router = createBrowserRouter([
       { path: 'reviews', element: withSuspense(ReviewsPage) },
       { path: 'latest', element: withSuspense(LatestContent) },
       { path: 'community', element: withSuspense(CommunityContent) },
+      { path: 'community-reviews', element: withSuspense(AdminCommunityReviews) },
       { path: 'note', element: withSuspense(NoteContent) },
       { path: 'media', element: withSuspense(MediaLibrary) },
       { path: 'seo', element: withSuspense(SEOPage) },

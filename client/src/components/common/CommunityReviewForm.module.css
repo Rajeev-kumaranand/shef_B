@@ -1,0 +1,136 @@
+.formSection {
+  padding: var(--spacing-xxl) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.formContainer {
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-xxl);
+  width: 100%;
+  max-width: 600px;
+  box-shadow: var(--shadow-sm);
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.formTitle {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.formDesc {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.label {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-secondary);
+}
+
+.input, .textarea {
+  background-color: var(--surface-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-base);
+  padding: 1rem;
+  outline: none;
+  transition: border-color var(--transition-normal) ease;
+}
+
+.input:focus, .textarea:focus {
+  border-color: var(--text-primary);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.ratingContainer {
+  display: flex;
+  gap: 8px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.star {
+  color: #d1d5db;
+  transition: color 0.2s ease;
+}
+
+.starFilled {
+  color: #ffd700;
+}
+
+.submitBtn {
+  background-color: var(--brand-black);
+  color: var(--brand-white);
+  border: none;
+  padding: 1rem;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  cursor: pointer;
+  transition: background-color var(--transition-fast) ease;
+  margin-top: var(--spacing-sm);
+}
+
+.submitBtn:hover {
+  background-color: var(--text-secondary);
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.successMessage {
+  text-align: center;
+  padding: var(--spacing-xl);
+  background-color: var(--surface-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.successMessage h3 {
+  color: var(--brand-green);
+  font-family: var(--font-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.successMessage p {
+  color: var(--text-secondary);
+  font-family: var(--font-secondary);
+}
+
+.errorText {
+  color: var(--brand-red);
+  font-size: var(--font-size-xs);
+  margin-top: 4px;
+}

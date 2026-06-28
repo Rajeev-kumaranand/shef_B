@@ -36,7 +36,7 @@
 }
 
 .shopBtn:hover {
-  background: var(--brand-brown);
+  background: var(--brand-red);
 }
 
 .grid {
@@ -93,6 +93,7 @@
   font-size: var(--font-size-sm);
   font-weight: 500;
   margin-bottom: var(--spacing-xs);
+  color: var(--brand-black);
 }
 
 .price {
@@ -123,7 +124,7 @@
   flex: 1;
   padding: var(--spacing-sm);
   background: transparent;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   border: 1px solid var(--border-color);
   font-family: var(--font-secondary);
   text-transform: uppercase;

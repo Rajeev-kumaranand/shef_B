@@ -413,3 +413,16 @@ export const usePublicArticles = (params = {}) => {
     staleTime: 5 * 60 * 1000,
   });
 };
+
+// Public Community Reviews Hook
+export const useCommunityReviews = () => {
+  return useQuery({
+    queryKey: ['communityReviews'],
+    queryFn: async () => {
+      const { data } = await axios.get(`${API_URL}/community-reviews/approved`);
+      return data.reviews || [];
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+};
+

@@ -1,9 +1,12 @@
-import { useCommunityContent } from '../hooks/useApi.js';
+import { useState } from 'react';
+import { useCommunityContent, useCommunityReviews } from '../hooks/useApi.js';
+import { motion, AnimatePresence } from 'framer-motion';
 import Container from '../components/common/Container.jsx';
 import Section from '../components/common/Section.jsx';
 import SectionTitle from '../components/common/SectionTitle.jsx';
 import EditorialHero from '../components/common/EditorialHero.jsx';
-import TestimonialCard from '../components/common/TestimonialCard.jsx';
+import TestimonialCarousel from '../components/common/TestimonialCarousel.jsx';
+import CommunityReviewForm from '../components/common/CommunityReviewForm.jsx';
 import FadeUp from '../components/animation/FadeUp.jsx';
 import ImageReveal from '../components/common/ImageReveal.jsx';
 import SEOManager from '../components/common/SEOManager.jsx';
@@ -11,10 +14,23 @@ import styles from './Community.module.css';
 
 export default function Community() {
   const { data: content, loading } = useCommunityContent();
+  const { data: dbReviews, loading: dbLoading } = useCommunityReviews();
+  const [expandedStoryIndex, setExpandedStoryIndex] = useState(null);
 
   if (loading || !content) return <div style={{ minHeight: '100vh', background: 'var(--surface-primary)' }} />;
 
   const { hero, memberStories, testimonials, experiences, gallery, cta } = content;
+
+  // Format database reviews to match the testimonial component's expected structure
+  const formattedDbReviews = (dbReviews || []).map(r => ({
+    quote: r.message,
+    author: r.name,
+    role: r.role || 'Community Member',
+    rating: r.rating
+  }));
+
+  // Combine static CMS testimonials with dynamic DB reviews
+  const allTestimonials = [...(testimonials?.items || []), ...formattedDbReviews];
 
   return (
     <div className={styles.communityPage}>
@@ -29,35 +45,71 @@ export default function Community() {
       <Section spacing="large" className={styles.storiesSection}>
         <Container width="wide">
           <SectionTitle title={memberStories.title} />
-          <div className={styles.storiesGrid}>
-            {memberStories.stories.map((story, idx) => (
-              <FadeUp key={story.id} delay={idx * 0.2} className={styles.storyCard}>
-                <div className={styles.storyImage}>
-                  <ImageReveal src={story.image?.url} alt={story.name} aspectRatio="portrait" />
-                </div>
-                <div className={styles.storyContent}>
-                  <p className={styles.storyQuote}>"{story.quote}"</p>
-                  <div className={styles.storyAuthor}>
-                    <h4>{story.name}</h4>
-                    <p>{story.role}</p>
+          <div className={styles.caseStudyGrid}>
+            {memberStories.stories.map((story, idx) => {
+              const isExpanded = expandedStoryIndex === idx;
+              return (
+                <FadeUp key={story.id || idx} delay={0.2} className={styles.caseStudyContainer}>
+                  <div className={`${styles.caseStudyRow} ${idx % 2 !== 0 ? styles.caseStudyReverse : ''}`}>
+                    <div className={styles.caseStudyImage}>
+                      <ImageReveal src={story.image?.url} alt={story.name} aspectRatio="landscape" />
+                    </div>
+                    <div className={styles.caseStudyContent}>
+                      <div className={styles.caseStudyHeader}>
+                        <p className={styles.caseStudyRole}>{story.role}</p>
+                        <h4 className={styles.caseStudyName}>{story.name}</h4>
+                      </div>
+                      <p className={styles.caseStudyQuote}>"{story.quote}"</p>
+                      
+                      <button 
+                        className={styles.caseStudyBtn}
+                        onClick={() => setExpandedStoryIndex(isExpanded ? null : idx)}
+                        style={{ position: 'relative', overflow: 'hidden' }}
+                      >
+                        <AnimatePresence mode="wait">
+                          <motion.span
+                            key={isExpanded ? 'close' : 'read'}
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -5 }}
+                            transition={{ duration: 0.2 }}
+                            style={{ display: 'inline-block' }}
+                          >
+                            {isExpanded ? 'Close Profile' : 'Read Profile'}
+                          </motion.span>
+                        </AnimatePresence>
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </FadeUp>
-            ))}
+
+                  <AnimatePresence>
+                    {isExpanded && story.fullContent && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ overflow: 'hidden' }}
+                      >
+                        <div 
+                          className={styles.caseStudyFullContent}
+                          dangerouslySetInnerHTML={{ __html: story.fullContent }}
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </FadeUp>
+              );
+            })}
           </div>
         </Container>
       </Section>
 
-      <Section spacing="large" background="darkGray" className={styles.testimonialsSection}>
+      <Section spacing="large" className={styles.testimonialsSection}>
         <Container width="wide">
-          <SectionTitle title={testimonials.title} className={styles.inverseTitle} />
-          <div className={styles.testGrid}>
-            {testimonials.items.map((test, idx) => (
-              <FadeUp key={idx} delay={idx * 0.1}>
-                <TestimonialCard testimonial={test} />
-              </FadeUp>
-            ))}
-          </div>
+          <SectionTitle title={testimonials.title} alignment="center" />
+          <TestimonialCarousel testimonials={allTestimonials} />
+          <CommunityReviewForm />
         </Container>
       </Section>
 

@@ -360,6 +360,27 @@ async function main() {
   }
   console.log('Products seeded');
 
+  // 12. Community Reviews
+  const communityReviewsData = [
+    { message: 'Their understanding of material honesty has fundamentally shifted how I approach my own residential projects.', name: 'Sarah Jenkins', role: 'Architect', rating: 5, approved: true },
+    { message: 'A rare dedication to the slow, deliberate art of making things well.', name: 'Marcus V.', role: 'Designer', rating: 5, approved: true },
+    { message: 'The spatial harmony achieved in their showrooms is something I try to replicate in my own life.', name: 'A. H.', role: 'Patron', rating: 5, approved: true },
+    { message: 'Every piece feels inevitable. Like it was always meant to exist exactly as it does.', name: 'Elena R.', role: 'Curator', rating: 5, approved: true },
+    { message: 'Unapologetically austere, yet deeply human and warm.', name: 'Thomas K.', role: 'Editor', rating: 5, approved: true },
+    { message: 'A masterclass in restraint and the power of negative space.', name: 'Julia M.', role: 'Creative Director', rating: 5, approved: true }
+  ];
+
+  // We only seed if the table is empty to avoid duplicating if ran multiple times
+  const existingReviewsCount = await prisma.communityReview.count();
+  if (existingReviewsCount === 0) {
+    for (const review of communityReviewsData) {
+      await prisma.communityReview.create({ data: review });
+    }
+    console.log('Community Reviews seeded');
+  } else {
+    console.log('Community Reviews already exist, skipping seed');
+  }
+
   console.log('Database seeding completed!');
 }
 

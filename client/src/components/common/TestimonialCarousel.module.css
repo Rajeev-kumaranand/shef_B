@@ -1,0 +1,124 @@
+.carouselContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-xxl) var(--spacing-md);
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 400px;
+}
+
+.stars {
+  color: #ffd700;
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  gap: 4px;
+}
+
+.quoteContainer {
+  width: 100%;
+  position: relative;
+}
+
+.quoteText {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  color: #0c2040; /* Deep blue from Ritual */
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xl);
+  font-weight: 400;
+}
+
+.italicText {
+  font-style: italic;
+  font-weight: 400;
+  color: #0c2040;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: var(--spacing-xxl);
+}
+
+.authorName {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: #0c2040;
+  margin: 0;
+}
+
+.authorRole {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xs);
+  color: #6b7a90;
+  margin: 0;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #f2f5f8;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #d1d5db;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.dotActive {
+  width: 16px;
+  border-radius: 4px;
+  background-color: #ffd700;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #0c2040;
+  cursor: pointer;
+  padding: 10px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.navButton:hover {
+  opacity: 1;
+}
+
+.prevButton {
+  left: -40px;
+}
+
+.nextButton {
+  right: -40px;
+}
+
+@media (max-width: 768px) {
+  .navButton {
+    display: none;
+  }
+}

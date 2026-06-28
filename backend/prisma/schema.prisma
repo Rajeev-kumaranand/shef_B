@@ -450,3 +450,16 @@ model ContactInquiry {
 
   @@index([status])
 }
+
+model CommunityReview {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  role      String?
+  rating    Int      @default(5)
+  message   String   @db.Text
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+

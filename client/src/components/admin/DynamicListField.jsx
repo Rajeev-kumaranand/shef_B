@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { useFieldArray } from 'react-hook-form';
+import { useFieldArray, Controller } from 'react-hook-form';
+import ReactQuill from 'react-quill-new';
+import 'react-quill-new/dist/quill.snow.css';
 import MediaPickerModal from './MediaPickerModal.jsx';
 import styles from './DynamicListField.module.css';
 
@@ -15,6 +17,15 @@ import styles from './DynamicListField.module.css';
  * @param {string} itemLabel - Label for individual items (e.g. 'Product')
  * @param {Array} schema - Array of field definitions: [{ name: 'title', type: 'text', label: 'Title' }]
  */
+const quillModules = {
+  toolbar: [
+    [{ 'header': [2, 3, false] }],
+    ['bold', 'italic', 'underline'],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    ['link', 'clean']
+  ],
+};
+
 export default function DynamicListField({ name, control, register, setValue, watch, title, itemLabel, schema }) {
   const { fields, append, remove, move } = useFieldArray({
     control,
@@ -96,6 +107,21 @@ export default function DynamicListField({ name, control, register, setValue, wa
                           {currentValue && (
                             <button type="button" className={styles.actionBtn} onClick={() => setValue(fieldName, '', { shouldDirty: true })}>Clear</button>
                           )}
+                        </div>
+                      ) : schemaField.type === 'richtext' ? (
+                        <div style={{ background: 'white', borderRadius: '4px', overflow: 'hidden' }}>
+                          <Controller
+                            name={fieldName}
+                            control={control}
+                            render={({ field }) => (
+                              <ReactQuill 
+                                theme="snow" 
+                                modules={quillModules} 
+                                value={field.value || ''} 
+                                onChange={field.onChange} 
+                              />
+                            )}
+                          />
                         </div>
                       ) : (
                         <input type="text" className={styles.input} {...register(fieldName)} />

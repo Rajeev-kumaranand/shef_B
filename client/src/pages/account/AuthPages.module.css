@@ -20,6 +20,7 @@
   font-size: var(--font-size-xxl);
   text-align: center;
   margin-bottom: var(--spacing-sm);
+  color: var(--brand-black);
 }
 
 .subtitle {

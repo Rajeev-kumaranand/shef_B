@@ -28,7 +28,7 @@ html {
 }
 
 body {
-  background-color: var(--brand-black);
+  background-color: var(--brand-white);
   color: var(--colors-neutral-white);
   font-family: var(--typography-fonts-body);
   font-weight: var(--typography-weights-regular);

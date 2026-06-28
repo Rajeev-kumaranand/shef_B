@@ -15,6 +15,7 @@ const navItems = [
   { label: 'Reviews', path: '/admin/reviews' },
   { label: 'Latest Content', path: '/admin/latest' },
   { label: 'Community Content', path: '/admin/community' },
+  { label: 'Community Reviews', path: '/admin/community-reviews' },
   { label: 'Note Content', path: '/admin/note' },
   { label: 'Media Library', path: '/admin/media' },
   { label: 'Slides', path: '/admin/slides' },

@@ -29,6 +29,7 @@ import seoRoutes from './src/routes/seo.routes.js';
 import magazineRoutes from './src/routes/magazine.routes.js';
 import settingsRoutes from './src/routes/settings.routes.js';
 import inquiryRoutes from './src/routes/inquiry.routes.js';
+import communityReviewRoutes from './src/routes/communityReview.routes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -99,6 +100,7 @@ app.use('/api/seo', seoRoutes);
 app.use('/api/magazine', magazineRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api', inquiryRoutes); // Handles both /api/contact and /api/admin/inquiries
+app.use('/api/community-reviews', communityReviewRoutes);
 
 // 404 Handler
 app.use((req, res, next) => {

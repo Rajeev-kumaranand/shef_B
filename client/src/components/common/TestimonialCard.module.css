@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: var(--spacing-xl);
-  background-color: var(--brand-black);
+  background-color: var(--surface-primary);
   border: 1px solid var(--border-color);
   height: 100%;
 }

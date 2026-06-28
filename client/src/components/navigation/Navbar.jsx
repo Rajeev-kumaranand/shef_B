@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FiUser, FiHeart } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navbarVariant } from '../../motion/motionVariants.js';
 import { useCompany, useNavigation } from '../../hooks/useApi.js';
@@ -15,10 +16,13 @@ import { cn } from '../../utils/cn.js';
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const { data: navigationData, loading: navLoading } = useNavigation();
   const { cartCount, setIsCartOpen } = useCart();
+  const { wishlistCount } = useWishlist();
   const { customer, logout } = useCustomerAuth();
 
   // Check if we are on the Home page to support transparent layout
@@ -37,11 +41,30 @@ export default function Navbar() {
     <>
       {/* Persistent Right Floating Actions (Zara Style) */}
       <div className={cn(styles.zaraSidebar, showTransparent && styles.transparentSidebar)}>
-        <button className={styles.zaraSidebarLink} onClick={() => setIsCartOpen(true)}>
+        <button 
+          className={styles.zaraSidebarLink} 
+          onClick={() => {
+            if (customer) {
+              setIsCartOpen(true);
+            } else {
+              navigate(`/account/login?redirect=${encodeURIComponent(location.pathname)}`);
+            }
+          }}
+        >
           BAG <span className={styles.bagCount}>[ {cartCount} ]</span>
         </button>
+        {customer && (
+          <Link to="/wishlist" className={styles.zaraSidebarLink}>
+            WISHLIST <FiHeart size={11} className={styles.icon} /> <span className={styles.bagCount}>[ {wishlistCount} ]</span>
+          </Link>
+        )}
         {customer ? (
-          <button className={styles.zaraSidebarLink} onClick={logout}>LOG OUT</button>
+          <>
+            <Link to="/account" className={styles.zaraSidebarLink}>
+              ACCOUNT <FiUser size={12} className={styles.icon} />
+            </Link>
+            <button className={styles.zaraSidebarLink} onClick={logout}>LOG OUT</button>
+          </>
         ) : (
           <Link to={`/account/login?redirect=${encodeURIComponent(location.pathname)}`} className={styles.zaraSidebarLink}>
             LOG IN
@@ -80,11 +103,36 @@ export default function Navbar() {
             />
           </button>
 
-          {/* Search Button (Right) */}
-          <div className={styles.navRight}>
-            <button className={cn(styles.searchBtn, showTransparent && styles.transparentSearch)}>
+          {/* Search Dropdown (Right) */}
+          <div className={cn(styles.navRight, styles.searchContainer)}>
+            <button 
+              className={cn(styles.searchBtn, showTransparent && styles.transparentSearch)}
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+            >
               SEARCH
             </button>
+            <AnimatePresence>
+              {isSearchOpen && (
+                <motion.div 
+                  className={styles.searchDropdown}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {navigationData?.map(item => (
+                    <Link 
+                      key={item.path} 
+                      to={item.path} 
+                      className={styles.searchDropdownLink}
+                      onClick={() => setIsSearchOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
         </Container>
