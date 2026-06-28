@@ -1,5 +1,8 @@
 .latestPage {
   width: 100%;
+  background-color: #ffffff;
+  color: #000000;
+  min-height: 100vh;
 }
 
 /* Horizontal Scroll Setup */
@@ -204,5 +207,48 @@
   color: var(--text-secondary);
   padding: var(--spacing-xs) var(--spacing-md);
   border: 1px solid #E0E0E0;
-  border-radius: var(--radius-full);
+}
+
+/* Mobile Responsiveness for Latest Page */
+@media (max-width: 1023px) {
+  .scrollSection {
+    height: auto !important;
+  }
+
+  .horizontalTrack {
+    flex-direction: column !important;
+    width: 100% !important;
+    align-items: stretch !important;
+    transform: none !important;
+  }
+  
+  .stickyContainer {
+    position: static !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  
+  .slideBlock {
+    width: 100% !important;
+    padding: 0 20px !important;
+    height: auto !important;
+    margin-bottom: 60px !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  .inverseTitle {
+    font-size: 2.5rem !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
+    padding-top: 40px !important;
+  }
+  
+  .image1FeatureSection {
+    padding: 0 !important;
+  }
+  
+  .newsletterWrapper {
+    padding: 40px 0 !important;
+  }
 }

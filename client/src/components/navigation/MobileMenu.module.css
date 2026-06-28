@@ -99,6 +99,16 @@
     gap: 80px;
   }
 }
+@media (max-width: 768px) {
+  .logo {
+  height: 60px;
+  object-fit: contain;
+  position: fixed;
+  right: 0%;
+  top: 55px;
+  z-index: 100;
+}
+}
 
 .secondaryTitle {
   font-family: var(--font-secondary);

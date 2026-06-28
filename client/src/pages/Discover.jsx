@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import SEOManager from '../components/common/SEOManager.jsx';
 import styles from './Discover.module.css';
@@ -22,7 +22,15 @@ import img6 from '../assets/slidesImages/slide6.jpg';
 
 export default function Discover() {
   const targetRef = useRef(null);
-  
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "end end"]
@@ -48,7 +56,7 @@ export default function Discover() {
       
       <section ref={targetRef} className={styles.scrollSection}>
         <div className={styles.stickyContainer}>
-          <motion.div style={{ x }} className={styles.horizontalTrack}>
+          <motion.div style={isDesktop ? { x } : {}} className={styles.horizontalTrack}>
             
             {/* Slide 1 - Portfolio 1 */}
             <div className={styles.portfolioSlide} style={{ width: '80vw' }}>

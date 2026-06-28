@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { useLatestContent } from '../hooks/useApi.js';
 import ArticleCard from '../components/common/ArticleCard.jsx';
@@ -9,6 +9,14 @@ function TheLatestScrollable({ content }) {
   const targetRef = useRef(null);
   const trackRef = useRef(null);
   const trackWidth = useMotionValue(0);
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -54,9 +62,9 @@ function TheLatestScrollable({ content }) {
     <div className={styles.latestPage}>
       <SEOManager pageKey="latest" />
 
-      <motion.section ref={targetRef} className={styles.scrollSection} style={{ height: sectionHeight }}>
+      <motion.section ref={targetRef} className={styles.scrollSection} style={isDesktop ? { height: sectionHeight } : {}}>
         <div className={styles.stickyContainer}>
-          <motion.div ref={trackRef} style={{ x }} className={styles.horizontalTrack}>
+          <motion.div ref={trackRef} style={isDesktop ? { x } : {}} className={styles.horizontalTrack}>
             
             {/* Feature Blog Section -> Slide 1 */}
             <div className={styles.slideBlock} style={{ width: '90vw', padding: '0 2vw', flexShrink: 0 }}>
